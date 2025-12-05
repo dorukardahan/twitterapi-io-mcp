@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.github
+test
+*.test.js
+scrape-*.cjs
+cache
+*.md
+!README.md
+.mcpregistry*
