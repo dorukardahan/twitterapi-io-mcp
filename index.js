@@ -39,6 +39,7 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   CallToolRequestSchema,
+  CompleteRequestSchema,
   ListResourcesRequestSchema,
   ListToolsRequestSchema,
   ReadResourceRequestSchema,
@@ -884,6 +885,7 @@ const server = new Server(
     capabilities: {
       tools: {},
       resources: {},
+      completions: {},
     },
   }
 );
@@ -1711,6 +1713,19 @@ ${page.raw_text || page.description || "Filter rules documentation not available
   }
 
   throw new Error(`Unknown resource: ${uri}`);
+});
+
+// ========== COMPLETIONS HANDLER (for Glama.ai compatibility) ==========
+server.setRequestHandler(CompleteRequestSchema, async () => {
+  // Return empty completions - we don't provide autocomplete suggestions
+  // but declaring the capability allows mcp-proxy to work correctly
+  return {
+    completion: {
+      values: [],
+      hasMore: false,
+      total: 0
+    }
+  };
 });
 
 // ========== SERVER STARTUP ==========
