@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * TwitterAPI.io Documentation MCP Server v1.0.1
+ * TwitterAPI.io Documentation MCP Server v1.0.2
  *
  * Production-ready MCP server with:
  * - Comprehensive error handling with ErrorType classification
@@ -878,7 +878,7 @@ function searchInDocs(query, maxResults = 20) {
 const server = new Server(
   {
     name: "twitterapi-docs",
-    version: "1.0.1",
+    version: "1.0.2",
   },
   {
     capabilities: {
@@ -1716,7 +1716,7 @@ ${page.raw_text || page.description || "Filter rules documentation not available
 // ========== SERVER STARTUP ==========
 async function main() {
   try {
-    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.1');
+    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.2');
 
     // Validate docs file exists
     if (!fs.existsSync(DOCS_PATH)) {
@@ -1751,7 +1751,7 @@ async function main() {
     await server.connect(transport);
 
     logger.info('init', 'MCP Server ready on stdio', {
-      version: '1.0.1',
+      version: '1.0.2',
       features: ['max_results', 'camelCase', 'SLO tracking', 'MCP Resources', 'data freshness', 'trusted publishing']
     });
 

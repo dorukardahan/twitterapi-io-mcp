@@ -1,6 +1,6 @@
 {
   "name": "twitterapi-docs-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MCP server providing offline access to TwitterAPI.io documentation for Claude and other AI assistants",
   "main": "index.js",
   "type": "module",
