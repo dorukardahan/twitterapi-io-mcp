@@ -879,7 +879,7 @@ function searchInDocs(query, maxResults = 20) {
 const server = new Server(
   {
     name: "twitterapi-docs",
-    version: "1.0.3",
+    version: "1.0.4",
   },
   {
     capabilities: {
