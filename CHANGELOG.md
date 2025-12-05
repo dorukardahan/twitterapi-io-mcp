@@ -1,0 +1,61 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2025-01-XX
+
+### Added
+
+First public release. Previously developed internally as v3.3.0.
+
+#### Tools (6 total)
+- `search_twitterapi_docs` - Full-text search across all documentation with configurable `max_results` (1-10)
+- `get_twitterapi_endpoint` - Get detailed info for a specific API endpoint
+- `list_twitterapi_endpoints` - List all endpoints with optional category filter
+- `get_twitterapi_guide` - Get guide pages (pricing, qps_limits, tweet_filter_rules, changelog, introduction, authentication, readme)
+- `get_twitterapi_pricing` - Quick access to pricing information
+- `get_twitterapi_auth` - Quick access to authentication guide
+
+#### Resources (9 total)
+- `twitterapi://guides/pricing` - Pricing guide
+- `twitterapi://guides/qps-limits` - QPS limits guide
+- `twitterapi://guides/filter-rules` - Tweet filter rules guide
+- `twitterapi://guides/changelog` - API changelog
+- `twitterapi://guides/introduction` - Introduction guide
+- `twitterapi://guides/authentication` - Authentication guide
+- `twitterapi://guides/readme` - README guide
+- `twitterapi://endpoints/list` - Full endpoint listing
+- `twitterapi://status/freshness` - Data freshness status
+
+#### Features
+- Advanced tokenization with camelCase/PascalCase support
+- N-gram fuzzy matching for search
+- Hybrid caching (memory + disk) with 24-hour TTL
+- SLO latency tracking (<50ms target)
+- Data freshness monitoring
+- Structured logging with metrics
+- Input validation with helpful error messages
+- 48 unit tests
+
+#### Documentation Coverage
+- 52 API endpoints
+- 8 guide pages
+- 5 blog articles
+- Offline-first design (no network required)
+
+### Technical Details
+- Pure ES Modules (no build step required)
+- Node.js 18.18.0+ required
+- Single dependency: @modelcontextprotocol/sdk
+
+---
+
+## Pre-1.0 Development History
+
+Internal development versions (v1.0.0 - v3.3.0) included iterative improvements:
+
+- **Phase 1**: Basic tools, search functionality, caching
+- **Phase 2**: MCP Resources, advanced search, SLO tracking, data freshness monitoring

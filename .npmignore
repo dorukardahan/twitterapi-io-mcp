@@ -1,0 +1,29 @@
+# Development files
+test/
+scrape-all.cjs
+scrape-docs.js
+.git/
+.gitignore
+
+# Documentation (keep only README)
+MCP-Decision-Matrix.md
+docs/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# TypeScript config (for dev only)
+tsconfig.json

@@ -1,0 +1,50 @@
+{
+  "name": "twitterapi-docs-mcp",
+  "version": "1.0.0",
+  "description": "MCP server providing offline access to TwitterAPI.io documentation for Claude and other AI assistants",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "twitterapi-docs-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test 'test/**/*.test.js'",
+    "scrape": "node scrape-all.cjs",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "twitter",
+    "twitterapi",
+    "api-documentation",
+    "ai-assistant",
+    "llm",
+    "anthropic",
+    "offline-docs"
+  ],
+  "author": "Doruk Ardahan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorukardahan/twitterapi-docs-mcp.git"
+  },
+  "homepage": "https://github.com/dorukardahan/twitterapi-docs-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/dorukardahan/twitterapi-docs-mcp/issues"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "files": [
+    "index.js",
+    "data/docs.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
