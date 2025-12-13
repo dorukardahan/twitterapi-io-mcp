@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.8] - 2025-12-13
+
+### Added
+- Blog key support in `get_twitterapi_url` (e.g., `blog_pricing_2025`)
+- URL conveniences in `get_twitterapi_url`: accepts `http://` and `www.twitterapi.io` and normalizes to HTTPS
+- Manual trigger (`workflow_dispatch`) for the npm publish workflow
+
+### Changed
+- npm publish workflow now uses provenance attestation (`npm publish --provenance`)
+
+---
+
 ## [1.0.7] - 2025-12-13
 
 ### Added

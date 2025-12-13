@@ -590,6 +590,22 @@ describe('MCP Protocol Integration', () => {
       assert.strictEqual(page.structuredContent.name, 'pricing');
       assert.strictEqual(typeof page.structuredContent.markdown, 'string');
 
+      const httpUpgrade = await client.callTool({
+        name: 'get_twitterapi_url',
+        arguments: { url: 'http://twitterapi.io/pricing' }
+      });
+      assert.ok(httpUpgrade.structuredContent, 'Expected structuredContent for http→https upgrade');
+      assert.strictEqual(httpUpgrade.structuredContent.kind, 'page');
+      assert.strictEqual(httpUpgrade.structuredContent.name, 'pricing');
+
+      const wwwAlias = await client.callTool({
+        name: 'get_twitterapi_url',
+        arguments: { url: 'https://www.twitterapi.io/pricing' }
+      });
+      assert.ok(wwwAlias.structuredContent, 'Expected structuredContent for www host alias');
+      assert.strictEqual(wwwAlias.structuredContent.kind, 'page');
+      assert.strictEqual(wwwAlias.structuredContent.name, 'pricing');
+
       const keyLookup = await client.callTool({
         name: 'get_twitterapi_url',
         arguments: { url: 'qps_limits' }
@@ -597,6 +613,14 @@ describe('MCP Protocol Integration', () => {
       assert.ok(keyLookup.structuredContent, 'Expected structuredContent for key-based lookup');
       assert.strictEqual(keyLookup.structuredContent.kind, 'page');
       assert.strictEqual(keyLookup.structuredContent.name, 'qps_limits');
+
+      const blogKey = await client.callTool({
+        name: 'get_twitterapi_url',
+        arguments: { url: 'blog_pricing_2025' }
+      });
+      assert.ok(blogKey.structuredContent, 'Expected structuredContent for blog key lookup');
+      assert.strictEqual(blogKey.structuredContent.kind, 'blog');
+      assert.strictEqual(blogKey.structuredContent.name, 'blog_pricing_2025');
 
       const docsRoot = await client.callTool({
         name: 'get_twitterapi_url',

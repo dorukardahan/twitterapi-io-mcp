@@ -3,6 +3,7 @@ name: Publish to npm
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -27,4 +28,4 @@ jobs:
         run: npm test
 
       - name: Publish to npm (trusted publishing)
-        run: npm publish --access public
+        run: npm publish --provenance --access public

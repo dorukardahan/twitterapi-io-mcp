@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * TwitterAPI.io Documentation MCP Server v1.0.7
+ * TwitterAPI.io Documentation MCP Server v1.0.8
  *
  * Production-ready MCP server with:
  * - Comprehensive error handling with ErrorType classification
@@ -626,6 +626,12 @@ function canonicalizeUrl(rawUrl) {
   }
 
   const u = new URL(candidate);
+  if (u.protocol === 'http:') {
+    u.protocol = 'https:';
+  }
+  if (u.hostname === 'www.twitterapi.io') {
+    u.hostname = 'twitterapi.io';
+  }
   if (u.protocol !== 'https:') {
     throw new Error('Only https URLs are supported');
   }
@@ -1125,7 +1131,7 @@ function findSnapshotItemByUrl(data, canonicalUrl) {
 const server = new Server(
   {
     name: "twitterapi-docs",
-    version: "1.0.7",
+    version: "1.0.8",
   },
   {
     capabilities: {
@@ -1799,8 +1805,8 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
     case "get_twitterapi_url": {
       const rawInput = typeof args.url === 'string' ? args.url.trim() : args.url;
       const keyCandidate = typeof rawInput === 'string' ? rawInput.toLowerCase() : null;
-      const resolvedInput = keyCandidate && (data.pages?.[keyCandidate]?.url || data.endpoints?.[keyCandidate]?.url)
-        ? (data.pages?.[keyCandidate]?.url || data.endpoints?.[keyCandidate]?.url)
+      const resolvedInput = keyCandidate && (data.pages?.[keyCandidate]?.url || data.endpoints?.[keyCandidate]?.url || data.blogs?.[keyCandidate]?.url)
+        ? (data.pages?.[keyCandidate]?.url || data.endpoints?.[keyCandidate]?.url || data.blogs?.[keyCandidate]?.url)
         : args.url;
 
       const validation = validateTwitterApiUrl(resolvedInput);
@@ -2388,7 +2394,7 @@ server.setRequestHandler(CompleteRequestSchema, async () => {
 // ========== SERVER STARTUP ==========
 async function main() {
   try {
-    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.7');
+    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.8');
 
     // Validate docs file exists
     if (!fs.existsSync(DOCS_PATH)) {
@@ -2423,7 +2429,7 @@ async function main() {
     await server.connect(transport);
 
     logger.info('init', 'MCP Server ready on stdio', {
-      version: '1.0.7',
+      version: '1.0.8',
       features: [
         'offline snapshot',
         'endpoints + pages + blogs',

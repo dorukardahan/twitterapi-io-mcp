@@ -15,7 +15,8 @@ MCP (Model Context Protocol) server providing **offline access** to [TwitterAPI.
 **Links**
 - GitHub: https://github.com/dorukardahan/twitterapi-io-mcp
 - npm: https://www.npmjs.com/package/twitterapi-docs-mcp
-- Context7: https://context7.com/dorukardahan/twitterapi-io-mcp
+- Context7 (canonical): https://context7.com/dorukardahan/twitterapi-io-mcp
+- Context7 (legacy slugs): https://context7.com/dorukardahan/twitterapi-docs-mcp, https://context7.com/dorukardahan/twitterapi.io-mcp
 
 ## Why I Built This
 
