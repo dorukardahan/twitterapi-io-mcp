@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.7] - 2025-12-13
+
+### Added
+- SEO-focused keywords for discoverability (`twitterapi.io`, `twitterapi-io-mcp`)
+
+### Changed
+- GitHub repo renamed to `dorukardahan/twitterapi-io-mcp` (old URLs redirect)
+- Updated repository links across docs and metadata
+- `context7.json` now targets `https://context7.com/dorukardahan/twitterapi-io-mcp`
+- MCP Registry identifier updated to `io.github.dorukardahan/twitterapi-io-mcp`
+
+---
+
 ## [1.0.6] - 2025-12-13
 
 ### Added

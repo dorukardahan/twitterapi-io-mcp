@@ -1,4 +1,6 @@
-# twitterapi-docs-mcp
+# twitterapi-io-mcp
+
+**npm package:** `twitterapi-docs-mcp`
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-docs-mcp.svg)](https://www.npmjs.com/package/twitterapi-docs-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-docs-mcp.svg)](https://www.npmjs.com/package/twitterapi-docs-mcp)
@@ -9,6 +11,11 @@
 MCP (Model Context Protocol) server providing **offline access** to [TwitterAPI.io](https://twitterapi.io) documentation for Claude and other AI assistants.
 
 > **Disclaimer**: This is an unofficial community project. Not affiliated with, endorsed by, or sponsored by TwitterAPI.io. TwitterAPI.io is a trademark of its respective owner.
+
+**Links**
+- GitHub: https://github.com/dorukardahan/twitterapi-io-mcp
+- npm: https://www.npmjs.com/package/twitterapi-docs-mcp
+- Context7: https://context7.com/dorukardahan/twitterapi-io-mcp
 
 ## Why I Built This
 
@@ -132,8 +139,8 @@ The documentation includes:
 If TwitterAPI.io updates their documentation, clone the repo and run the scraper:
 
 ```bash
-git clone https://github.com/dorukardahan/twitterapi-docs-mcp.git
-cd twitterapi-docs-mcp
+git clone https://github.com/dorukardahan/twitterapi-io-mcp.git
+cd twitterapi-io-mcp
 npm install
 node scrape-all.cjs
 ```
@@ -144,8 +151,8 @@ Note: The scraper is included in the repository but not in the npm package.
 
 ```bash
 # Clone repository
-git clone https://github.com/dorukardahan/twitterapi-docs-mcp.git
-cd twitterapi-docs-mcp
+git clone https://github.com/dorukardahan/twitterapi-io-mcp.git
+cd twitterapi-io-mcp
 
 # Install dependencies
 npm install

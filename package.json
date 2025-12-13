@@ -1,12 +1,13 @@
 {
   "name": "twitterapi-docs-mcp",
-  "version": "1.0.6",
-  "mcpName": "io.github.dorukardahan/twitterapi-docs-mcp",
-  "description": "MCP server providing offline access to TwitterAPI.io documentation for Claude and other AI assistants",
+  "version": "1.0.7",
+  "mcpName": "io.github.dorukardahan/twitterapi-io-mcp",
+  "description": "TwitterAPI.io MCP server providing offline access to docs (endpoints, pages, blogs) for Claude and other AI assistants",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "twitterapi-docs-mcp": "index.js"
+    "twitterapi-docs-mcp": "index.js",
+    "twitterapi-io-mcp": "index.js"
   },
   "scripts": {
     "start": "node index.js",
@@ -21,6 +22,9 @@
     "claude",
     "twitter",
     "twitterapi",
+    "twitterapi.io",
+    "twitterapi-io",
+    "twitterapi-io-mcp",
     "api-documentation",
     "ai-assistant",
     "llm",
@@ -31,11 +35,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dorukardahan/twitterapi-docs-mcp.git"
+    "url": "git+https://github.com/dorukardahan/twitterapi-io-mcp.git"
   },
-  "homepage": "https://github.com/dorukardahan/twitterapi-docs-mcp#readme",
+  "homepage": "https://github.com/dorukardahan/twitterapi-io-mcp#readme",
   "bugs": {
-    "url": "https://github.com/dorukardahan/twitterapi-docs-mcp/issues"
+    "url": "https://github.com/dorukardahan/twitterapi-io-mcp/issues"
   },
   "engines": {
     "node": ">=18.18.0"

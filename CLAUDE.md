@@ -3,7 +3,7 @@
 ## Project Status: PUBLISHED v1.0.0
 
 - **npm**: https://www.npmjs.com/package/twitterapi-docs-mcp
-- **GitHub**: https://github.com/dorukardahan/twitterapi-docs-mcp
+- **GitHub**: https://github.com/dorukardahan/twitterapi-io-mcp
 - **Install**: `npx -y twitterapi-docs-mcp`
 
 ## What This Is
