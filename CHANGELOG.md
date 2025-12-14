@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New canonical npm package: `twitterapi-io-mcp`
 - Legacy wrapper package: `packages/twitterapi-docs-mcp/` (keeps `twitterapi-docs-mcp` working)
+- Optional `NPM_TOKEN` bootstrap path in publish workflow for first-time publish of `twitterapi-io-mcp`
 
 ### Changed
 - MCP Registry manifest now points to `twitterapi-io-mcp` (`server.json`)
