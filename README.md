@@ -1,9 +1,12 @@
 # twitterapi-io-mcp
 
-**npm package:** `twitterapi-docs-mcp`
+**npm packages**
+- `twitterapi-io-mcp` (recommended)
+- `twitterapi-docs-mcp` (legacy compatibility wrapper)
 
-[![npm version](https://img.shields.io/npm/v/twitterapi-docs-mcp.svg)](https://www.npmjs.com/package/twitterapi-docs-mcp)
-[![npm downloads](https://img.shields.io/npm/dm/twitterapi-docs-mcp.svg)](https://www.npmjs.com/package/twitterapi-docs-mcp)
+[![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
+[![npm version (legacy)](https://img.shields.io/npm/v/twitterapi-docs-mcp.svg)](https://www.npmjs.com/package/twitterapi-docs-mcp)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=anthropic)](https://registry.modelcontextprotocol.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.18.0-brightgreen.svg)](https://nodejs.org/)
@@ -14,7 +17,8 @@ MCP (Model Context Protocol) server providing **offline access** to [TwitterAPI.
 
 **Links**
 - GitHub: https://github.com/dorukardahan/twitterapi-io-mcp
-- npm: https://www.npmjs.com/package/twitterapi-docs-mcp
+- npm (recommended): https://www.npmjs.com/package/twitterapi-io-mcp
+- npm (legacy): https://www.npmjs.com/package/twitterapi-docs-mcp
 - Context7 (canonical): https://context7.com/dorukardahan/twitterapi-io-mcp
 - Context7 (legacy slugs): https://context7.com/dorukardahan/twitterapi-docs-mcp, https://context7.com/dorukardahan/twitterapi.io-mcp
 
@@ -47,9 +51,9 @@ Add to your Claude Desktop configuration file:
 ```json
 {
   "mcpServers": {
-    "twitterapi-docs": {
+    "twitterapi-io": {
       "command": "npx",
-      "args": ["-y", "twitterapi-docs-mcp"]
+      "args": ["-y", "twitterapi-io-mcp"]
     }
   }
 }
@@ -59,10 +63,10 @@ Add to your Claude Desktop configuration file:
 
 ```bash
 # Add globally (all projects)
-claude mcp add --scope user twitterapi-docs -- npx -y twitterapi-docs-mcp
+claude mcp add --scope user twitterapi-io -- npx -y twitterapi-io-mcp
 
 # Or add to current project only
-claude mcp add twitterapi-docs -- npx -y twitterapi-docs-mcp
+claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 ```
 
 Verify installation:

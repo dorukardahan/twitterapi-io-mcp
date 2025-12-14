@@ -1,0 +1,45 @@
+{
+  "name": "twitterapi-docs-mcp",
+  "version": "1.0.9",
+  "description": "DEPRECATED: Renamed to twitterapi-io-mcp. Compatibility wrapper for the TwitterAPI.io MCP server.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "twitterapi-docs-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "twitterapi.io",
+    "twitterapi-io",
+    "twitterapi-io-mcp",
+    "twitterapi-docs-mcp",
+    "deprecated"
+  ],
+  "author": "Doruk Ardahan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorukardahan/twitterapi-io-mcp.git",
+    "directory": "packages/twitterapi-docs-mcp"
+  },
+  "homepage": "https://github.com/dorukardahan/twitterapi-io-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/dorukardahan/twitterapi-io-mcp/issues"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "twitterapi-io-mcp": "1.0.9"
+  }
+}

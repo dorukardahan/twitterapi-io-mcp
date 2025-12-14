@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * TwitterAPI.io Documentation MCP Server v1.0.8
+ * TwitterAPI.io Documentation MCP Server v1.0.9
  *
  * Production-ready MCP server with:
  * - Comprehensive error handling with ErrorType classification
@@ -1131,7 +1131,7 @@ function findSnapshotItemByUrl(data, canonicalUrl) {
 const server = new Server(
   {
     name: "twitterapi-docs",
-    version: "1.0.8",
+    version: "1.0.9",
   },
   {
     capabilities: {
@@ -2394,7 +2394,7 @@ server.setRequestHandler(CompleteRequestSchema, async () => {
 // ========== SERVER STARTUP ==========
 async function main() {
   try {
-    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.8');
+    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.9');
 
     // Validate docs file exists
     if (!fs.existsSync(DOCS_PATH)) {
@@ -2429,7 +2429,7 @@ async function main() {
     await server.connect(transport);
 
     logger.info('init', 'MCP Server ready on stdio', {
-      version: '1.0.8',
+      version: '1.0.9',
       features: [
         'offline snapshot',
         'endpoints + pages + blogs',

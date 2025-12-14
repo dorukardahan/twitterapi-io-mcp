@@ -2,10 +2,11 @@
 
 ## Project Structure
 
-- `index.js`: Main MCP server (ESM) and CLI entrypoint (`twitterapi-docs-mcp`).
+- `index.js`: Main MCP server (ESM) and CLI entrypoint (`twitterapi-io-mcp`).
 - `data/docs.json`: Bundled documentation snapshot used at runtime.
 - `scrape-all.cjs`, `scrape-docs.cjs`: Dev-only scrapers to refresh `data/docs.json` (not shipped to npm).
 - `test/index.test.js`: Node.js built-in test runner suite.
+- `packages/twitterapi-docs-mcp/`: Legacy npm package (deprecated wrapper for backwards compatibility).
 - `.github/workflows/`: CI/release automation.
 - `cache/`: Local runtime cache (gitignored; don’t commit generated content).
 

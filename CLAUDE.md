@@ -1,10 +1,11 @@
 # TwitterAPI.io MCP Server
 
-## Project Status: PUBLISHED v1.0.0
+## Project Status: PUBLISHED
 
-- **npm**: https://www.npmjs.com/package/twitterapi-docs-mcp
+- **npm (recommended)**: https://www.npmjs.com/package/twitterapi-io-mcp
+- **npm (legacy wrapper)**: https://www.npmjs.com/package/twitterapi-docs-mcp
 - **GitHub**: https://github.com/dorukardahan/twitterapi-io-mcp
-- **Install**: `npx -y twitterapi-docs-mcp`
+- **Install**: `npx -y twitterapi-io-mcp`
 
 ## What This Is
 
@@ -18,6 +19,7 @@ MCP server providing offline access to TwitterAPI.io documentation for Claude an
 | `data/docs.json` | Scraped documentation (52 endpoints, 10 pages) |
 | `scrape-all.cjs` | Documentation scraper (not in npm package) |
 | `test/index.test.js` | 48 unit tests |
+| `packages/twitterapi-docs-mcp/` | Legacy npm wrapper (deprecated) |
 
 ## Commands
 
@@ -25,7 +27,6 @@ MCP server providing offline access to TwitterAPI.io documentation for Claude an
 npm test          # Run 48 tests
 npm start         # Start MCP server locally
 node scrape-all.cjs  # Re-scrape documentation
-npm publish       # Publish new version (requires version bump)
 ```
 
 ## Architecture
@@ -38,13 +39,13 @@ npm publish       # Publish new version (requires version bump)
 ## Version Bumping
 
 Before publishing a new version:
-1. Update version in `package.json`
-2. Update VERSION constant in `index.js` (lines ~881 and ~1754)
-3. Update `CHANGELOG.md`
-4. Run `npm test`
-5. Commit and push
-6. Run `npm publish`
-7. Create git tag: `git tag vX.Y.Z && git push origin vX.Y.Z`
+1. Update version in root `package.json` (twitterapi-io-mcp)
+2. Update version in `packages/twitterapi-docs-mcp/package.json` (legacy wrapper)
+3. Update version strings in `index.js`
+4. Update `server.json` and `CHANGELOG.md`
+5. Run `npm test`
+6. Commit and push
+7. Create a GitHub release/tag `vX.Y.Z` (triggers `.github/workflows/publish.yml`)
 
 ## Files NOT in npm package
 
