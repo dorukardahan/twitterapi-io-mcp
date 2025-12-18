@@ -99,6 +99,15 @@ claude mcp list
 | `twitterapi://endpoints/list` | Full endpoint listing |
 | `twitterapi://status/freshness` | Data freshness status |
 
+## MCP Tool Recipes
+
+If you’re evaluating this MCP via Context7 or want copy/pasteable “tool chaining” patterns, see `CONTEXT7.md`.
+
+Common workflows:
+- **Rate limits**: `search_twitterapi_docs` (`"rate limit qps"`) → `get_twitterapi_guide` (`"qps_limits"`)
+- **Typos are OK**: `search_twitterapi_docs` is fuzzy/typo-tolerant (e.g., `"twet object"`)
+- **Tweets Lookup**: `get_twitterapi_endpoint` (`"get_tweet_by_ids"`)
+
 ## Usage Examples
 
 Once installed, you can ask Claude questions like:
