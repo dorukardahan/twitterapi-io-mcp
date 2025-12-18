@@ -1,8 +1,8 @@
 # twitterapi-io-mcp
 
 **npm packages**
-- `twitterapi-io-mcp` (recommended)
-- `twitterapi-docs-mcp` (legacy compatibility wrapper)
+- `twitterapi-io-mcp` (recommended, canonical)
+- `twitterapi-docs-mcp` (deprecated compatibility wrapper → delegates to `twitterapi-io-mcp`)
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
@@ -41,6 +41,12 @@ I'm sharing this with the community because if it helped me, it might help you t
 
 ## Installation
 
+**Prerequisites**
+- Node.js `>=18.18.0` (required to run the MCP server)
+- Claude Code users: the `claude` CLI installed (for `claude mcp add`)
+
+Note: This MCP server serves an **offline docs snapshot**. You do **not** need a TwitterAPI.io key just to use the docs tools.
+
 ### Claude Desktop
 
 Add to your Claude Desktop configuration file:
@@ -67,6 +73,9 @@ claude mcp add --scope user twitterapi-io -- npx -y twitterapi-io-mcp
 
 # Or add to current project only
 claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
+
+# Legacy name (still works, but deprecated)
+claude mcp add --scope user twitterapi-docs -- npx -y twitterapi-docs-mcp
 ```
 
 Verify installation:

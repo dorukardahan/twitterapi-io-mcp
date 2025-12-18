@@ -891,7 +891,7 @@ function searchInDocs(query, maxResults = 20) {
       name,
       item.title || "",
       item.description || "",
-      item.method || "",
+      getEndpointMethod(item),
       item.path || "",
       item.curl_example || "",
       item.raw_text || "",
@@ -905,7 +905,7 @@ function searchInDocs(query, maxResults = 20) {
         name,
         title: item.title,
         description: item.description,
-        method: item.method,
+        method: getEndpointMethod(item),
         path: item.path,
         url: item.url,
         score,
@@ -1062,14 +1062,16 @@ function formatGuideMarkdown(name, page) {
 }
 
 function formatEndpointMarkdown(endpointName, endpoint) {
+  const extractedMethod = extractHttpMethodFromCurl(endpoint?.curl_example);
+  const method = endpoint.method || extractedMethod || "GET";
   const curlExample =
     endpoint.curl_example ||
-    `curl --request ${endpoint.method || 'GET'} \\\n  --url https://api.twitterapi.io${endpoint.path || ''} \\\n  --header 'x-api-key: YOUR_API_KEY'`;
+    `curl --request ${method} \\\n  --url https://api.twitterapi.io${endpoint.path || ''} \\\n  --header 'x-api-key: YOUR_API_KEY'`;
 
   return `# ${endpoint.title || endpointName}
 
 ## Endpoint Details
-- **Method:** ${endpoint.method || "GET"}
+- **Method:** ${method}
 - **Path:** ${endpoint.path || "Unknown"}
 - **Full URL:** https://api.twitterapi.io${endpoint.path || ""}
 - **Documentation:** ${endpoint.url}
@@ -1092,6 +1094,16 @@ ${endpoint.code_snippets.join("\n")}
 
 ## Full Documentation
 ${endpoint.raw_text || "No additional content available."}`;
+}
+
+function extractHttpMethodFromCurl(curlExample) {
+  const text = String(curlExample ?? "");
+  const match = text.match(/(?:--request|-X)\s*([A-Z]+)/i);
+  return match?.[1] ? match[1].toUpperCase() : null;
+}
+
+function getEndpointMethod(endpoint) {
+  return endpoint?.method || extractHttpMethodFromCurl(endpoint?.curl_example) || "GET";
 }
 
 function safeCanonicalizeUrl(url) {
@@ -1634,16 +1646,17 @@ ${allEndpoints.map(e => `- ${e}`).join('\n')}
         });
       }
 
+      const endpointMethod = getEndpointMethod(endpoint);
       const curlExample =
         endpoint.curl_example ||
-        `curl --request ${endpoint.method || 'GET'} \\
+        `curl --request ${endpointMethod} \\
   --url https://api.twitterapi.io${endpoint.path || ''} \\
   --header 'x-api-key: YOUR_API_KEY'`;
 
       const info = `# ${endpoint.title || validation.value}
 
 ## Endpoint Details
-- **Method:** ${endpoint.method || "GET"}
+- **Method:** ${endpointMethod}
 - **Path:** ${endpoint.path || "Unknown"}
 - **Full URL:** https://api.twitterapi.io${endpoint.path || ""}
 - **Documentation:** ${endpoint.url}
@@ -1671,7 +1684,7 @@ ${endpoint.raw_text || "No additional content available."}`;
       const structuredContent = {
         endpoint_name: validation.value,
         title: endpoint.title || validation.value,
-        method: endpoint.method || "GET",
+        method: endpointMethod,
         path: endpoint.path || "",
         full_url: `https://api.twitterapi.io${endpoint.path || ""}`,
         doc_url: endpoint.url || "",
@@ -1729,9 +1742,10 @@ ${endpoint.raw_text || "No additional content available."}`;
       const allStructured = [];
       for (const [cat, eps] of Object.entries(categories)) {
         for (const ep of eps) {
+          const method = getEndpointMethod(ep);
           allStructured.push({
             name: ep.name,
-            method: ep.method || "GET",
+            method,
             path: ep.path || "",
             description: ep.description || "",
             category: cat
@@ -1756,7 +1770,7 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
       for (const [cat, eps] of Object.entries(categories)) {
         if (eps.length > 0) {
           output += `## ${cat.toUpperCase()} (${eps.length})\n`;
-          output += eps.map((e) => `- **${e.name}**: ${e.method || "GET"} ${e.path || ""}`).join("\n");
+          output += eps.map((e) => `- **${e.name}**: ${getEndpointMethod(e)} ${e.path || ""}`).join("\n");
           output += "\n\n";
         }
       }

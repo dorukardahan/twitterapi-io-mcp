@@ -13,6 +13,65 @@ The examples below are written as **tool-call recipes** so an AI assistant (or a
 - `get_twitterapi_url({ url, fetch_live? })` → `source` (`snapshot|live`), `kind` (`endpoint|page|blog`), `markdown`
 - `get_twitterapi_auth()` → `header` (usually `X-API-Key`), `base_url`, `examples.*`
 
+## Canonical vs Legacy Package Name
+
+- Canonical package: `twitterapi-io-mcp` (recommended)
+- Legacy wrapper: `twitterapi-docs-mcp` (deprecated, but still works)
+
+Both launch the same MCP server over stdio; prefer `twitterapi-io-mcp` for new installs.
+
+## Response Shapes (What You Can Parse)
+
+These tools return both human-readable `markdown` and machine-friendly `structuredContent`.
+
+### `get_twitterapi_endpoint` (structuredContent)
+
+```json
+{
+  "endpoint_name": "get_tweet_by_ids",
+  "title": "…",
+  "method": "GET",
+  "path": "/twitter/tweets",
+  "full_url": "https://api.twitterapi.io/twitter/tweets",
+  "doc_url": "https://docs.twitterapi.io/…",
+  "description": "…",
+  "parameters": [{ "name": "…", "required": false, "description": "…" }],
+  "curl_example": "curl --request GET …",
+  "code_snippets": ["…"],
+  "raw_text": "…",
+  "cached": false,
+  "markdown": "# …"
+}
+```
+
+### `list_twitterapi_endpoints` (structuredContent)
+
+```json
+{
+  "category": null,
+  "total": 52,
+  "endpoints": [{ "name": "tweet_advanced_search", "method": "GET", "path": "/twitter/tweet/advanced_search", "description": "…", "category": "tweet" }],
+  "markdown": "# …"
+}
+```
+
+### `search_twitterapi_docs` (structuredContent)
+
+```json
+{
+  "query": "rate limit qps limits",
+  "max_results": 5,
+  "cached": false,
+  "counts": { "total": 5, "endpoints": 2, "pages": 2, "blogs": 1 },
+  "results": [{ "type": "page", "name": "qps_limits", "title": "…", "description": "…", "url": "…", "score": 42 }],
+  "markdown": "## Search Results…"
+}
+```
+
+Search constraints (for robust callers):
+- `query`: 1–500 chars (trimmed); typo-tolerant
+- `max_results`: 1–20 (default 10)
+
 ## Install / Run
 
 - One-shot (good for local testing): `npx -y twitterapi-io-mcp`
