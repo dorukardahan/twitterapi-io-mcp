@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get My Info
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_my_info
 
 ## Endpoint

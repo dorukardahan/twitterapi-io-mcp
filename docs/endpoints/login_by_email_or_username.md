@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Login By Email Or Username
 Source: https://docs.twitterapi.io/api-reference/endpoint/login_by_email_or_username
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/login_by_email_or_user
 
 ## Description
 
-Login Step 1: by email or username.Recommend to use email.Trial operation price: $0.003 per call. Please read the guide: https://twitterapi.io/blog/twitter-login-and-post-api-guide
+Login Step 1: by email or username. Recommend to use email. Trial operation price: $0.003 per call. Please read the guide: https://twitterapi. io/blog/twitter-login-and-post-api-guide
 
 ## Example (curl)
 

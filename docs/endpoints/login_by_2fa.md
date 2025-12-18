@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Login By 2fa
 Source: https://docs.twitterapi.io/api-reference/endpoint/login_by_2fa
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/login_by_2fa
 
 ## Description
 
-Deprecated soon. Please use login V2 instead, as it is more stable.Login Step 2: by 2fa code.Trial operation price: $0.003 per call.
+Deprecated soon. Please use login V2 instead, as it is more stable. Login Step 2: by 2fa code. Trial operation price: $0.003 per call.
 
 ## Example (curl)
 

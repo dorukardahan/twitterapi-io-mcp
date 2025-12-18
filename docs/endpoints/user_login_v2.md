@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# User Login V2
 Source: https://docs.twitterapi.io/api-reference/endpoint/user_login_v2
 
 ## Endpoint

@@ -7,12 +7,30 @@ Learn how to leverage TwitterAPI.io's webhook functionality to easily receive tw
 
 ## Sections
 
-- [object Object]
+- How to Use Webhooks to Receive Real-Time Twitter Data: A Complete Implementation Guide
+- What are Webhooks and Why Are They Important for Twitter Data?
+- Using Webhook.site to Quickly Test Twitter Data Reception
+- Setting Up a Webhook.site Test Environment
+- Setting Up Tweet Filter Rules and Webhook in TwitterAPI.io
+- Step 1: Access the Filter Rules Page
+- Step 2: Create a Filter Rule
+- Step 3: Configure Webhook URL
+- Understanding Webhook Request Format
+- Security Considerations
+- Verifying Webhook Requests in Production
+- Managing Costs and Optimizing Usage
+- Optimization Strategies
+- From Testing to Production: Complete Integration Process
+- Common Application Scenarios
+- Cost Considerations and Optimization
+- API Pricing
+- Cost Optimization Tips
+- Cost Example Calculations
+- Troubleshooting
+- Conclusion
 
 
 ## Content
-
-Loading... How to Use Webhooks to Receive Real-Time Twitter Data: A Complete Implementation Guide Want to receive real-time Twitter data without complex programming? This guide demonstrates how to use TwitterAPI.io's webhook functionality to easily receive tweets matching specific rules, with no code required.
 
 Webhooks are a way for applications to communicate automatically, allowing one service to send data to another when specific events occur. For Twitter data analysis, webhooks offer several key advantages:
 
@@ -59,7 +77,6 @@ We donate a portion of every sale to fund carbon removal technologies.
 
 ## Lists
 
-- How to Use Webhooks to Receive Real-Time Twitter Data: A Complete Implementation Guide (self.__next_s=self.__next_s||[]).push([0,{"children":"\n window.__turnstileReady = false;\n window.turnstileOnLoad = function () {\n window.__turnstileReady = true;\n window.dispatchEvent(new Event('turnstile-loaded'));\n };\n ","id":"cf-turnstile-onload"}]) (self.__next_s=self.__next_s||[]).push(["https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnLoad",{}]) try { const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); const gclidFromURL = urlParams.get('gclid'); if (refCode) { localStorage.setItem('referral_code', refCode); let chromeUid = localStorage.getItem('chrome_uid'); if (!chromeUid) { console.info("no uid will new.",refCode) function uuidv4() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); } chromeUid = uuidv4(); localStorage.setItem('chrome_uid', chromeUid); fetch(`https://api.twitterapi.io/backend/user/log_affiliate_click?referral_code=${refCode}&chrome_uid=${chromeUid}`) .then(response => { if (!response.ok) { console.error('Failed to log affiliate click:', response.status); } }) .catch(error => { console.error('Error logging affiliate click:', error); }); } } } catch (e) { console.error('Error handling referral:', e); } if(gclidFromURL){ localStorage.setItem('gclidfrom_url', gclidFromURL); } twitterapi.io Affiliate Loading... How to Use Webhooks to Receive Real-Time Twitter Data: A Complete Implementation Guide Want to receive real-time Twitter data without complex programming? This guide demonstrates how to use TwitterAPI.io's webhook functionality to easily receive tweets matching specific rules, with no code required. What are Webhooks and Why Are They Important for Twitter Data? Webhooks are a way for applications to communicate automatically, allowing one service to send data to another when specific events occur. For Twitter data analysis, webhooks offer several key advantages: Zero-code integration - No need to write complex client code
 - Real-time data delivery - Receive data immediately when matching tweets are detected
 - Automatic server communication - No polling or persistent connections required
 - Flexible data processing - Handle received data according to your business logic
@@ -92,7 +109,6 @@ We donate a portion of every sale to fund carbon removal technologies.
 - Market research - Collect user opinions on specific topics
 - Real-time notifications - Receive updates from important accounts or topics
 - Sentiment analysis - Analyze public sentiment about specific products or services
-- Every hour Every 30 min Every 15 min Every 5 min Every 1 min $0 $1 $2 $3 $4 $5 Monitoring Frequency Monthly Cost ($) $0.09 $0.18 $0.36 $1.00 $5.00 Higher Frequency Costs: Every 10 seconds: $30/month Every 1 second: $300/month Monthly cost (30 days) API Pricing When tweets are found: $0.00015 per tweet returned
 - When no tweets are found: $0.00012 per API call
 - Adjust monitoring frequency based on account activity
 - Use smart time windows for efficient checking

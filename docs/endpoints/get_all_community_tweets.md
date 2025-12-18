@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get All Community Tweets
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_all_community_tweets
 
 ## Endpoint

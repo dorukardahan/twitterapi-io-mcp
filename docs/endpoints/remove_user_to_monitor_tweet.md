@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Remove User To Monitor Tweet
 Source: https://docs.twitterapi.io/api-reference/endpoint/remove_user_to_monitor_tweet
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/remove_user_to_monitor
 
 ## Description
 
-Remove a user from monitor real-time tweets.Please ref:https://twitterapi.io/twitter-stream
+Remove a user from monitor real-time tweets. Please ref:https://twitterapi. io/twitter-stream
 
 ## Example (curl)
 

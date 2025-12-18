@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get Tweet Retweeter
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_tweet_retweeter
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/get_tweet_retweeter
 
 ## Description
 
-get tweet retweeters by tweet id.Each page returns about 100 retweeters. Use cursor for pagination. Order by retweet time desc
+get tweet retweeters by tweet id. Each page returns about 100 retweeters. Use cursor for pagination. Order by retweet time desc
 
 ## Example (curl)
 

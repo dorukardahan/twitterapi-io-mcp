@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Batch Get User By Userids
 Source: https://docs.twitterapi.io/api-reference/endpoint/batch_get_user_by_userids
 
 ## Endpoint

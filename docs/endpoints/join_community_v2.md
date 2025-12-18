@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Join Community V2
 Source: https://docs.twitterapi.io/api-reference/endpoint/join_community_v2
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/join_community_v2
 
 ## Description
 
-Join a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.
+Join a community. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.003 per call.
 
 ## Example (curl)
 

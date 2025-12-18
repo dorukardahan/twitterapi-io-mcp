@@ -36,15 +36,42 @@ function isProbablyJson(text) {
   return trimmed.startsWith("{") || trimmed.startsWith("[");
 }
 
-function dedupeStrings(items) {
+function coerceString(item) {
+  if (typeof item === "string") return item;
+  if (item && typeof item === "object" && typeof item.text === "string") return item.text;
+  return "";
+}
+
+function isNoiseText(text) {
+  const value = String(text ?? "").trim();
+  if (!value) return true;
+
+  const lower = value.toLowerCase();
+  if (lower.startsWith("loading...")) return true;
+  if (lower.includes("skip to main content")) return true;
+  if (lower.includes("self.__next")) return true;
+  if (lower.includes("challenges.cloudflare.com")) return true;
+  if (lower.includes("turnstile")) return true;
+  if (lower.includes("localstorage")) return true;
+
+  // Common navigation/footer headings that pollute scraped docs
+  if (["twitterapi.io", "support", "legal", "social responsibility"].includes(lower)) return true;
+
+  return false;
+}
+
+function cleanStrings(items, { maxLength = Infinity, limit = Infinity, filterNoise = true } = {}) {
   const seen = new Set();
   const out = [];
   for (const item of items || []) {
-    const value = String(item ?? "").trim();
+    const value = coerceString(item).trim();
     if (!value) continue;
+    if (filterNoise && isNoiseText(value)) continue;
+    if (Number.isFinite(maxLength) && value.length > maxLength) continue;
     if (seen.has(value)) continue;
     seen.add(value);
     out.push(value);
+    if (out.length >= limit) break;
   }
   return out;
 }
@@ -68,14 +95,14 @@ function renderCodeBlock(code, language) {
   return ["```" + language, content, "```", ""].join("\n");
 }
 
-function renderList(items) {
-  const cleaned = dedupeStrings(items);
+function renderList(items, options) {
+  const cleaned = cleanStrings(items, options);
   if (!cleaned.length) return "";
   return cleaned.map((line) => `- ${line}`).join("\n") + "\n\n";
 }
 
-function renderParagraphs(items) {
-  const cleaned = dedupeStrings(items);
+function renderParagraphs(items, options) {
+  const cleaned = cleanStrings(items, options);
   if (!cleaned.length) return "";
   return cleaned.map((p) => p).join("\n\n") + "\n\n";
 }
@@ -100,6 +127,40 @@ function buildIndexTable(rows, headers) {
   const dividerRow = `| ${headers.map(() => "---").join(" | ")} |`;
   const bodyRows = rows.map((r) => `| ${r.join(" | ")} |`).join("\n");
   return [headerRow, dividerRow, bodyRows, ""].join("\n");
+}
+
+function humanizeIdentifier(name) {
+  const value = String(name ?? "").trim();
+  if (!value) return "Untitled";
+  return value
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\bapi\b/gi, "API")
+    .replace(/\bv(\d+)\b/gi, (m) => m.toUpperCase())
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function isGenericSiteTitle(title) {
+  const value = String(title ?? "").trim().toLowerCase();
+  if (!value) return true;
+  return (
+    value.includes("twitterapi.io - twitter data") ||
+    value.includes("affordable, real-time x") ||
+    value.includes("no auth, no limits") ||
+    value === "twitterapi.io"
+  );
+}
+
+function pickTitleFromHeaders(headers) {
+  const h1 = Array.isArray(headers)
+    ? headers.find((h) => h && typeof h === "object" && h.level === 1 && typeof h.text === "string")
+    : null;
+  const text = String(h1?.text ?? "").trim();
+  return text || null;
+}
+
+function normalizeSentenceSpacing(text) {
+  return String(text ?? "").replace(/([.!?])([A-Za-z])/g, "$1 $2");
 }
 
 function main() {
@@ -208,7 +269,7 @@ function main() {
   const endpointRows = [];
 
   for (const [key, ep] of Object.entries(endpoints)) {
-    const title = ep.title || ep.name || key;
+    const title = humanizeIdentifier(ep.name || key);
     const filename = `${safeFilename(key)}.md`;
     const filePath = path.join(endpointsDir, filename);
 
@@ -229,7 +290,7 @@ function main() {
     if (ep.description) {
       parts.push("## Description");
       parts.push("");
-      parts.push(ep.description.trim());
+      parts.push(normalizeSentenceSpacing(ep.description).trim());
       parts.push("");
     }
     if (ep.curl_example) {
@@ -274,13 +335,15 @@ function main() {
   const pageRows = [];
 
   for (const [key, page] of Object.entries(pages)) {
-    const title = page.title || page.name || key;
+    const h1Title = pickTitleFromHeaders(page.headers);
+    const title =
+      h1Title || (page.title && !isGenericSiteTitle(page.title) ? page.title.trim() : null) || humanizeIdentifier(key);
     const filename = `${safeFilename(key)}.md`;
     const filePath = path.join(pagesDir, filename);
 
     const parts = [];
     parts.push(renderFrontMatter({ title, sourceUrl: page.url }));
-    if (page.description) {
+    if (page.description && !isGenericSiteTitle(page.description)) {
       parts.push("## Description");
       parts.push("");
       parts.push(page.description.trim());
@@ -289,17 +352,17 @@ function main() {
     if (Array.isArray(page.headers) && page.headers.length) {
       parts.push("## Sections");
       parts.push("");
-      parts.push(renderList(page.headers));
+      parts.push(renderList(page.headers, { maxLength: 200, limit: 80 }));
     }
     if (Array.isArray(page.paragraphs) && page.paragraphs.length) {
       parts.push("## Content");
       parts.push("");
-      parts.push(renderParagraphs(page.paragraphs));
+      parts.push(renderParagraphs(page.paragraphs, { maxLength: 4000, limit: 120 }));
     }
     if (Array.isArray(page.list_items) && page.list_items.length) {
       parts.push("## Lists");
       parts.push("");
-      parts.push(renderList(page.list_items));
+      parts.push(renderList(page.list_items, { maxLength: 240, limit: 80 }));
     }
     if (page.scraped_at) {
       parts.push(`_Scraped at: ${page.scraped_at}_`);
@@ -329,13 +392,15 @@ function main() {
   const blogRows = [];
 
   for (const [key, post] of Object.entries(blogs)) {
-    const title = post.title || post.name || key;
+    const h1Title = pickTitleFromHeaders(post.headers);
+    const title =
+      h1Title || (post.title && !isGenericSiteTitle(post.title) ? post.title.trim() : null) || humanizeIdentifier(key);
     const filename = `${safeFilename(key)}.md`;
     const filePath = path.join(blogsDir, filename);
 
     const parts = [];
     parts.push(renderFrontMatter({ title, sourceUrl: post.url }));
-    if (post.description) {
+    if (post.description && !isGenericSiteTitle(post.description)) {
       parts.push("## Description");
       parts.push("");
       parts.push(post.description.trim());
@@ -344,22 +409,22 @@ function main() {
     if (Array.isArray(post.headers) && post.headers.length) {
       parts.push("## Sections");
       parts.push("");
-      parts.push(renderList(post.headers));
+      parts.push(renderList(post.headers, { maxLength: 200, limit: 80 }));
     }
     if (Array.isArray(post.paragraphs) && post.paragraphs.length) {
       parts.push("## Content");
       parts.push("");
-      parts.push(renderParagraphs(post.paragraphs));
+      parts.push(renderParagraphs(post.paragraphs, { maxLength: 4000, limit: 120 }));
     }
     if (Array.isArray(post.list_items) && post.list_items.length) {
       parts.push("## Lists");
       parts.push("");
-      parts.push(renderList(post.list_items));
+      parts.push(renderList(post.list_items, { maxLength: 240, limit: 80 }));
     }
     const codeSnippets = Array.isArray(post.code_snippets) ? post.code_snippets : [];
     const codeBlocks = Array.isArray(post.pre_blocks) ? post.pre_blocks : [];
     const combinedCode = [...codeBlocks, ...codeSnippets];
-    const cleanedCode = dedupeStrings(combinedCode);
+    const cleanedCode = cleanStrings(combinedCode, { filterNoise: false });
     if (cleanedCode.length) {
       parts.push("## Code");
       parts.push("");

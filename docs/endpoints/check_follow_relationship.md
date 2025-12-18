@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Check Follow Relationship
 Source: https://docs.twitterapi.io/api-reference/endpoint/check_follow_relationship
 
 ## Endpoint

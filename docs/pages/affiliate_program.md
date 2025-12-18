@@ -7,12 +7,28 @@ Join the TwitterAPI.io Affiliate Program and earn up to 12% monthly recurring co
 
 ## Sections
 
-- [object Object]
+- Own a Slice of Our Growing Business
+- Why Partner With TwitterAPI.io?
+- High-Demand Product
+- Recurring Commissions
+- Constantly Evolving
+- Transparent Commission Structure
+- How Our Commission Tiers Work:
+- A Product That Sells Itself
+- 96% Cost Savings
+- Real-Time Data Access
+- Multiple Delivery Methods
+- No-Code Solutions
+- How to Join Our Affiliate Program
+- Application Requirements:
+- Payment Information
+- Payment Methods
+- Tracking & Reporting
+- Frequently Asked Questions
+- Start Earning Recurring Commissions Today
 
 
 ## Content
-
-Loading... " The only way to achieve financial freedom is to own equity in businesses. — Naval Ravikant Continuous Business Growth 0 25% 50% 75% 100% Q1 Q2 Q3 Q4 Future ↗ Affiliate Program Join the TwitterAPI.io Affiliate Program and earn up to 12% * on every referral, month after month. * Commission rates depend on the volume of referrals. Terms and conditions apply. Apply Now Own a Slice of Our Growing Business Joining our affiliate program is like owning 10% equity in our product's revenue stream from your referrals. As we grow, your passive income grows.
 
 High-Demand Product Twitter data is invaluable for researchers, marketers, and developers. Our API offers it at just 4% of the official price.
 
@@ -65,7 +81,6 @@ We donate a portion of every sale to fund carbon removal technologies.
 
 ## Lists
 
-- TwitterAPI.io Affiliate Program - Earn Up to 12% Recurring Commissions (self.__next_s=self.__next_s||[]).push([0,{"children":"\n window.__turnstileReady = false;\n window.turnstileOnLoad = function () {\n window.__turnstileReady = true;\n window.dispatchEvent(new Event('turnstile-loaded'));\n };\n ","id":"cf-turnstile-onload"}]) (self.__next_s=self.__next_s||[]).push(["https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnLoad",{}]) try { const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); const gclidFromURL = urlParams.get('gclid'); if (refCode) { localStorage.setItem('referral_code', refCode); let chromeUid = localStorage.getItem('chrome_uid'); if (!chromeUid) { console.info("no uid will new.",refCode) function uuidv4() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); } chromeUid = uuidv4(); localStorage.setItem('chrome_uid', chromeUid); fetch(`https://api.twitterapi.io/backend/user/log_affiliate_click?referral_code=${refCode}&chrome_uid=${chromeUid}`) .then(response => { if (!response.ok) { console.error('Failed to log affiliate click:', response.status); } }) .catch(error => { console.error('Error logging affiliate click:', error); }); } } } catch (e) { console.error('Error handling referral:', e); } if(gclidFromURL){ localStorage.setItem('gclidfrom_url', gclidFromURL); } twitterapi.io Affiliate Loading... " The only way to achieve financial freedom is to own equity in businesses. — Naval Ravikant Continuous Business Growth 0 25% 50% 75% 100% Q1 Q2 Q3 Q4 Future ↗ Affiliate Program Join the TwitterAPI.io Affiliate Program and earn up to 12% * on every referral, month after month. * Commission rates depend on the volume of referrals. Terms and conditions apply. Apply Now Own a Slice of Our Growing Business Joining our affiliate program is like owning 10% equity in our product's revenue stream from your referrals. As we grow, your passive income grows. Why Partner With TwitterAPI.io? High-Demand Product Twitter data is invaluable for researchers, marketers, and developers. Our API offers it at just 4% of the official price. Recurring Commissions Earn passive income month after month as your referrals continue to use our service. Constantly Evolving From REST APIs to webhooks, websockets, MCP, and NoCode solutions - we're always adding value. Transparent Commission Structure 5% Up to $1,000/month 10% $1,000-$5,000/month 12% Over $5,000/month Monthly Referral Spending How Our Commission Tiers Work: 5% Commission - When your referrals spend less than $1,000/month
 - 10% Commission - When your referrals spend $1,000-$5,000/month
 - 12% Commission - When your referrals spend over $5,000/month
 - Review Approval Earn Our affiliate program operates on an application basis to ensure quality partnerships. Application Requirements: Experience in marketing tech products or APIs

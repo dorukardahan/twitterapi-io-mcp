@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Add Webhook Rule
 Source: https://docs.twitterapi.io/api-reference/endpoint/add_webhook_rule
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/add_webhook_rule
 
 ## Description
 
-Add a tweet filter rule. Default rule is not activated.You must call update_rule to activate the rule.
+Add a tweet filter rule. Default rule is not activated. You must call update_rule to activate the rule.
 
 ## Example (curl)
 

@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get Dm History By User Id
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_dm_history_by_user_id
 
 ## Endpoint

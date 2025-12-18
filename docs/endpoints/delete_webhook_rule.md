@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Delete Webhook Rule
 Source: https://docs.twitterapi.io/api-reference/endpoint/delete_webhook_rule
 
 ## Endpoint

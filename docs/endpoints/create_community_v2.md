@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Create Community V2
 Source: https://docs.twitterapi.io/api-reference/endpoint/create_community_v2
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/create_community_v2
 
 ## Description
 
-Create a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.
+Create a community. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Trial operation price: $0.003 per call.
 
 ## Example (curl)
 

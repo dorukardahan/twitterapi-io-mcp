@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Search User
 Source: https://docs.twitterapi.io/api-reference/endpoint/search_user
 
 ## Endpoint

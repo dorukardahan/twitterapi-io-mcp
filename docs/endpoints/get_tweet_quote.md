@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get Tweet Quote
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_tweet_quote
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/get_tweet_quote
 
 ## Description
 
-get tweet quotes by tweet id.Each page returns exactly 20 quotes. Use cursor for pagination. Order by quote time desc
+get tweet quotes by tweet id. Each page returns exactly 20 quotes. Use cursor for pagination. Order by quote time desc
 
 ## Example (curl)
 

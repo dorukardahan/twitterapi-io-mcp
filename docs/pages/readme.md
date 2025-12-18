@@ -7,12 +7,21 @@ Access Twitter data without authentication. 96% cheaper than alternatives with h
 
 ## Sections
 
-- [object Object]
+- TwitterAPI.io - Enterprise-Grade Twitter Data API | No Auth Required
+- Real-time Twitter data access without the complexity
+- What is TwitterAPI.io?
+- Key Metrics
+- How to Use
+- Available Endpoints
+- Example Usage
+- Feature Highlights
+- Why Choose Us
+- Use Cases
+- Frequently Asked Questions
+- Ready to Get Started?
 
 
 ## Content
-
-Loading... TwitterAPI.io - Enterprise-Grade Twitter Data API | No Auth Required
 
 Enterprise-grade API service that provides seamless access to Twitter data without requiring Twitter authentication.
 
@@ -59,7 +68,6 @@ We donate a portion of every sale to fund carbon removal technologies.
 
 ## Lists
 
-- TwitterAPI.io - Enterprise-Grade Twitter Data API | No Auth Required (self.__next_s=self.__next_s||[]).push([0,{"children":"\n window.__turnstileReady = false;\n window.turnstileOnLoad = function () {\n window.__turnstileReady = true;\n window.dispatchEvent(new Event('turnstile-loaded'));\n };\n ","id":"cf-turnstile-onload"}]) (self.__next_s=self.__next_s||[]).push(["https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnLoad",{}]) try { const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); const gclidFromURL = urlParams.get('gclid'); if (refCode) { localStorage.setItem('referral_code', refCode); let chromeUid = localStorage.getItem('chrome_uid'); if (!chromeUid) { console.info("no uid will new.",refCode) function uuidv4() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); } chromeUid = uuidv4(); localStorage.setItem('chrome_uid', chromeUid); fetch(`https://api.twitterapi.io/backend/user/log_affiliate_click?referral_code=${refCode}&chrome_uid=${chromeUid}`) .then(response => { if (!response.ok) { console.error('Failed to log affiliate click:', response.status); } }) .catch(error => { console.error('Error logging affiliate click:', error); }); } } } catch (e) { console.error('Error handling referral:', e); } if(gclidFromURL){ localStorage.setItem('gclidfrom_url', gclidFromURL); } twitterapi.io Affiliate Loading... TwitterAPI.io - Enterprise-Grade Twitter Data API | No Auth Required Real-time Twitter data access without the complexity Enterprise-grade API service that provides seamless access to Twitter data without requiring Twitter authentication. Get Started | View Pricing What is TwitterAPI.io? TwitterAPI.io is an enterprise-grade Twitter data API service that provides real-time access to Twitter data without requiring Twitter authentication. Our platform enables developers, researchers, businesses, and data analysts to easily retrieve Twitter information including user profiles, tweets, followers, and more through a straightforward REST API. Unlike official Twitter APIs, our service offers: 96% cheaper pricing
 - High performance (~800ms response time)
 - High throughput (1000+ QPS)
 - No authentication requirements

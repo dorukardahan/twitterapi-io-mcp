@@ -1,18 +1,29 @@
-# Affordable, Real-Time X (Twitter) API — No Limits
+# Terms of Service
 Source: https://twitterapi.io/terms
-
-## Description
-
-Build with an affordable, real-time X (Twitter) API. Get instant access to timelines, tweets, and write actions with predictable pricing and no limits.
 
 ## Sections
 
-- [object Object]
+- Terms of Service
+- 1. Acceptance of Terms
+- 2. Description of Service
+- 3. Eligibility
+- 4. Customer Responsibilities
+- 5. Prohibited Uses
+- 6. Data and Privacy
+- 7. Payment and Billing
+- 8. Refunds and Disputes
+- 9. Service Availability
+- 10. Intellectual Property
+- 11. Termination
+- 12. Compliance with Laws
+- 13. Limitation of Liability
+- 14. Indemnification
+- 15. Changes to Terms
+- 16. Governing Law
+- 17. Contact Us
 
 
 ## Content
-
-Loading... Terms of Service Last updated: September 2025
 
 By accessing or using Twitterapi.io (the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Service.
 
@@ -63,7 +74,6 @@ We donate a portion of every sale to fund carbon removal technologies.
 
 ## Lists
 
-- Affordable, Real-Time X (Twitter) API — No Limits (self.__next_s=self.__next_s||[]).push([0,{"children":"\n window.__turnstileReady = false;\n window.turnstileOnLoad = function () {\n window.__turnstileReady = true;\n window.dispatchEvent(new Event('turnstile-loaded'));\n };\n ","id":"cf-turnstile-onload"}]) (self.__next_s=self.__next_s||[]).push(["https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnLoad",{}]) try { const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); const gclidFromURL = urlParams.get('gclid'); if (refCode) { localStorage.setItem('referral_code', refCode); let chromeUid = localStorage.getItem('chrome_uid'); if (!chromeUid) { console.info("no uid will new.",refCode) function uuidv4() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); } chromeUid = uuidv4(); localStorage.setItem('chrome_uid', chromeUid); fetch(`https://api.twitterapi.io/backend/user/log_affiliate_click?referral_code=${refCode}&chrome_uid=${chromeUid}`) .then(response => { if (!response.ok) { console.error('Failed to log affiliate click:', response.status); } }) .catch(error => { console.error('Error logging affiliate click:', error); }); } } } catch (e) { console.error('Error handling referral:', e); } if(gclidFromURL){ localStorage.setItem('gclidfrom_url', gclidFromURL); } twitterapi.io Affiliate Loading... Terms of Service Last updated: September 2025 1. Acceptance of Terms By accessing or using Twitterapi.io (the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, you may not use the Service. 2. Description of Service Twitterapi.io provides APIs and SaaS tools that allow customers to monitor and analyze publicly available information from the social media platform X (formerly Twitter). We do not provide access to private messages, non-public data, or information that requires authentication. The Service is intended for research, brand monitoring, compliance, and other legitimate business purposes. 3. Eligibility You must be at least 18 years old and legally capable of entering into binding contracts. By using the Service, you represent that you meet these requirements. 4. Customer Responsibilities You agree that you will: Use the Service only in compliance with these Terms, applicable laws, and our Acceptable Use Policy (AUP).
 - Be responsible for maintaining the confidentiality of your account credentials and API keys.
 - Ensure that your use of the Service does not violate the rights of third parties, including X/Twitter's terms of service.
 - Collect, sell, or distribute personal data for harassment, stalking, doxxing, or discriminatory targeting.

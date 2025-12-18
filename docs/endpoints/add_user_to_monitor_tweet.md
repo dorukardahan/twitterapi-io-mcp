@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Add User To Monitor Tweet
 Source: https://docs.twitterapi.io/api-reference/endpoint/add_user_to_monitor_tweet
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/add_user_to_monitor_tw
 
 ## Description
 
-Add a user to monitor real-time tweets.Monitor tweets from specified accounts, including directly sent tweets, quoted tweets, reply tweets, and retweeted tweets. Please ref:https://twitterapi.io/twitter-stream
+Add a user to monitor real-time tweets. Monitor tweets from specified accounts, including directly sent tweets, quoted tweets, reply tweets, and retweeted tweets. Please ref:https://twitterapi. io/twitter-stream
 
 ## Example (curl)
 

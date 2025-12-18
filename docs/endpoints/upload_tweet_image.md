@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Upload Tweet Image
 Source: https://docs.twitterapi.io/api-reference/endpoint/upload_tweet_image
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/upload_tweet_image
 
 ## Description
 
-upload image to twitter.Need to login first. Trial operation price: $0.001 per call.
+upload image to twitter. Need to login first. Trial operation price: $0.001 per call.
 
 ## Example (curl)
 

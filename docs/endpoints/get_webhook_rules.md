@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get Webhook Rules
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_webhook_rules
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/get_webhook_rules
 
 ## Description
 
-Get all tweet filter rules.Rule can be used in webhook and websocket.You can also modify the rule in our web page.
+Get all tweet filter rules. Rule can be used in webhook and websocket. You can also modify the rule in our web page.
 
 ## Example (curl)
 

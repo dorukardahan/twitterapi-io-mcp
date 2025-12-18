@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get User By Username
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_user_by_username
 
 ## Endpoint

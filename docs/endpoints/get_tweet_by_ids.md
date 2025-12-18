@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Get Tweet By Ids
 Source: https://docs.twitterapi.io/api-reference/endpoint/get_tweet_by_ids
 
 ## Endpoint

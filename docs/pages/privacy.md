@@ -1,18 +1,28 @@
-# Affordable, Real-Time X (Twitter) API — No Limits
+# Privacy Policy
 Source: https://twitterapi.io/privacy
-
-## Description
-
-Build with an affordable, real-time X (Twitter) API. Get instant access to timelines, tweets, and write actions with predictable pricing and no limits.
 
 ## Sections
 
-- [object Object]
+- Privacy Policy
+- Data Minimization
+- Short Retention
+- Zero Sharing
+- Enterprise Security
+- Information We Handle
+- Data We Collect
+- Data We Don't Collect
+- Data Protection & Security
+- Security Measures
+- Data Storage
+- Our Data Promises
+- Google User Data Handling
+- Data We Access from Google
+- How We Use This Data
+- Data Security & Storage
+- Contact & Support
 
 
 ## Content
-
-Loading... Privacy Policy Our commitment to protecting your privacy and ensuring the security of your data
 
 Last Updated: January 28, 2025
 
@@ -43,7 +53,6 @@ We donate a portion of every sale to fund carbon removal technologies.
 
 ## Lists
 
-- Affordable, Real-Time X (Twitter) API — No Limits (self.__next_s=self.__next_s||[]).push([0,{"children":"\n window.__turnstileReady = false;\n window.turnstileOnLoad = function () {\n window.__turnstileReady = true;\n window.dispatchEvent(new Event('turnstile-loaded'));\n };\n ","id":"cf-turnstile-onload"}]) (self.__next_s=self.__next_s||[]).push(["https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnLoad",{}]) try { const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); const gclidFromURL = urlParams.get('gclid'); if (refCode) { localStorage.setItem('referral_code', refCode); let chromeUid = localStorage.getItem('chrome_uid'); if (!chromeUid) { console.info("no uid will new.",refCode) function uuidv4() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); } chromeUid = uuidv4(); localStorage.setItem('chrome_uid', chromeUid); fetch(`https://api.twitterapi.io/backend/user/log_affiliate_click?referral_code=${refCode}&chrome_uid=${chromeUid}`) .then(response => { if (!response.ok) { console.error('Failed to log affiliate click:', response.status); } }) .catch(error => { console.error('Error logging affiliate click:', error); }); } } } catch (e) { console.error('Error handling referral:', e); } if(gclidFromURL){ localStorage.setItem('gclidfrom_url', gclidFromURL); } twitterapi.io Affiliate Loading... Privacy Policy Our commitment to protecting your privacy and ensuring the security of your data Last Updated: January 28, 2025 Data Minimization We only collect what's absolutely necessary Short Retention Data is stored for maximum 48 hours Zero Sharing We never share your data with third parties Enterprise Security Industry-leading security measures Information We Handle Data We Collect • API credentials
 - • Usage statistics
 - • Payment information
 - • Account email address

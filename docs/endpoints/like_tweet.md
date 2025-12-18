@@ -1,4 +1,4 @@
-# twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.
+# Like Tweet
 Source: https://docs.twitterapi.io/api-reference/endpoint/like_tweet
 
 ## Endpoint
@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/like_tweet
 
 ## Description
 
-Like a tweet.Need to login first. Trial operation price: $0.001 per call.
+Like a tweet. Need to login first. Trial operation price: $0.001 per call.
 
 ## Example (curl)
 
