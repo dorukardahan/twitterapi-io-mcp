@@ -4,6 +4,18 @@ This repository publishes an MCP (Model Context Protocol) server that bundles an
 
 The examples below are written as **tool-call recipes** so an AI assistant (or a developer driving an MCP client) can reliably chain calls.
 
+## Focused Recipes
+
+For short, single-purpose pages (often easier for retrieval/benchmarking), see `recipes/`:
+
+- `recipes/01-auth-summary.md` (Q1)
+- `recipes/02-search-refine.md` (Q2)
+- `recipes/03-fuzzy-search.md` (Q4)
+- `recipes/04-pagination.md` (Q5)
+- `recipes/05-changelog-guide.md` (Q7)
+- `recipes/06-list-endpoints.md` (Q8)
+- `recipes/07-rate-limits.md` (Q10)
+
 ## Tool Quick Reference (Inputs → Key Outputs)
 
 - `search_twitterapi_docs({ query, max_results? })` → `results[]` (`type`, `name`, `score`, plus optional `method/path/url`)

@@ -112,6 +112,8 @@ claude mcp list
 
 If you’re evaluating this MCP via Context7 or want copy/pasteable “tool chaining” patterns, see `CONTEXT7.md`.
 
+Focused, single-purpose recipes are in `recipes/` (e.g. `recipes/01-auth-summary.md`, `recipes/07-rate-limits.md`).
+
 Common workflows:
 - **Rate limits**: `search_twitterapi_docs` (`"rate limit qps"`) → `get_twitterapi_guide` (`"qps_limits"`)
 - **Typos are OK**: `search_twitterapi_docs` is fuzzy/typo-tolerant (e.g., `"twet object"`)
