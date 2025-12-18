@@ -22,5 +22,37 @@ Examples include `get_user_followers`, `get_user_followings`, `get_user_mention`
 { "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_user_followers" } }
 ```
 
-Implementation note: many paginated responses return `next_cursor`; keep calling the HTTPS API with the returned cursor until it is empty.
+## JavaScript (robust search + validation)
 
+```js
+async function tool(name, args) {
+  const res = await callTool(name, args);
+  if (res?.isError) throw new Error(res?.content?.[0]?.text ?? `Tool failed: ${name}`);
+  return res?.structuredContent ?? {};
+}
+
+// 1) Search for pagination docs quickly
+const s = await tool("search_twitterapi_docs", {
+  query: "pagination cursor next_cursor has_next_page",
+  max_results: 10,
+});
+
+// 2) Prefer endpoint hits so you can inspect parameters + examples
+const endpoints = (s.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+const best = endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0];
+
+// 3) Fallback to a known cursor endpoint if search is empty/broad
+const endpoint_name = best?.name ?? "get_user_followers";
+
+const details = await tool("get_twitterapi_endpoint", { endpoint_name });
+const params = Array.isArray(details.parameters) ? details.parameters : [];
+
+// Validate that cursor-like params exist (so this is actually about pagination)
+const cursorParams = params.filter((p) => /cursor|next_cursor|page/i.test(p.name ?? ""));
+if (!cursorParams.length) {
+  // If this happens, retry with a more specific search query.
+  // e.g. await tool("search_twitterapi_docs", { query: `${endpoint_name} cursor`, max_results: 10 })
+}
+```
+
+Implementation note: many paginated HTTPS responses return `next_cursor`; keep calling the HTTPS API with the returned cursor until it is empty.

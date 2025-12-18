@@ -83,6 +83,11 @@ Verify installation:
 claude mcp list
 ```
 
+Troubleshooting:
+- `claude: command not found` → install Claude Code / the `claude` CLI first
+- `npx` fails or shows syntax errors → upgrade Node.js to `>=18.18.0`
+- Corporate networks → ensure npm can reach the registry (or configure your proxy/registry)
+
 ## Available Tools
 
 | Tool | Description |

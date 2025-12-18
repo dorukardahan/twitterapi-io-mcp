@@ -25,6 +25,26 @@ For short, single-purpose pages (often easier for retrieval/benchmarking), see `
 - `get_twitterapi_url({ url, fetch_live? })` → `source` (`snapshot|live`), `kind` (`endpoint|page|blog`), `markdown`
 - `get_twitterapi_auth()` → `header` (usually `X-API-Key`), `base_url`, `examples.*`
 
+## Parsing Tool Results (MCP Response Shape)
+
+Most MCP clients return tool results like:
+
+```js
+// { isError, content: [{type:"text", text: "..."}], structuredContent?: {...} }
+const res = await callTool("search_twitterapi_docs", { query: "advanced search" });
+const data = res.structuredContent; // machine-friendly payload
+```
+
+If you prefer to work with plain objects, use a tiny helper:
+
+```js
+async function tool(name, args) {
+  const res = await callTool(name, args);
+  if (res?.isError) throw new Error(res?.content?.[0]?.text ?? `Tool failed: ${name}`);
+  return res?.structuredContent ?? {};
+}
+```
+
 ## Canonical vs Legacy Package Name
 
 - Canonical package: `twitterapi-io-mcp` (recommended)
@@ -117,14 +137,22 @@ Pick a result (e.g. the best `type: "endpoint"`) and call:
 }
 ```
 
-End-to-end chaining (pseudo-code):
+How to choose the right `name`:
+- Prefer `type: "endpoint"` when you intend to call `get_twitterapi_endpoint`.
+- If results are broad/irrelevant, refine the query by adding 1–2 context tokens (e.g. `"advanced search tweet"`).
+- If top results are close in `score`, ask the user which one they mean (or refine and re-run search).
+
+End-to-end chaining (robust pseudo-code):
 
 ```js
-const search = await callTool("search_twitterapi_docs", { query: "advanced search", max_results: 5 });
-const hit = search.results.find((r) => r.type === "endpoint") ?? search.results[0];
+const search = await tool("search_twitterapi_docs", { query: "advanced search", max_results: 10 });
+const endpoints = (search.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+const hit = endpoints[0];
 if (!hit?.name) throw new Error("No endpoint results found");
 
-const details = await callTool("get_twitterapi_endpoint", { endpoint_name: hit.name });
+// `hit.name` is the exact value for `endpoint_name`
+const details = await tool("get_twitterapi_endpoint", { endpoint_name: hit.name });
 // details.path / details.method / details.curl_example / details.parameters...
 ```
 
@@ -146,14 +174,19 @@ Goal: list many endpoints (`list_twitterapi_endpoints`), then inspect each (`get
 Example pseudo-code:
 
 ```js
-const { endpoints } = await callTool("list_twitterapi_endpoints", {});
-const { header } = await callTool("get_twitterapi_auth", {}); // e.g. "X-API-Key"
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+const { endpoints } = await tool("list_twitterapi_endpoints", {});
+const { header } = await tool("get_twitterapi_auth", {}); // e.g. "X-API-Key"
+const headerRe = new RegExp(escapeRegExp(String(header)), "i");
 
 const summary = [];
 
 for (const { name } of endpoints) {
   try {
-    const d = await callTool("get_twitterapi_endpoint", { endpoint_name: name });
+    const d = await tool("get_twitterapi_endpoint", { endpoint_name: name });
     const curl = d.curl_example ?? "";
     const desc = d.description ?? "";
     const paramNames = (d.parameters ?? []).map((p) => p.name).join(" ");
@@ -163,7 +196,7 @@ for (const { name } of endpoints) {
       endpoint: name,
       method: d.method,
       path: d.path,
-      requiresApiKey: new RegExp(header, "i").test(haystack),
+      requiresApiKey: headerRe.test(haystack),
       requiresLoginCookie: /login_cookie/i.test(haystack),
       requiresProxy: /\bproxy\b/i.test(haystack),
     });
@@ -235,6 +268,15 @@ Then fetch a known cursor endpoint (examples: `get_user_followers`, `get_user_fo
 { "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_user_followers" } }
 ```
 
+Error-handling pattern:
+
+```js
+const s = await tool("search_twitterapi_docs", { query: "pagination cursor next_cursor", max_results: 10 });
+const endpoints = (s.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+const name = endpoints[0]?.name ?? "get_user_followers";
+const details = await tool("get_twitterapi_endpoint", { endpoint_name: name });
+```
+
 Implementation pattern (pseudo-code):
 
 ```js
@@ -266,9 +308,10 @@ Then fetch:
 End-to-end (search → guide):
 
 ```js
-const search = await callTool("search_twitterapi_docs", { query: "rate limit qps limits", max_results: 5 });
-const qps = search.results.find((r) => r.type === "page" && r.name === "qps_limits");
-await callTool("get_twitterapi_guide", { guide_name: qps?.name ?? "qps_limits" });
+const search = await tool("search_twitterapi_docs", { query: "rate limit qps limits", max_results: 10 });
+const pages = (search.results ?? []).filter((r) => r.type === "page" && r.name);
+const qps = pages.find((r) => r.name === "qps_limits");
+await tool("get_twitterapi_guide", { guide_name: qps?.name ?? "qps_limits" });
 ```
 
 ## Recipe: Fetch a Snapshot by URL Path (`/documentation/authentication`)
@@ -288,6 +331,22 @@ If it’s not found in the snapshot, you can request a safe live fetch (twittera
 {
   "tool": "get_twitterapi_url",
   "arguments": { "url": "/documentation/authentication", "fetch_live": true }
+}
+```
+
+Robust fallback (snapshot-first, then guide key):
+
+```js
+let res;
+try {
+  res = await callTool("get_twitterapi_url", { url: "/documentation/authentication" });
+} catch (err) {
+  res = { isError: true, content: [{ type: "text", text: String(err) }] };
+}
+
+if (res.isError) {
+  // Same page is also available by key in the snapshot:
+  res = await callTool("get_twitterapi_guide", { guide_name: "authentication" });
 }
 ```
 
