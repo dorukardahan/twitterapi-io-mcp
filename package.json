@@ -13,6 +13,7 @@
     "test": "node --test test/index.test.js",
     "build": "echo 'No build step required - pure ES Module'",
     "scrape": "node scrape-all.cjs",
+    "generate:docs": "node generate-context7-docs.cjs",
     "prepublishOnly": "npm test"
   },
   "keywords": [
