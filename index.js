@@ -50,6 +50,15 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DOCS_PATH = path.join(__dirname, "data", "docs.json");
+const PACKAGE_VERSION = (() => {
+  try {
+    const pkgPath = path.join(__dirname, "package.json");
+    const raw = fs.readFileSync(pkgPath, "utf-8");
+    return JSON.parse(raw)?.version || "unknown";
+  } catch (_err) {
+    return "unknown";
+  }
+})();
 
 // ========== ERROR HANDLING ==========
 const ErrorType = {
@@ -1877,6 +1886,25 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
         return formatToolSuccess(markdown, structuredContent);
       }
 
+      // Offline aliases for older/alternate routes (map to docs snapshot)
+      // Example: /documentation/authentication → docs.twitterapi.io/authentication
+      try {
+        const parsed = new URL(lookupUrl);
+
+        if (
+          (parsed.hostname === 'twitterapi.io' || parsed.hostname === 'docs.twitterapi.io') &&
+          parsed.pathname.startsWith('/documentation/')
+        ) {
+          const slug = parsed.pathname.replace(/^\/documentation\//, '').replace(/\/+$/g, '');
+          if (slug) {
+            const mapped = safeCanonicalizeUrl(`https://docs.twitterapi.io/${slug}`);
+            if (mapped) lookupUrl = mapped;
+          }
+        }
+      } catch (_err) {
+        // Ignore alias parse errors
+      }
+
       const match = findSnapshotItemByUrl(data, lookupUrl);
       if (match) {
         const markdown = match.kind === 'endpoint'
@@ -1914,7 +1942,19 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
       }
 
       try {
-        const response = await fetch(requestedUrl, { redirect: 'follow' });
+        const controller = new AbortController();
+        const timeoutMs = 15000;
+        const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+        const response = await fetch(requestedUrl, {
+          redirect: 'follow',
+          signal: controller.signal,
+          headers: {
+            'user-agent': `twitterapi-io-mcp/${PACKAGE_VERSION} (+https://github.com/dorukardahan/twitterapi-io-mcp)`
+          }
+        });
+        clearTimeout(timeout);
+
         if (!response.ok) {
           return formatToolError({
             type: ErrorType.NOT_FOUND,
@@ -1963,6 +2003,14 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
         urlCache.set(liveCacheKey, structuredContent);
         return formatToolSuccess(markdown, structuredContent);
       } catch (error) {
+        if (error?.name === 'AbortError') {
+          return formatToolError({
+            type: ErrorType.TIMEOUT,
+            message: `Timed out fetching URL: ${requestedUrl}`,
+            suggestion: 'Try again, or run `npm run scrape` to include this page in the offline snapshot',
+            retryable: true
+          });
+        }
         logger.error('url_fetch', `Failed to fetch URL: ${requestedUrl}`, error);
         return formatToolError({
           type: ErrorType.TIMEOUT,
@@ -2215,7 +2263,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
   if (uri === "twitterapi://docs/endpoints" || uri === "twitterapi://endpoints/list") {
     const summary = Object.entries(data.endpoints || {}).map(([name, ep]) => ({
       name,
-      method: ep.method,
+      method: getEndpointMethod(ep),
       path: ep.path,
       description: ep.description,
     }));

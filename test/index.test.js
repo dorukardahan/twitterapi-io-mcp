@@ -638,6 +638,21 @@ describe('MCP Protocol Integration', () => {
       assert.strictEqual(apiRef.structuredContent.kind, 'page');
       assert.strictEqual(apiRef.structuredContent.name, 'docs_api_reference');
 
+      const documentationAlias = await client.callTool({
+        name: 'get_twitterapi_url',
+        arguments: { url: '/documentation/authentication' }
+      });
+      assert.ok(documentationAlias.structuredContent, 'Expected structuredContent for /documentation/* alias');
+      assert.strictEqual(documentationAlias.structuredContent.source, 'snapshot');
+      assert.strictEqual(documentationAlias.structuredContent.kind, 'page');
+      assert.strictEqual(documentationAlias.structuredContent.name, 'authentication');
+
+      const endpointsResource = await client.readResource({ uri: 'twitterapi://docs/endpoints' });
+      const endpointsText = endpointsResource.contents?.[0]?.text ?? '[]';
+      const endpointsJson = JSON.parse(endpointsText);
+      assert.ok(Array.isArray(endpointsJson) && endpointsJson.length > 0);
+      assert.ok(endpointsJson[0].method, 'Expected method in endpoint resource summary');
+
       const badHost = await client.callTool({
         name: 'get_twitterapi_url',
         arguments: { url: 'https://example.com/' }
