@@ -8,6 +8,7 @@ The examples below are written as **tool-call recipes** so an AI assistant (or a
 
 For short, single-purpose pages (often easier for retrieval/benchmarking), see `recipes/`:
 
+- `recipes/00-install.md` (Q3)
 - `recipes/01-auth-summary.md` (Q1)
 - `recipes/02-search-refine.md` (Q2)
 - `recipes/03-fuzzy-search.md` (Q4)
@@ -82,8 +83,8 @@ These tools return both human-readable `markdown` and machine-friendly `structur
 ```json
 {
   "category": null,
-  "total": 52,
-  "total_all": 52,
+  "total": 54,
+  "total_all": 54,
   "endpoints": [{ "name": "tweet_advanced_search", "method": "GET", "path": "/twitter/tweet/advanced_search", "description": "…", "category": "tweet" }],
   "markdown": "# …"
 }
@@ -116,12 +117,20 @@ Search constraints (for robust callers):
 
 ## Install / Run
 
+- Prereqs: Node.js `>=18.18.0`, and (for `claude mcp add`) the `claude` CLI.
 - One-shot (good for local testing): `npx -y twitterapi-io-mcp`
 - Legacy package name (still works): `npx -y twitterapi-docs-mcp`
 - Claude Code:
 
 ```bash
+# Initial command (Claude Code, global):
 claude mcp add --scope user twitterapi-io -- npx -y twitterapi-io-mcp
+
+# Verify:
+claude mcp list
+
+# Project-only (current repo):
+claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 
 # Legacy (still supported, but deprecated)
 claude mcp add --scope user twitterapi-docs -- npx -y twitterapi-docs-mcp
@@ -145,6 +154,21 @@ Pick a result (e.g. the best `type: "endpoint"`) and call:
   "tool": "get_twitterapi_endpoint",
   "arguments": { "endpoint_name": "tweet_advanced_search" }
 }
+```
+
+Search result routing (dynamic chaining):
+- If `result.next` is present, you can directly call `result.next.tool` with `result.next.arguments`.
+- If you want endpoint details, filter to `type: "endpoint"` and use `result.name` as `endpoint_name`.
+- For `type: "page"`, fetch with `get_twitterapi_guide({ guide_name: result.name })`.
+- For `type: "blog"`, fetch with `get_twitterapi_url({ url: result.url })`.
+
+Example (use the tool-suggested `next` call):
+
+```js
+const s = await tool("search_twitterapi_docs", { query: "rate limit qps limits", max_results: 5 });
+const hit = (s.results ?? [])[0];
+if (!hit?.next) throw new Error("No suggested follow-up tool call");
+await tool(hit.next.tool, hit.next.arguments);
 ```
 
 How to choose the right `name`:

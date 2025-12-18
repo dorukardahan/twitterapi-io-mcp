@@ -1737,28 +1737,42 @@ ${endpoint.raw_text || "No additional content available."}`;
         dm: [], action: [], webhook: [], stream: [], other: [],
       };
 
-      for (const [name, ep] of endpoints) {
-        if (name.includes("user") || name.includes("follow")) {
-          categories.user.push({ name, ...ep });
-        } else if (name.includes("tweet") || name.includes("search") || name.includes("article")) {
-          categories.tweet.push({ name, ...ep });
-        } else if (name.includes("list")) {
-          categories.list.push({ name, ...ep });
-        } else if (name.includes("community")) {
-          categories.community.push({ name, ...ep });
-        } else if (name.includes("trend")) {
-          categories.trend.push({ name, ...ep });
-        } else if (name.includes("dm")) {
-          categories.dm.push({ name, ...ep });
-        } else if (name.includes("webhook") || name.includes("rule")) {
-          categories.webhook.push({ name, ...ep });
-        } else if (name.includes("monitor") || name.includes("stream")) {
-          categories.stream.push({ name, ...ep });
-        } else if (["login", "like", "retweet", "create", "delete", "upload"].some(k => name.includes(k))) {
-          categories.action.push({ name, ...ep });
-        } else {
-          categories.other.push({ name, ...ep });
+      function categorizeEndpointName(endpointName) {
+        const n = endpointName.toLowerCase();
+
+        // Higher-priority, specific buckets first.
+        if (n.includes("community")) return "community";
+        if (n.includes("webhook") || n.includes("rule")) return "webhook";
+        if (n.includes("dm")) return "dm";
+        if (n.includes("monitor") || n.includes("stream")) return "stream";
+        if (n.includes("list")) return "list";
+        if (n.includes("trend")) return "trend";
+
+        // Action-style endpoints are usually non-read verbs.
+        const isRead = n.startsWith("get_") || n.startsWith("batch_get_") || n.startsWith("check_");
+        if (!isRead) {
+          const actionPrefixes = [
+            "create_", "delete_", "update_", "add_", "remove_", "upload_", "send_",
+            "like_", "unlike_", "retweet_", "follow_", "unfollow_", "join_", "leave_",
+            "login_",
+          ];
+
+          if (actionPrefixes.some((p) => n.startsWith(p)) || /(^|_)login(_|$)/.test(n)) {
+            return "action";
+          }
         }
+
+        // Read endpoints (and a few specials) bucket by entity.
+        if (n.includes("my_info")) return "user";
+        if (n.includes("user") || n.includes("follow")) return "user";
+        if (n.includes("tweet") || n.includes("search") || n.includes("article")) return "tweet";
+
+        return "other";
+      }
+
+      for (const [name, ep] of endpoints) {
+        const cat = categorizeEndpointName(name);
+        categories[cat].push({ name, ...ep });
       }
 
       const allStructured = [];
@@ -2148,7 +2162,7 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: "twitterapi://docs/all",
       mimeType: "application/json",
       name: "All TwitterAPI.io Documentation",
-      description: "52 endpoints + guide pages + blog posts",
+      description: "54 endpoints + guide pages + blog posts",
     },
     {
       uri: "twitterapi://docs/endpoints",

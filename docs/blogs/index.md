@@ -7,6 +7,7 @@
 | `blog_building_x_trading_card_generator` | [Building an X Trading Card Generator with TwitterAPI.io](./blog_building_x_trading_card_generator.md) | [source](https://twitterapi.io/blog/building-x-trading-card-generator) |
 | `blog_kiro_ai` | [How to Build Twitter Apps with Kiro AI IDE: Complete Integration Guide with TwitterAPI.io](./blog_kiro_ai.md) | [source](https://twitterapi.io/blog/build-twitter-apps-with-kiro-ai-ide) |
 | `blog_leveraging_ai_for_crypto_trading` | [Leveraging AI to Capture Crypto Opportunities: A Twitter-Based Trading Strategy](./blog_leveraging_ai_for_crypto_trading.md) | [source](https://twitterapi.io/blog/leveraging-ai-for-crypto-trading) |
+| `blog_login_post_api_guide` | [Complete Guide: Login to Twitter and Post Tweets Using API](./blog_login_post_api_guide.md) | [source](https://twitterapi.io/blog/twitter-login-and-post-api-guide) |
 | `blog_monitor_tweets` | [How to Monitor Twitter Accounts for New Tweets in Real-Time](./blog_monitor_tweets.md) | [source](https://twitterapi.io/blog/how-to-monitor-twitter-accounts-for-new-tweets-in-real-time) |
 | `blog_pricing_2025` | [Twitter API Pricing 2025: A Full Cost Breakdown & Cheaper Alternatives](./blog_pricing_2025.md) | [source](https://twitterapi.io/blog/twitter-api-pricing-2025) |
 | `blog_resources` | [Essential Resources and Tools for Twitter API Developers](./blog_resources.md) | [source](https://twitterapi.io/blog/resources-and-tools) |

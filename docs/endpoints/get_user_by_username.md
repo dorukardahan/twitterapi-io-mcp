@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/get_user_by_username
 
 ## Description
 
-Get unser info by screen name
+Get user info by screen name
 
 ## Example (curl)
 
@@ -92,4 +92,4 @@ curl --request GET \
 }
 ```
 
-_Scraped at: 2025-12-13T03:07:27.817Z_
+_Scraped at: 2025-12-18T10:06:21.804Z_

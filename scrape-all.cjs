@@ -47,6 +47,7 @@ const BLOG_KEY_OVERRIDES = new Map([
   ['build-twitter-apps-with-kiro-ai-ide', 'blog_kiro_ai'],
   ['resources-and-tools', 'blog_resources'],
   ['how-to-monitor-twitter-accounts-for-new-tweets-in-real-time', 'blog_monitor_tweets'],
+  ['twitter-login-and-post-api-guide', 'blog_login_post_api_guide'],
 ]);
 
 function fetchPage(url) {
@@ -251,6 +252,13 @@ async function discoverScrapeTargets() {
   // Ensure legacy/known posts remain included even if not discoverable
   for (const slug of BLOG_KEY_OVERRIDES.keys()) {
     const canonical = canonicalizeUrlForScrape(`https://twitterapi.io/blog/${slug}`);
+    if (canonical) siteUrls.add(canonical);
+  }
+
+  // Ensure key site pages are present even if they aren't linked in the sitemap.
+  // These pages are referenced by endpoint docs and are useful for MCP users.
+  for (const url of ['https://twitterapi.io/twitter-stream']) {
+    const canonical = canonicalizeUrlForScrape(url);
     if (canonical) siteUrls.add(canonical);
   }
 

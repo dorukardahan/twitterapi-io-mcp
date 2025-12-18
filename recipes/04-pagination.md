@@ -32,10 +32,15 @@ async function tool(name, args) {
 }
 
 // 1) Search for pagination docs quickly
-let s = await tool("search_twitterapi_docs", {
-  query: "pagination cursor next_cursor has_next_page",
-  max_results: 10,
-});
+let s;
+try {
+  s = await tool("search_twitterapi_docs", {
+    query: "pagination cursor next_cursor has_next_page",
+    max_results: 10,
+  });
+} catch (err) {
+  throw new Error(`search_twitterapi_docs failed: ${String(err)}`);
+}
 
 // If search is empty, retry with a simpler query.
 if (!Array.isArray(s.results) || s.results.length === 0) {
@@ -49,7 +54,12 @@ const best = endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0];
 // 3) Fallback to a known cursor endpoint if search is empty/broad
 const endpoint_name = best?.name ?? "get_user_followers";
 
-const details = await tool("get_twitterapi_endpoint", { endpoint_name });
+let details;
+try {
+  details = await tool("get_twitterapi_endpoint", { endpoint_name });
+} catch (err) {
+  throw new Error(`get_twitterapi_endpoint(${endpoint_name}) failed: ${String(err)}`);
+}
 const params = Array.isArray(details.parameters) ? details.parameters : [];
 
 // Validate that cursor-like params exist (so this is actually about pagination)
@@ -61,3 +71,8 @@ if (!cursorParams.length) {
 ```
 
 Implementation note: many paginated HTTPS responses return `next_cursor`; keep calling the HTTPS API with the returned cursor until it is empty.
+
+## Tips
+
+- If your query is vague/short, increase `max_results` (15–20) and filter to `type: "endpoint"`.
+- If results are ambiguous, add 1–2 context tokens: `"followers cursor"`, `"mentions next_cursor"`.

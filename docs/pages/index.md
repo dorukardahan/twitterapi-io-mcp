@@ -18,3 +18,6 @@
 | `readme` | [TwitterAPI.io - Enterprise-Grade Twitter Data API | No Auth Required](./readme.md) | [source](https://twitterapi.io/readme) |
 | `terms` | [Terms of Service](./terms.md) | [source](https://twitterapi.io/terms) |
 | `tweet_filter_rules` | [Tweet Filter Rules](./tweet_filter_rules.md) | [source](https://twitterapi.io/tweet-filter-rules) |
+| `twitter_stream_manage` | [Twitter Stream Manage](./twitter_stream_manage.md) | [source](https://twitterapi.io/twitter-stream/manage) |
+| `twitter_stream_subscription` | [Twitter Stream Subscription](./twitter_stream_subscription.md) | [source](https://twitterapi.io/twitter-stream/subscription) |
+| `twitter_stream` | [Twitter Stream Monitoring](./twitter_stream.md) | [source](https://twitterapi.io/twitter-stream) |

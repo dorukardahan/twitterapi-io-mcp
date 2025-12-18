@@ -16,17 +16,17 @@ MCP server providing offline access to TwitterAPI.io documentation for Claude an
 | File | Purpose |
 |------|---------|
 | `index.js` | Main MCP server (ES Module, no build step) |
-| `data/docs.json` | Scraped documentation (52 endpoints, 10 pages) |
+| `data/docs.json` | Bundled docs snapshot (54 endpoints, 19 pages, 21 blog posts) |
 | `scrape-all.cjs` | Documentation scraper (not in npm package) |
-| `test/index.test.js` | 48 unit tests |
+| `test/index.test.js` | Unit + MCP integration tests |
 | `packages/twitterapi-docs-mcp/` | Legacy npm wrapper (deprecated) |
 
 ## Commands
 
 ```bash
-npm test          # Run 48 tests
+npm test          # Run tests
 npm start         # Start MCP server locally
-node scrape-all.cjs  # Re-scrape documentation
+npm run scrape    # Refresh docs snapshot
 ```
 
 ## Architecture

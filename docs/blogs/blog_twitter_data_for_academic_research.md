@@ -130,4 +130,4 @@ res = requests.get("https://api.twitterapi.io/twitter/tweet/advanced_search",
 print(res.json())
 ```
 
-_Scraped at: 2025-12-13T03:07:16.559Z_
+_Scraped at: 2025-12-18T10:06:09.213Z_

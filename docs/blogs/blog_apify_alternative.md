@@ -182,4 +182,4 @@ async function searchTweets(query, maxResults = 100) {
 })();
 ```
 
-_Scraped at: 2025-12-13T03:07:12.849Z_
+_Scraped at: 2025-12-18T10:06:04.218Z_

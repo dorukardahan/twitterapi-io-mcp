@@ -23,12 +23,14 @@
 | `get_list_followers` | `/twitter/list/followers` | [Get List Followers](./get_list_followers.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_list_followers) |
 | `get_list_members` | `/twitter/list/members` | [Get List Members](./get_list_members.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_list_members) |
 | `get_my_info` | `/oapi/my/info` | [Get My Info](./get_my_info.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_my_info) |
+| `get_space_detail` | `/twitter/spaces/detail` | [Get Space Detail](./get_space_detail.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_space_detail) |
 | `get_trends` | `/twitter/trends` | [Get Trends](./get_trends.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_trends) |
 | `get_tweet_by_ids` | `/twitter/tweets` | [Get Tweet By Ids](./get_tweet_by_ids.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_by_ids) |
 | `get_tweet_quote` | `/twitter/tweet/quotes` | [Get Tweet Quote](./get_tweet_quote.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_quote) |
 | `get_tweet_reply` | `/twitter/tweet/replies` | [Get Tweet Reply](./get_tweet_reply.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_reply) |
 | `get_tweet_retweeter` | `/twitter/tweet/retweeters` | [Get Tweet Retweeter](./get_tweet_retweeter.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_retweeter) |
 | `get_tweet_thread_context` | `/twitter/tweet/thread_context` | [Get Tweet Thread Context](./get_tweet_thread_context.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_thread_context) |
+| `get_user_about` | `/twitter/user_about` | [Get User About](./get_user_about.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_about) |
 | `get_user_by_username` | `/twitter/user/info` | [Get User By Username](./get_user_by_username.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_by_username) |
 | `get_user_followers` | `/twitter/user/followers` | [Get User Followers](./get_user_followers.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_followers) |
 | `get_user_followings` | `/twitter/user/followings` | [Get User Followings](./get_user_followings.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_followings) |

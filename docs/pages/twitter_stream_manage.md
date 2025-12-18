@@ -1,5 +1,5 @@
-# Dashboard
-Source: https://twitterapi.io/dashboard
+# Twitter Stream Manage
+Source: https://twitterapi.io/twitter-stream/manage
 
 ## Fetch with MCP
 
@@ -9,7 +9,7 @@ Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitt
 {
   "tool": "get_twitterapi_guide",
   "arguments": {
-    "guide_name": "dashboard"
+    "guide_name": "twitter_stream_manage"
   }
 }
 ```
@@ -18,7 +18,7 @@ Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitt
 {
   "tool": "get_twitterapi_url",
   "arguments": {
-    "url": "/dashboard"
+    "url": "/twitter-stream/manage"
   }
 }
 ```
@@ -42,4 +42,4 @@ We donate a portion of every sale to fund carbon removal technologies.
 - Acceptable Use Policy
 
 
-_Scraped at: 2025-12-18T10:05:58.656Z_
+_Scraped at: 2025-12-18T10:06:02.151Z_

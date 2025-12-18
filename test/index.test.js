@@ -653,6 +653,28 @@ describe('MCP Protocol Integration', () => {
       assert.ok(Array.isArray(endpointsJson) && endpointsJson.length > 0);
       assert.ok(endpointsJson[0].method, 'Expected method in endpoint resource summary');
 
+      const streamEndpoints = await client.callTool({
+        name: 'list_twitterapi_endpoints',
+        arguments: { category: 'stream' }
+      });
+      assert.ok(streamEndpoints.structuredContent, 'Expected structuredContent for list_twitterapi_endpoints(stream)');
+      assert.ok(Array.isArray(streamEndpoints.structuredContent.endpoints));
+      assert.ok(
+        streamEndpoints.structuredContent.endpoints.some((e) => e.name === 'add_user_to_monitor_tweet'),
+        'Expected add_user_to_monitor_tweet to be categorized as stream'
+      );
+
+      const dmEndpoints = await client.callTool({
+        name: 'list_twitterapi_endpoints',
+        arguments: { category: 'dm' }
+      });
+      assert.ok(dmEndpoints.structuredContent, 'Expected structuredContent for list_twitterapi_endpoints(dm)');
+      assert.ok(Array.isArray(dmEndpoints.structuredContent.endpoints));
+      assert.ok(
+        dmEndpoints.structuredContent.endpoints.some((e) => e.name === 'send_dm_v2'),
+        'Expected send_dm_v2 to be categorized as dm'
+      );
+
       const badHost = await client.callTool({
         name: 'get_twitterapi_url',
         arguments: { url: 'https://example.com/' }

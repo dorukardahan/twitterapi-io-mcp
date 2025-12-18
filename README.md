@@ -32,7 +32,7 @@ I'm sharing this with the community because if it helped me, it might help you t
 
 ## Features
 
-- **52 API endpoints** documented
+- **54 API endpoints** documented
 - **Site + docs pages** via sitemap + internal link crawl (pricing, QPS limits, privacy, contact, terms, acceptable use, dashboard, etc.)
 - **Blog posts** via blog index crawl (and internal discovery)
 - **Offline-first** - Works without network access
@@ -143,15 +143,16 @@ Once installed, you can ask Claude questions like:
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| **User** | 9 | get_user_by_username, get_user_followers, get_user_followings |
-| **Tweet** | 7 | tweet_advanced_search, get_tweet_reply, get_tweet_quote |
-| **Community** | 5 | get_community_by_id, get_community_members |
+| **User** | 11 | get_user_by_username, get_user_followers, batch_get_user_by_userids |
+| **Tweet** | 7 | tweet_advanced_search, get_tweet_by_ids, get_tweet_quote |
+| **Community** | 9 | create_community_v2, get_community_by_id, join_community_v2 |
 | **Webhook** | 4 | add_webhook_rule, get_webhook_rules |
-| **Stream** | 2 | add_user_to_monitor_tweet |
-| **Action** | 16 | create_tweet, like_tweet, follow_user_v2 |
+| **Stream** | 2 | add_user_to_monitor_tweet, remove_user_to_monitor_tweet |
+| **Action** | 15 | create_tweet_v2, like_tweet_v2, upload_media_v2 |
 | **DM** | 2 | send_dm_v2, get_dm_history_by_user_id |
 | **List** | 2 | get_list_followers, get_list_members |
 | **Trend** | 1 | get_trends |
+| **Other** | 1 | get_space_detail |
 
 ## How It Works
 
