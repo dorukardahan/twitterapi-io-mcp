@@ -1,6 +1,28 @@
 # Introduction
 Source: https://docs.twitterapi.io/introduction
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "introduction"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/introduction"
+  }
+}
+```
+
 ## Description
 
 twitterapi.io docs.The best third-party Twitter API: reliable, high-performance, supports high QPS, and cost-effective.

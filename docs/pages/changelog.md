@@ -1,6 +1,29 @@
 # TwitterAPI.io Changelog
 Source: https://twitterapi.io/changelog
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+Also known as: "Changelogs" documentation page
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "changelog"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/changelog"
+  }
+}
+```
+
 ## Description
 
 Stay up-to-date with the latest features and improvements to TwitterAPI.io. View our changelog for detailed information about new endpoints, performance improvements, and more.

@@ -163,6 +163,53 @@ function normalizeSentenceSpacing(text) {
   return String(text ?? "").replace(/([.!?])([A-Za-z])/g, "$1 $2");
 }
 
+function safeUrlPath(url) {
+  try {
+    const parsed = new URL(String(url));
+    return parsed.pathname || null;
+  } catch (_err) {
+    return null;
+  }
+}
+
+function renderMcpGuideAccess({ guideName, pageUrl, aliases }) {
+  const urlPath = safeUrlPath(pageUrl);
+  const accessUrl = urlPath || pageUrl;
+
+  const lines = [];
+  lines.push("## Fetch with MCP");
+  lines.push("");
+  lines.push(
+    "Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.",
+  );
+  if (Array.isArray(aliases) && aliases.length) {
+    lines.push(`Also known as: ${aliases.join(", ")}`);
+  }
+  lines.push("");
+
+  lines.push(
+    renderCodeBlock(
+      JSON.stringify(
+        { tool: "get_twitterapi_guide", arguments: { guide_name: guideName } },
+        null,
+        2,
+      ),
+      "json",
+    ),
+  );
+
+  if (accessUrl) {
+    lines.push(
+      renderCodeBlock(
+        JSON.stringify({ tool: "get_twitterapi_url", arguments: { url: accessUrl } }, null, 2),
+        "json",
+      ),
+    );
+  }
+
+  return lines.join("\n");
+}
+
 function main() {
   if (!fs.existsSync(DATA_PATH)) {
     console.error(`Missing ${DATA_PATH}. Run the scraper first (npm run scrape).`);
@@ -343,6 +390,13 @@ function main() {
 
     const parts = [];
     parts.push(renderFrontMatter({ title, sourceUrl: page.url }));
+    parts.push(
+      renderMcpGuideAccess({
+        guideName: key,
+        pageUrl: page.url,
+        aliases: key === "changelog" ? ['"Changelogs" documentation page'] : [],
+      }),
+    );
     if (page.description && !isGenericSiteTitle(page.description)) {
       parts.push("## Description");
       parts.push("");

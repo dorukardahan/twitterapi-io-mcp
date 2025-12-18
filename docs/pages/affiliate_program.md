@@ -1,6 +1,28 @@
 # TwitterAPI.io Affiliate Program - Earn Up to 12% Recurring Commissions
 Source: https://twitterapi.io/affiliate-program
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "affiliate_program"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/affiliate-program"
+  }
+}
+```
+
 ## Description
 
 Join the TwitterAPI.io Affiliate Program and earn up to 12% monthly recurring commissions by referring customers to our affordable Twitter data API.

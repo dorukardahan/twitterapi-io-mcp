@@ -1,6 +1,28 @@
 # Authentication
 Source: https://docs.twitterapi.io/authentication
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "authentication"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/authentication"
+  }
+}
+```
+
 ## Description
 
 Learn how to authenticate your API requests using API keys

@@ -1,6 +1,28 @@
 # REAL-TIME PUBLIC SOCIAL DATA
 Source: https://twitterapi.io/
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "home"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/"
+  }
+}
+```
+
 ## Sections
 
 - REAL-TIME PUBLIC SOCIAL DATA

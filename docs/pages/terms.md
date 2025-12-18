@@ -1,6 +1,28 @@
 # Terms of Service
 Source: https://twitterapi.io/terms
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "terms"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/terms"
+  }
+}
+```
+
 ## Sections
 
 - Terms of Service

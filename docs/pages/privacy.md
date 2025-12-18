@@ -1,6 +1,28 @@
 # Privacy Policy
 Source: https://twitterapi.io/privacy
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "privacy"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/privacy"
+  }
+}
+```
+
 ## Sections
 
 - Privacy Policy

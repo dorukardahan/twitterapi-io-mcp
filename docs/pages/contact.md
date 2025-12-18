@@ -1,6 +1,28 @@
 # Let's Connect
 Source: https://twitterapi.io/contact
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "contact"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/contact"
+  }
+}
+```
+
 ## Sections
 
 - Let's Connect

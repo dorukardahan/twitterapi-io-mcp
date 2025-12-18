@@ -16,10 +16,14 @@ The examples below are written as **tool-call recipes** so an AI assistant (or a
 ## Install / Run
 
 - One-shot (good for local testing): `npx -y twitterapi-io-mcp`
+- Legacy package name (still works): `npx -y twitterapi-docs-mcp`
 - Claude Code:
 
 ```bash
 claude mcp add --scope user twitterapi-io -- npx -y twitterapi-io-mcp
+
+# Legacy (still supported, but deprecated)
+claude mcp add --scope user twitterapi-docs -- npx -y twitterapi-docs-mcp
 ```
 
 ## Recipe: Search → Refine → Fetch Endpoint Details
@@ -132,6 +136,12 @@ await callTool("get_twitterapi_endpoint", { endpoint_name: hit.name });
 If you want to bias toward tweet-related docs, keep the typo but add context words:
 `"twet object tweet"` or `"twet object response"`.
 
+Handling ambiguous results:
+
+- Prefer `type: "endpoint"` when you need an API endpoint; otherwise fall back to `"page"` / `"blog"`.
+- Use `score` as a relative ranking signal (pick the highest score; if ties, ask the user to clarify).
+- If results are too broad, add 1–2 extra tokens (e.g., `"tweet object response json"`).
+
 ## Recipe: Pagination (Cursor / next_cursor)
 
 Many endpoints are cursor-based (they return `next_cursor` / `has_next_page` and accept a `cursor` parameter).
@@ -140,6 +150,12 @@ Find them quickly:
 
 ```json
 { "tool": "search_twitterapi_docs", "arguments": { "query": "pagination cursor next_cursor has_next_page", "max_results": 10 } }
+```
+
+Direct pagination lookup:
+
+```json
+{ "tool": "search_twitterapi_docs", "arguments": { "query": "pagination", "max_results": 10 } }
 ```
 
 Then fetch a known cursor endpoint (examples: `get_user_followers`, `get_user_followings`, `get_user_mention`):
@@ -225,6 +241,12 @@ In the TwitterAPI.io docs, “Tweets Lookup” corresponds to `get_tweet_by_ids`
 
 ```json
 { "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_tweet_by_ids" } }
+```
+
+JavaScript wrapper example:
+
+```js
+await callTool("get_twitterapi_endpoint", { endpoint_name: "get_tweet_by_ids" });
 ```
 
 If you’re unsure of the exact name, search first:

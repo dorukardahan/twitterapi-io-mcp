@@ -1,6 +1,28 @@
 # TwitterAPI.io - Enterprise-Grade Twitter Data API | No Auth Required
 Source: https://twitterapi.io/readme
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "readme"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/readme"
+  }
+}
+```
+
 ## Description
 
 Access Twitter data without authentication. 96% cheaper than alternatives with high performance, 1000+ QPS, and enterprise reliability. Real-time data for developers, researchers, and businesses.

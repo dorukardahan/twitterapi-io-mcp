@@ -1,6 +1,28 @@
 # Simple, Transparent Pricing
 Source: https://twitterapi.io/pricing
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "pricing"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/pricing"
+  }
+}
+```
+
 ## Description
 
 Simple and transparent pricing for Twitter data API access. Pay as you go with no minimum spend required.

@@ -1,6 +1,28 @@
 # Recharge Your Account
 Source: https://twitterapi.io/payment
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "payment"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/payment"
+  }
+}
+```
+
 ## Sections
 
 - Recharge Your Account

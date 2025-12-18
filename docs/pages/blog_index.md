@@ -1,6 +1,28 @@
 # TwitterAPI.io Blog
 Source: https://twitterapi.io/blog
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "blog_index"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/blog"
+  }
+}
+```
+
 ## Description
 
 Explore our blog for in-depth articles on Twitter data analysis, social media trends, and how to leverage TwitterAPI.io for your business intelligence needs.

@@ -1,6 +1,28 @@
 # Tweet Filter Rules
 Source: https://twitterapi.io/tweet-filter-rules
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "tweet_filter_rules"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/tweet-filter-rules"
+  }
+}
+```
+
 ## Sections
 
 

@@ -1,6 +1,28 @@
 # QPS Limits
 Source: https://twitterapi.io/qps-limits
 
+## Fetch with MCP
+
+Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+
+```json
+{
+  "tool": "get_twitterapi_guide",
+  "arguments": {
+    "guide_name": "qps_limits"
+  }
+}
+```
+
+```json
+{
+  "tool": "get_twitterapi_url",
+  "arguments": {
+    "url": "/qps-limits"
+  }
+}
+```
+
 ## Sections
 
 - QPS Limits
