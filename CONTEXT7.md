@@ -15,6 +15,7 @@ For short, single-purpose pages (often easier for retrieval/benchmarking), see `
 - `recipes/05-changelog-guide.md` (Q7)
 - `recipes/06-list-endpoints.md` (Q8)
 - `recipes/07-rate-limits.md` (Q10)
+- `recipes/08-url-authentication.md` (Q6)
 
 ## Tool Quick Reference (Inputs → Key Outputs)
 
@@ -82,6 +83,7 @@ These tools return both human-readable `markdown` and machine-friendly `structur
 {
   "category": null,
   "total": 52,
+  "total_all": 52,
   "endpoints": [{ "name": "tweet_advanced_search", "method": "GET", "path": "/twitter/tweet/advanced_search", "description": "…", "category": "tweet" }],
   "markdown": "# …"
 }
@@ -95,7 +97,15 @@ These tools return both human-readable `markdown` and machine-friendly `structur
   "max_results": 5,
   "cached": false,
   "counts": { "total": 5, "endpoints": 2, "pages": 2, "blogs": 1 },
-  "results": [{ "type": "page", "name": "qps_limits", "title": "…", "description": "…", "url": "…", "score": 42 }],
+  "results": [{
+    "type": "page",
+    "name": "qps_limits",
+    "title": "…",
+    "description": "…",
+    "url": "…",
+    "next": { "tool": "get_twitterapi_guide", "arguments": { "guide_name": "qps_limits" } },
+    "score": 42
+  }],
   "markdown": "## Search Results…"
 }
 ```

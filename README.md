@@ -49,6 +49,8 @@ Note: This MCP server serves an **offline docs snapshot**. You do **not** need a
 
 ### Claude Desktop
 
+Requires Node.js `>=18.18.0` (because this runs via `npx`).
+
 Add to your Claude Desktop configuration file:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -66,6 +68,8 @@ Add to your Claude Desktop configuration file:
 ```
 
 ### Claude Code
+
+Requires Node.js `>=18.18.0` (because this runs via `npx`).
 
 ```bash
 # Add globally (all projects)

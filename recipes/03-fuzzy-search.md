@@ -8,6 +8,12 @@
 { "tool": "search_twitterapi_docs", "arguments": { "query": "twet object", "max_results": 10 } }
 ```
 
+## Result types (how to chain)
+
+- If `type === "endpoint"`: use `result.name` as `endpoint_name` for `get_twitterapi_endpoint`.
+- If `type === "page"`: use `result.name` as `guide_name` for `get_twitterapi_guide` (or fetch `result.url` via `get_twitterapi_url`).
+- If `type === "blog"`: fetch `result.url` via `get_twitterapi_url`.
+
 ## Practical pattern (search → endpoint details)
 
 ```js

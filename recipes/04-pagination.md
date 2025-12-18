@@ -32,10 +32,15 @@ async function tool(name, args) {
 }
 
 // 1) Search for pagination docs quickly
-const s = await tool("search_twitterapi_docs", {
+let s = await tool("search_twitterapi_docs", {
   query: "pagination cursor next_cursor has_next_page",
   max_results: 10,
 });
+
+// If search is empty, retry with a simpler query.
+if (!Array.isArray(s.results) || s.results.length === 0) {
+  s = await tool("search_twitterapi_docs", { query: "pagination", max_results: 10 });
+}
 
 // 2) Prefer endpoint hits so you can inspect parameters + examples
 const endpoints = (s.results ?? []).filter((r) => r.type === "endpoint" && r.name);

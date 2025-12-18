@@ -37,6 +37,8 @@ Routing rule:
 - `type: "page"` → `get_twitterapi_guide({ guide_name: result.name })` (or `get_twitterapi_url({ url: result.url })`)
 - `type: "blog"` → `get_twitterapi_url({ url: result.url })`
 
+Note: results also include a `next` field (suggested follow-up tool call) to make chaining easier.
+
 ## JavaScript chaining (with refinement + tie-break)
 
 ```js
@@ -46,39 +48,25 @@ async function tool(name, args) {
   return res?.structuredContent ?? {};
 }
 
-async function findBestEndpointName(query) {
-  // Refinement loop: start broad, then add 1–2 context tokens if needed.
-  let q = query;
+const s = await tool("search_twitterapi_docs", { query: "advanced search", max_results: 10 });
+const results = Array.isArray(s.results) ? s.results : [];
 
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const s = await tool("search_twitterapi_docs", { query: q, max_results: 10 });
-    const results = Array.isArray(s.results) ? s.results : [];
-
-    const endpoints = results.filter((r) => r.type === "endpoint" && r.name);
-    if (!endpoints.length) {
-      // No endpoint hits: narrow toward endpoints by adding context tokens.
-      q = attempt === 0 ? `${query} tweet` : `${query} endpoint`;
-      continue;
-    }
-
-    endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-    const [best, second] = endpoints;
-
-    // Tie-break: if top-2 are close, refine once more using path/method context.
-    if (second && Math.abs((best.score ?? 0) - (second.score ?? 0)) < 2) {
-      const hint = [best.method, best.path].filter(Boolean).join(" ");
-      q = `${query} ${hint}`.trim();
-      continue;
-    }
-
-    return best.name;
-  }
-
-  throw new Error(`No endpoint results for query: ${query}`);
+// 1) Prefer endpoint hits (because we want get_twitterapi_endpoint next)
+const endpoints = results.filter((r) => r.type === "endpoint" && r.name);
+if (!endpoints.length) {
+  throw new Error('No endpoint hits. Try refining: "advanced search tweet" or "advanced search endpoint"');
 }
 
-const endpoint_name = await findBestEndpointName("advanced search");
-const details = await tool("get_twitterapi_endpoint", { endpoint_name });
+// 2) Pick the best-scoring endpoint; tie-break if close
+endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+const [best, second] = endpoints;
+if (second && Math.abs((best.score ?? 0) - (second.score ?? 0)) < 2) {
+  // If ambiguous: ask the user OR refine and re-run search using method/path hints
+  // e.g. query = `advanced search ${best.method} ${best.path}`
+}
+
+// 3) `best.name` is the exact endpoint_name you pass to get_twitterapi_endpoint
+const details = await tool("get_twitterapi_endpoint", { endpoint_name: best.name });
 
 console.log(details.method, details.path);
 console.log(details.curl_example);

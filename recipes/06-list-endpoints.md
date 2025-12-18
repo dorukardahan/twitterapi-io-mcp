@@ -9,7 +9,8 @@ Use `list_twitterapi_endpoints` to obtain the full endpoint list from the offlin
 ```
 
 The response includes:
-- `total`: number of endpoints returned
+- `total`: number of endpoints returned (after optional category filter)
+- `total_all`: total endpoints in the snapshot (before filtering)
 - `endpoints[]`: objects with `name`, `method`, `path`, `category`
 
 Tip: this tool returns the **full** snapshot (no pagination). Use `category` only to narrow results.

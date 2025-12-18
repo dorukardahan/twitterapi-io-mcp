@@ -908,6 +908,7 @@ function searchInDocs(query, maxResults = 20) {
         method: getEndpointMethod(item),
         path: item.path,
         url: item.url,
+        next: { tool: "get_twitterapi_endpoint", arguments: { endpoint_name: name } },
         score,
       });
     }
@@ -934,6 +935,7 @@ function searchInDocs(query, maxResults = 20) {
         description: item.description,
         url: item.url,
         category: item.category,
+        next: { tool: "get_twitterapi_guide", arguments: { guide_name: name } },
         score,
       });
     }
@@ -957,6 +959,7 @@ function searchInDocs(query, maxResults = 20) {
         title: item.title,
         description: item.description,
         url: item.url,
+        next: item.url ? { tool: "get_twitterapi_url", arguments: { url: item.url } } : undefined,
         score,
       });
     }
@@ -1220,9 +1223,18 @@ Examples:
                 category: { type: "string" },
                 method: { type: "string" },
                 path: { type: "string" },
+                next: {
+                  type: "object",
+                  description: "Suggested follow-up tool call for this result (helps chaining).",
+                  properties: {
+                    tool: { type: "string" },
+                    arguments: { type: "object", additionalProperties: true }
+                  },
+                  required: ["tool", "arguments"]
+                },
                 score: { type: "number" }
               },
-              required: ["type", "score"]
+              required: ["type", "name", "score"]
             }
           },
           markdown: { type: "string", description: "Human-readable markdown rendering of the results." }
@@ -1304,7 +1316,8 @@ RETURNS: Endpoint names with HTTP method and path for each category.`,
         type: "object",
         properties: {
           category: { type: ["string", "null"] },
-          total: { type: "integer" },
+          total: { type: "integer", description: "Number of endpoints returned (after optional category filter)." },
+          total_all: { type: "integer", description: "Total endpoints in the snapshot (before filtering)." },
           endpoints: {
             type: "array",
             items: {
@@ -1760,7 +1773,8 @@ ${endpoint.raw_text || "No additional content available."}`;
 ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description}`).join("\n\n")}`;
         return formatToolSuccess(markdown, {
           category: validation.value,
-          total: endpoints.length,
+          total: filtered.length,
+          total_all: endpoints.length,
           endpoints: filtered,
           markdown
         });
@@ -1777,6 +1791,7 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
       return formatToolSuccess(output, {
         category: null,
         total: endpoints.length,
+        total_all: endpoints.length,
         endpoints: allStructured,
         markdown: output
       });
