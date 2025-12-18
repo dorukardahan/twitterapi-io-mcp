@@ -19,7 +19,13 @@ Fetch details using a returned endpoint `name`:
 ## JavaScript chaining (tie-breaker included)
 
 ```js
-const s = await callTool("search_twitterapi_docs", { query: "advanced search", max_results: 10 });
+async function tool(name, args) {
+  const res = await callTool(name, args);
+  if (res?.isError) throw new Error(res?.content?.[0]?.text ?? `Tool failed: ${name}`);
+  return res?.structuredContent ?? {};
+}
+
+const s = await tool("search_twitterapi_docs", { query: "advanced search", max_results: 10 });
 
 // Prefer endpoints; otherwise fall back to the top result.
 const endpoints = (s.results ?? []).filter((r) => r.type === "endpoint");
@@ -30,10 +36,10 @@ if (!hit?.name) throw new Error("No results");
 const top = endpoints.slice(0, 3);
 if (top.length >= 2 && Math.abs((top[0].score ?? 0) - (top[1].score ?? 0)) < 2) {
   // e.g. show candidates to the user and ask which one they mean
+  // or refine and re-run: await tool("search_twitterapi_docs", { query: "advanced search tweet", max_results: 10 });
 }
 
-const details = await callTool("get_twitterapi_endpoint", { endpoint_name: hit.name });
+const details = await tool("get_twitterapi_endpoint", { endpoint_name: hit.name });
 ```
 
 Tip: if results are broad, add 1–2 context tokens: `"advanced search tweet"`, `"user followers pagination"`.
-
