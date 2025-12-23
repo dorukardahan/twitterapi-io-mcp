@@ -11,6 +11,7 @@ RUN npm ci --only=production
 # Copy source files
 COPY index.js ./
 COPY data/ ./data/
+COPY server.json ./
 
 # Set environment
 ENV NODE_ENV=production

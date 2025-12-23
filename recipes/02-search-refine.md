@@ -73,3 +73,38 @@ console.log(details.curl_example);
 ```
 
 Tip: if results are broad, add 1–2 context tokens: `"advanced search tweet"`, `"user followers pagination"`.
+
+## Robust disambiguation + retry (production-style)
+
+```js
+async function pickEndpoint(query) {
+  const primary = await tool("search_twitterapi_docs", { query, max_results: 10 });
+  let endpoints = (primary.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+
+  if (!endpoints.length) {
+    // Retry with a narrower hint so the search favors endpoints over pages/blogs.
+    const retry = await tool("search_twitterapi_docs", { query: `${query} endpoint`, max_results: 10 });
+    endpoints = (retry.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+  }
+
+  if (!endpoints.length) return null;
+  endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+
+  const [best, second] = endpoints;
+  if (second && Math.abs((best.score ?? 0) - (second.score ?? 0)) < 2) {
+    // Ambiguous: ask the user or refine with method/path tokens.
+    const refined = await tool("search_twitterapi_docs", {
+      query: `${query} ${best.method ?? ""} ${best.path ?? ""}`.trim(),
+      max_results: 10
+    });
+    const refinedEndpoints = (refined.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+    if (refinedEndpoints.length) return refinedEndpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0];
+  }
+
+  return best;
+}
+
+const hit = await pickEndpoint("advanced search");
+if (!hit) throw new Error("No endpoint results. Try a narrower query or add more context.");
+const details = await tool("get_twitterapi_endpoint", { endpoint_name: hit.name });
+```

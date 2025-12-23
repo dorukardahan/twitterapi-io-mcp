@@ -17,6 +17,7 @@ For short, single-purpose pages (often easier for retrieval/benchmarking), see `
 - `recipes/06-list-endpoints.md` (Q8)
 - `recipes/07-rate-limits.md` (Q10)
 - `recipes/08-url-authentication.md` (Q6)
+- `recipes/09-tweets-lookup.md` (Q9)
 
 ## Tool Quick Reference (Inputs → Key Outputs)
 
@@ -190,6 +191,36 @@ const details = await tool("get_twitterapi_endpoint", { endpoint_name: hit.name 
 // details.path / details.method / details.curl_example / details.parameters...
 ```
 
+Robust retry + ambiguity handling:
+
+```js
+async function findEndpoint(query) {
+  let s = await tool("search_twitterapi_docs", { query, max_results: 10 });
+  let endpoints = (s.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+
+  if (!endpoints.length) {
+    s = await tool("search_twitterapi_docs", { query: `${query} endpoint`, max_results: 10 });
+    endpoints = (s.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+  }
+
+  if (!endpoints.length) return null;
+  endpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+
+  const [best, second] = endpoints;
+  if (second && Math.abs((best.score ?? 0) - (second.score ?? 0)) < 2) {
+    // Ambiguous: refine using method/path hints or ask the user
+    const refined = await tool("search_twitterapi_docs", {
+      query: `${query} ${best.method ?? ""} ${best.path ?? ""}`.trim(),
+      max_results: 10
+    });
+    const refinedEndpoints = (refined.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+    if (refinedEndpoints.length) return refinedEndpoints.sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0];
+  }
+
+  return best;
+}
+```
+
 ## Recipe: List Endpoints → Compile Authentication Summary (Programmatic)
 
 Goal: list many endpoints (`list_twitterapi_endpoints`), then inspect each (`get_twitterapi_endpoint`) to summarize auth requirements.
@@ -204,6 +235,24 @@ Goal: list many endpoints (`list_twitterapi_endpoints`), then inspect each (`get
 
 - **Global**: most calls require `X-API-Key` (you’ll see it in `curl_example`).
 - **Per-endpoint**: some endpoints also require extra fields like `login_cookie(s)` (visible in parameters / description).
+
+Canonical auth metadata (explicit):
+
+```json
+{ "tool": "get_twitterapi_auth", "arguments": {} }
+```
+
+Example structured output:
+
+```json
+{
+  "header": "X-API-Key",
+  "base_url": "https://api.twitterapi.io",
+  "examples": { "curl": "curl ... -H \"X-API-Key: $TWITTERAPI_KEY\"" }
+}
+```
+
+Note: endpoint details do not expose a dedicated `auth` field, so use the explicit header above plus per-endpoint signals from `description`, `parameters`, and `curl_example`.
 
 Example pseudo-code:
 
@@ -386,8 +435,7 @@ if (res.isError) {
 
 ## Recipe: Fetch “Changelogs” (Guide Page)
 
-`guide_name` values are **page keys** (from the snapshot). Common ones include:
-`introduction`, `authentication`, `pricing`, `qps_limits`, `tweet_filter_rules`, `changelog`.
+The “Changelogs” page uses the page key `changelog` (lowercase).
 
 ```json
 { "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }

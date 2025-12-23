@@ -8,12 +8,6 @@ The “Changelogs” documentation page is available via the **page key** `chang
 { "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
 ```
 
-## Alternative: Resources API
-
-```json
-{ "tool": "resources/read", "arguments": { "uri": "twitterapi://guides/changelog" } }
-```
-
 ## JavaScript
 
 ```js

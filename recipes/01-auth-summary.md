@@ -10,6 +10,31 @@ Goal: programmatically compile a **per-endpoint auth summary** using MCP tools:
 3) For each endpoint, fetch details and scan `curl_example`, `description`, and `parameters`.
 4) Aggregate into a markdown table (or JSON).
 
+## Canonical auth metadata (explicit)
+
+`get_twitterapi_auth` is the **authoritative** source for the API key header and base URL.
+
+```json
+{
+  "tool": "get_twitterapi_auth",
+  "arguments": {}
+}
+```
+
+Example structured output (what to parse):
+
+```json
+{
+  "header": "X-API-Key",
+  "base_url": "https://api.twitterapi.io",
+  "examples": {
+    "curl": "curl ... -H \"X-API-Key: $TWITTERAPI_KEY\""
+  }
+}
+```
+
+Note: endpoint details do **not** currently expose a dedicated `auth` field, so use the explicit header above plus per-endpoint signals (`login_cookie`, `proxy`) from descriptions and parameters.
+
 ## JavaScript (production-ready pattern)
 
 ```js
