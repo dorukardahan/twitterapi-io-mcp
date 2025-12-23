@@ -1,0 +1,59 @@
+name: Publish to MCP Registry
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  publish-registry:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      REGISTRY_URL: https://registry.modelcontextprotocol.io
+      REGISTRY_AUDIENCE: registry.modelcontextprotocol.io
+      SERVER_JSON_PATH: server.json
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Exchange GitHub OIDC token for registry JWT
+        id: exchange
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ ! -f "$SERVER_JSON_PATH" ]; then
+            echo "server.json not found at $SERVER_JSON_PATH" >&2
+            exit 1
+          fi
+
+          OIDC_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${REGISTRY_AUDIENCE}"
+          OIDC_TOKEN="$(curl -sS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$OIDC_URL" | node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(0,'utf8'));process.stdout.write(d.value||'');")"
+
+          if [ -z "$OIDC_TOKEN" ]; then
+            echo "Failed to obtain GitHub OIDC token" >&2
+            exit 1
+          fi
+
+          REGISTRY_TOKEN="$(curl -sS -H "Content-Type: application/json" -d "{\"oidc_token\":\"$OIDC_TOKEN\"}" "$REGISTRY_URL/v0/auth/github-oidc" | node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(0,'utf8'));process.stdout.write(d.registry_token||'');")"
+
+          if [ -z "$REGISTRY_TOKEN" ]; then
+            echo "Failed to exchange registry token" >&2
+            exit 1
+          fi
+
+          echo "::add-mask::$REGISTRY_TOKEN"
+          echo "registry_token=$REGISTRY_TOKEN" >> "$GITHUB_OUTPUT"
+
+      - name: Publish server.json to registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -sS \
+            -H "Authorization: Bearer ${{ steps.exchange.outputs.registry_token }}" \
+            -H "Content-Type: application/json" \
+            --data-binary "@${SERVER_JSON_PATH}" \
+            "$REGISTRY_URL/v0.1/publish" | tee registry-response.json
