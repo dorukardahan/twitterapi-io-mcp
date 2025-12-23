@@ -75,8 +75,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl -sS \
+          RESPONSE_FILE="$(mktemp)"
+          STATUS_CODE="$(curl -sS -o "$RESPONSE_FILE" -w "%{http_code}" \
             -H "Authorization: Bearer ${{ steps.exchange.outputs.registry_token }}" \
             -H "Content-Type: application/json" \
             --data-binary "@${SERVER_JSON_PATH}" \
-            "$REGISTRY_URL/v0.1/publish" | tee registry-response.json
+            "$REGISTRY_URL/v0.1/publish")"
+
+          if [ "$STATUS_CODE" != "200" ]; then
+            echo "Registry publish failed: HTTP ${STATUS_CODE}" >&2
+            cat "$RESPONSE_FILE" >&2
+            exit 1
+          fi
+
+          cat "$RESPONSE_FILE" | tee registry-response.json
