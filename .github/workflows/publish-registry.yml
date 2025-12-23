@@ -13,7 +13,7 @@ jobs:
       id-token: write
     env:
       REGISTRY_URL: https://registry.modelcontextprotocol.io
-      REGISTRY_AUDIENCE: registry.modelcontextprotocol.io
+      REGISTRY_AUDIENCE: mcp-registry
       SERVER_JSON_PATH: server.json
     steps:
       - name: Checkout
