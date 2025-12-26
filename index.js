@@ -1099,6 +1099,11 @@ ${endpoint.parameters.map(p => `- **${p.name}**${p.required ? ' (required)' : ''
 ${curlExample}
 \`\`\`
 
+## Authentication
+- **Header:** ${authHeader}: ${authHeaderValue}
+- **Base URL:** ${authBaseUrl}
+- **Dashboard:** ${authDashboardUrl}
+
 ${endpoint.code_snippets?.length > 0 ? `## Code Examples
 \`\`\`
 ${endpoint.code_snippets.join("\n")}
@@ -1669,11 +1674,16 @@ ${allEndpoints.map(e => `- ${e}`).join('\n')}
       }
 
       const endpointMethod = getEndpointMethod(endpoint);
+      const authMeta = data.authentication || {};
+      const authHeader = authMeta.header || "x-api-key";
+      const authHeaderValue = authMeta.header_value || "YOUR_API_KEY";
+      const authBaseUrl = authMeta.base_url || "https://api.twitterapi.io";
+      const authDashboardUrl = authMeta.dashboard_url || "https://twitterapi.io/dashboard";
       const curlExample =
         endpoint.curl_example ||
         `curl --request ${endpointMethod} \\
-  --url https://api.twitterapi.io${endpoint.path || ''} \\
-  --header 'x-api-key: YOUR_API_KEY'`;
+  --url ${authBaseUrl}${endpoint.path || ''} \\
+  --header '${authHeader}: ${authHeaderValue}'`;
 
       const info = `# ${endpoint.title || validation.value}
 
@@ -1715,6 +1725,12 @@ ${endpoint.raw_text || "No additional content available."}`;
         curl_example: curlExample,
         code_snippets: endpoint.code_snippets || [],
         raw_text: endpoint.raw_text || "",
+        auth: {
+          header: authHeader,
+          header_value: authHeaderValue,
+          base_url: authBaseUrl,
+          dashboard_url: authDashboardUrl
+        },
         cached: false,
         markdown: info
       };

@@ -1,6 +1,6 @@
 # Recipe: Fetch “Changelogs” via `get_twitterapi_guide`
 
-The “Changelogs” documentation page is available via the **page key** `changelog` (lowercase).
+The “Changelogs” documentation page is available via the **page key** `changelog` (lowercase). Use `get_twitterapi_guide` as the canonical tool call.
 
 ## JSON tool call
 

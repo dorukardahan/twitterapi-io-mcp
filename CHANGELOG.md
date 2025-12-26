@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.10] - 2025-12-26
+
+### Added
+- Auth metadata attached to `get_twitterapi_endpoint` outputs (`auth.header`, `auth.base_url`, etc.)
+- Context7/README quick recipes for changelog, tweets lookup, auth, URL fallback, and search refine
+
+### Changed
+- Expanded disambiguation + retry guidance for `search_twitterapi_docs`
+- Clarified canonical `get_twitterapi_guide` usage for “Changelogs”
+
+---
+
 ## [1.0.9] - 2025-12-14
 
 ### Added

@@ -74,6 +74,13 @@ console.log(details.curl_example);
 
 Tip: if results are broad, add 1–2 context tokens: `"advanced search tweet"`, `"user followers pagination"`.
 
+## Edge cases to cover
+
+- **No endpoint results** → retry with `"${query} endpoint"` or a more specific hint.
+- **Only pages/blogs** → route to `get_twitterapi_guide` / `get_twitterapi_url`.
+- **Ambiguous tie** → refine with method/path or ask the user to pick.
+- **Tool error** → retry once with a smaller `max_results` (10 → 5).
+
 ## Robust disambiguation + retry (production-style)
 
 ```js

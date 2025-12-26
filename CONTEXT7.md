@@ -74,6 +74,12 @@ These tools return both human-readable `markdown` and machine-friendly `structur
   "curl_example": "curl --request GET …",
   "code_snippets": ["…"],
   "raw_text": "…",
+  "auth": {
+    "header": "x-api-key",
+    "header_value": "YOUR_API_KEY",
+    "base_url": "https://api.twitterapi.io",
+    "dashboard_url": "https://twitterapi.io/dashboard"
+  },
   "cached": false,
   "markdown": "# …"
 }
@@ -137,6 +143,11 @@ claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 claude mcp add --scope user twitterapi-docs -- npx -y twitterapi-docs-mcp
 ```
 
+Troubleshooting (common setup failures):
+- `claude: command not found` → install Claude Code / the `claude` CLI first.
+- `npx` or `node` errors → ensure Node.js `>=18.18.0` (`node -v`).
+- If `claude mcp add` fails, try a one-shot run to verify the server works: `npx -y twitterapi-io-mcp`.
+
 ## Recipe: Search → Refine → Fetch Endpoint Details
 
 Use `search_twitterapi_docs` to find a candidate endpoint, then call `get_twitterapi_endpoint` using the returned `name`.
@@ -176,6 +187,12 @@ How to choose the right `name`:
 - Prefer `type: "endpoint"` when you intend to call `get_twitterapi_endpoint`.
 - If results are broad/irrelevant, refine the query by adding 1–2 context tokens (e.g. `"advanced search tweet"`).
 - If top results are close in `score`, ask the user which one they mean (or refine and re-run search).
+
+Edge cases to handle explicitly (production-style):
+- **No endpoints returned** → retry with `"${query} endpoint"` or add a domain hint (`"tweet"`, `"user"`, `"webhook"`).
+- **Only pages/blogs** → route to `get_twitterapi_guide` / `get_twitterapi_url` instead of `get_twitterapi_endpoint`.
+- **Ambiguous tie** → refine using method/path hints (`"${query} ${method} ${path}"`) or ask the user to pick.
+- **Tool error** → retry once with a smaller `max_results` (10 → 5) to reduce payload size.
 
 End-to-end chaining (robust pseudo-code):
 
@@ -252,7 +269,7 @@ Example structured output:
 }
 ```
 
-Note: endpoint details do not expose a dedicated `auth` field, so use the explicit header above plus per-endpoint signals from `description`, `parameters`, and `curl_example`.
+Note: endpoint details now include an `auth` block (header/base URL). For **per-endpoint** extras, still scan `description`, `parameters`, and `curl_example` (e.g., `login_cookie`, `proxy`).
 
 Example pseudo-code:
 
@@ -417,6 +434,15 @@ If it’s not found in the snapshot, you can request a safe live fetch (twittera
 }
 ```
 
+Error handling pattern (check `isError` and fallback):
+
+```js
+let res = await callTool("get_twitterapi_url", { url: "/documentation/authentication" });
+if (res?.isError) {
+  res = await callTool("get_twitterapi_url", { url: "/documentation/authentication", fetch_live: true });
+}
+```
+
 Robust fallback (snapshot-first, then guide key):
 
 ```js
@@ -435,7 +461,7 @@ if (res.isError) {
 
 ## Recipe: Fetch “Changelogs” (Guide Page)
 
-The “Changelogs” page uses the page key `changelog` (lowercase).
+The “Changelogs” page uses the page key `changelog` (lowercase). Use `get_twitterapi_guide` as the canonical tool call.
 
 ```json
 { "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
@@ -449,7 +475,7 @@ If you want to discover it dynamically:
 
 ## Recipe: “Tweets Lookup” Endpoint Details
 
-In the TwitterAPI.io docs, “Tweets Lookup” corresponds to `get_tweet_by_ids` (path: `/twitter/tweets`).
+In the TwitterAPI.io docs, **“Tweets Lookup”** corresponds to `get_tweet_by_ids` (path: `/twitter/tweets`). Use that exact `endpoint_name`.
 
 ```json
 { "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_tweet_by_ids" } }

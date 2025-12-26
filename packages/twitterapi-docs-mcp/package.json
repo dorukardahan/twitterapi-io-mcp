@@ -1,6 +1,6 @@
 {
   "name": "twitterapi-docs-mcp",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "DEPRECATED: Renamed to twitterapi-io-mcp. Compatibility wrapper for the TwitterAPI.io MCP server.",
   "main": "index.js",
   "type": "module",
@@ -40,6 +40,6 @@
     "LICENSE"
   ],
   "dependencies": {
-    "twitterapi-io-mcp": "1.0.9"
+    "twitterapi-io-mcp": "1.0.10"
   }
 }

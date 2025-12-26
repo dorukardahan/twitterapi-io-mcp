@@ -76,3 +76,4 @@ Implementation note: many paginated HTTPS responses return `next_cursor`; keep c
 
 - If your query is vague/short, increase `max_results` (15–20) and filter to `type: "endpoint"`.
 - If results are ambiguous, add 1–2 context tokens: `"followers cursor"`, `"mentions next_cursor"`.
+- If multiple endpoints have similar `score`, prefer the one whose `path` contains the pagination term you care about.

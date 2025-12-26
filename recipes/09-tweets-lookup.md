@@ -2,7 +2,7 @@
 
 In the TwitterAPI.io docs, the **Tweets Lookup** endpoint is exposed as:
 
-- `endpoint_name`: `get_tweet_by_ids`
+- `endpoint_name`: `get_tweet_by_ids` (use this exact string)
 - `path`: `/twitter/tweets`
 
 ## JSON tool call

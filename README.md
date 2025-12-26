@@ -106,6 +106,8 @@ Troubleshooting:
 
 ## Available Resources
 
+Note: resources are optional. The canonical guide fetch is `get_twitterapi_guide` (e.g., `guide_name: "changelog"`).
+
 | Resource URI | Description |
 |--------------|-------------|
 | `twitterapi://guides/pricing` | Pricing guide |
@@ -127,6 +129,59 @@ Common workflows:
 - **Rate limits**: `search_twitterapi_docs` (`"rate limit qps"`) → `get_twitterapi_guide` (`"qps_limits"`)
 - **Typos are OK**: `search_twitterapi_docs` is fuzzy/typo-tolerant (e.g., `"twet object"`)
 - **Tweets Lookup**: `get_twitterapi_endpoint` (`"get_tweet_by_ids"`)
+
+## Context7 Quick Recipes (copy/paste)
+
+### Search → refine → endpoint details (Q2)
+
+```json
+{ "tool": "search_twitterapi_docs", "arguments": { "query": "advanced search", "max_results": 10 } }
+```
+
+Filter to `type: "endpoint"` results. If none, retry with a narrower query like `"advanced search endpoint"`.
+Then fetch details using the returned `name`:
+
+```json
+{ "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "tweet_advanced_search" } }
+```
+
+### Changelogs via `get_twitterapi_guide` (Q7)
+
+```json
+{ "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
+```
+
+### Tweets Lookup endpoint details (Q9)
+
+```json
+{ "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_tweet_by_ids" } }
+```
+
+### Auth metadata (Q1)
+
+```json
+{ "tool": "get_twitterapi_auth", "arguments": {} }
+```
+
+Endpoint details also include an `auth` block (header/base URL). For per-endpoint extras, scan `description`/`parameters` for `login_cookie` or `proxy`.
+
+### Authentication page snapshot (Q6)
+
+```json
+{ "tool": "get_twitterapi_url", "arguments": { "url": "/documentation/authentication" } }
+```
+
+Fallback if the snapshot is missing:
+
+```json
+{ "tool": "get_twitterapi_guide", "arguments": { "guide_name": "authentication" } }
+```
+
+### Pagination search (Q5)
+
+```json
+{ "tool": "search_twitterapi_docs", "arguments": { "query": "pagination cursor next_cursor", "max_results": 10 } }
+```
 
 ## Usage Examples
 

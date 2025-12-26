@@ -3,7 +3,7 @@ Source: https://twitterapi.io/changelog
 
 ## Fetch with MCP
 
-Use `get_twitterapi_guide` for the offline snapshot (by page key), or `get_twitterapi_url` for URL/path-based fetches.
+Use `get_twitterapi_guide` for the offline snapshot (canonical for **Changelogs**), or `get_twitterapi_url` for URL/path-based fetches.
 Also known as: "Changelogs" documentation page
 
 ```json

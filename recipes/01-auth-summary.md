@@ -33,7 +33,7 @@ Example structured output (what to parse):
 }
 ```
 
-Note: endpoint details do **not** currently expose a dedicated `auth` field, so use the explicit header above plus per-endpoint signals (`login_cookie`, `proxy`) from descriptions and parameters.
+Note: endpoint details include an `auth` block (header/base URL). For **per-endpoint** extras (`login_cookie`, `proxy`), still scan descriptions and parameters.
 
 ## JavaScript (production-ready pattern)
 
