@@ -125,6 +125,7 @@ Search constraints (for robust callers):
 ## Install / Run
 
 - Prereqs: Node.js `>=18.18.0`, and (for `claude mcp add`) the `claude` CLI.
+- Preflight: `node -v` and `claude --version` should both succeed before install.
 - One-shot (good for local testing): `npx -y twitterapi-io-mcp`
 - Legacy package name (still works): `npx -y twitterapi-docs-mcp`
 - Claude Code:
@@ -157,6 +158,18 @@ Use `search_twitterapi_docs` to find a candidate endpoint, then call `get_twitte
   "tool": "search_twitterapi_docs",
   "arguments": { "query": "advanced search", "max_results": 5 }
 }
+```
+
+If there are no endpoint hits or the results are ambiguous, refine and retry:
+
+```js
+const s = await tool("search_twitterapi_docs", { query: "advanced search", max_results: 10 });
+const endpoints = (s.results ?? []).filter((r) => r.type === "endpoint" && r.name);
+if (!endpoints.length) {
+  await tool("search_twitterapi_docs", { query: "advanced search endpoint", max_results: 10 });
+}
+// If scores are close, refine with method/path hints:
+// await tool("search_twitterapi_docs", { query: "advanced search GET /twitter/tweet/advanced_search", max_results: 10 });
 ```
 
 Pick a result (e.g. the best `type: "endpoint"`) and call:
@@ -270,6 +283,19 @@ Example structured output:
 ```
 
 Note: endpoint details now include an `auth` block (header/base URL). For **per-endpoint** extras, still scan `description`, `parameters`, and `curl_example` (e.g., `login_cookie`, `proxy`).
+
+`get_twitterapi_endpoint` → `structuredContent.auth` example:
+
+```json
+{
+  "auth": {
+    "header": "x-api-key",
+    "header_value": "YOUR_API_KEY",
+    "base_url": "https://api.twitterapi.io",
+    "dashboard_url": "https://twitterapi.io/dashboard"
+  }
+}
+```
 
 Example pseudo-code:
 
@@ -466,6 +492,8 @@ The “Changelogs” page uses the page key `changelog` (lowercase). Use `get_tw
 ```json
 { "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
 ```
+
+For this question, **do not** use `resources/read`; it’s optional and not the canonical tool.
 
 If you want to discover it dynamically:
 

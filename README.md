@@ -91,6 +91,7 @@ Troubleshooting:
 - `claude: command not found` → install Claude Code / the `claude` CLI first
 - `npx` fails or shows syntax errors → upgrade Node.js to `>=18.18.0`
 - Corporate networks → ensure npm can reach the registry (or configure your proxy/registry)
+- Quick preflight: `node -v` and `claude --version` should both work before running `claude mcp add`
 
 ## Available Tools
 
@@ -113,7 +114,6 @@ Note: resources are optional. The canonical guide fetch is `get_twitterapi_guide
 | `twitterapi://guides/pricing` | Pricing guide |
 | `twitterapi://guides/qps-limits` | QPS limits and rate limiting |
 | `twitterapi://guides/filter-rules` | Tweet filter rules syntax |
-| `twitterapi://guides/changelog` | API changelog |
 | `twitterapi://guides/introduction` | Introduction to TwitterAPI.io |
 | `twitterapi://guides/authentication` | Authentication guide |
 | `twitterapi://endpoints/list` | Full endpoint listing |
@@ -145,11 +145,21 @@ Then fetch details using the returned `name`:
 { "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "tweet_advanced_search" } }
 ```
 
+Ambiguity handling (if multiple endpoints are close in score):
+
+```json
+{ "tool": "search_twitterapi_docs", "arguments": { "query": "advanced search GET /twitter/tweet/advanced_search", "max_results": 10 } }
+```
+
+Then pick the top `type: "endpoint"` result and call `get_twitterapi_endpoint` with its `name`.
+
 ### Changelogs via `get_twitterapi_guide` (Q7)
 
 ```json
 { "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
 ```
+
+Do **not** use `resources/read` for this question; the canonical tool is `get_twitterapi_guide`.
 
 ### Tweets Lookup endpoint details (Q9)
 
