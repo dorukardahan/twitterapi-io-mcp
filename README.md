@@ -153,6 +153,10 @@ Ambiguity handling (if multiple endpoints are close in score):
 
 Then pick the top `type: "endpoint"` result and call `get_twitterapi_endpoint` with its `name`.
 
+Routing tips (dynamic refinement):
+- If a result includes `next`, you can directly call `next.tool` with `next.arguments`.
+- If you get only `page`/`blog` results, route to `get_twitterapi_guide` or `get_twitterapi_url` instead of `get_twitterapi_endpoint`.
+
 ### Changelogs via `get_twitterapi_guide` (Q7)
 
 ```json
@@ -162,6 +166,8 @@ Then pick the top `type: "endpoint"` result and call `get_twitterapi_endpoint` w
 Do **not** use `resources/read` for this question; the canonical tool is `get_twitterapi_guide`.
 
 ### Tweets Lookup endpoint details (Q9)
+
+Tweets Lookup maps to `endpoint_name: "get_tweet_by_ids"`.
 
 ```json
 { "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_tweet_by_ids" } }
