@@ -2,6 +2,8 @@
 
 The “Changelogs” documentation page is available via the **page key** `changelog` (lowercase). Use `get_twitterapi_guide` as the canonical tool call.
 
+Important: for this question, **do not** use `resources/read`. The canonical tool is `get_twitterapi_guide`.
+
 ## JSON tool call
 
 ```json
