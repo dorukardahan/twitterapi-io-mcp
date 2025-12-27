@@ -41,6 +41,7 @@ If you change the docs snapshot, commit `data/docs.json` and ensure `npm test` p
 
 - Commit messages are short and imperative (e.g., “Add …”, “Fix …”).
 - Release/version commits typically use `vX.Y.Z - …`; include `CHANGELOG.md` and `package.json` updates when applicable.
+- Every npm publish must have a matching Git tag + GitHub Release for the same version (never let releases/tags lag npm).
 - PRs should include: a clear description, how to test (`npm test`), and any data/doc changes (e.g., regenerated `data/docs.json`).
 
 ## Security & Configuration Notes
