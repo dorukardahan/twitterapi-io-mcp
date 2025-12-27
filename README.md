@@ -93,6 +93,10 @@ Troubleshooting:
 - Corporate networks → ensure npm can reach the registry (or configure your proxy/registry)
 - Quick preflight: `node -v` and `claude --version` should both work before running `claude mcp add`
 
+## Optional Configuration
+
+- `TWITTERAPI_MCP_DISK_CACHE=1` enables disk cache across sessions (default: off to reduce disk I/O).
+
 ## Available Tools
 
 | Tool | Description |
