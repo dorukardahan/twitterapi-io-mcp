@@ -465,7 +465,12 @@ class HybridCache {
 // Initialize caches
 // Note: For stdio MCP servers (spawned per-call), use higher disk probability
 // Memory cache is within-session, disk cache persists across sessions
-const DISK_CACHE_ENABLED = process.env.TWITTERAPI_MCP_DISK_CACHE === '1';
+const DISK_CACHE_ENABLED = (() => {
+  const raw = process.env.TWITTERAPI_MCP_DISK_CACHE;
+  if (!raw) return true;
+  const normalized = raw.trim().toLowerCase();
+  return !['0', 'false', 'off', 'no'].includes(normalized);
+})();
 const searchCache = new HybridCache('search', {
   maxEntries: 200,
   ttl: 6 * 60 * 60 * 1000,  // 6 hours for search

@@ -95,7 +95,7 @@ Troubleshooting:
 
 ## Optional Configuration
 
-- `TWITTERAPI_MCP_DISK_CACHE=1` enables disk cache across sessions (default: off to reduce disk I/O).
+- `TWITTERAPI_MCP_DISK_CACHE=0` disables disk cache across sessions (default: on). TTL cleanup runs hourly.
 
 ## Available Tools
 
