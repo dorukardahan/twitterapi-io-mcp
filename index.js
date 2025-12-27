@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * TwitterAPI.io Documentation MCP Server v1.0.9
+ * TwitterAPI.io Documentation MCP Server v1.0.10
  *
  * Production-ready MCP server with:
  * - Comprehensive error handling with ErrorType classification
@@ -44,6 +44,7 @@ import {
   ListToolsRequestSchema,
   ReadResourceRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -282,6 +283,8 @@ const logger = new Logger();
 
 // ========== HYBRID CACHE ==========
 const CACHE_DIR = path.join(__dirname, "cache");
+const CACHE_KEY_HASH_LENGTH = 16;
+const CACHE_KEY_MAX_LENGTH = 96;
 
 class HybridCache {
   constructor(name, options = {}) {
@@ -308,7 +311,16 @@ class HybridCache {
   }
 
   normalizeKey(key) {
-    return key.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 100);
+    const raw = String(key ?? '');
+    const normalized = raw
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_+|_+$/g, '');
+    const hash = crypto.createHash('sha256').update(raw).digest('hex').slice(0, CACHE_KEY_HASH_LENGTH);
+    const maxPrefix = Math.max(0, CACHE_KEY_MAX_LENGTH - CACHE_KEY_HASH_LENGTH - 1);
+    const prefix = normalized.slice(0, maxPrefix);
+    return prefix ? `${prefix}_${hash}` : hash;
   }
 
   isExpired(entry) {
@@ -619,6 +631,8 @@ function validateCategory(category) {
 }
 
 const ALLOWED_URL_HOSTS = new Set(['twitterapi.io', 'docs.twitterapi.io']);
+const MAX_LIVE_FETCH_BYTES = 5 * 1024 * 1024;
+const MAX_LIVE_FETCH_REDIRECTS = 3;
 
 function canonicalizeUrl(rawUrl) {
   const trimmed = rawUrl.trim();
@@ -1073,19 +1087,30 @@ function formatGuideMarkdown(name, page) {
   return output;
 }
 
-function formatEndpointMarkdown(endpointName, endpoint) {
+function resolveAuthMeta(authMeta) {
+  const meta = authMeta || {};
+  return {
+    header: meta.header || "x-api-key",
+    headerValue: meta.header_value || "YOUR_API_KEY",
+    baseUrl: meta.base_url || "https://api.twitterapi.io",
+    dashboardUrl: meta.dashboard_url || "https://twitterapi.io/dashboard",
+  };
+}
+
+function formatEndpointMarkdown(endpointName, endpoint, authMeta = {}) {
+  const auth = resolveAuthMeta(authMeta);
   const extractedMethod = extractHttpMethodFromCurl(endpoint?.curl_example);
   const method = endpoint.method || extractedMethod || "GET";
   const curlExample =
     endpoint.curl_example ||
-    `curl --request ${method} \\\n  --url https://api.twitterapi.io${endpoint.path || ''} \\\n  --header 'x-api-key: YOUR_API_KEY'`;
+    `curl --request ${method} \\\n  --url ${auth.baseUrl}${endpoint.path || ''} \\\n  --header '${auth.header}: ${auth.headerValue}'`;
 
   return `# ${endpoint.title || endpointName}
 
 ## Endpoint Details
 - **Method:** ${method}
 - **Path:** ${endpoint.path || "Unknown"}
-- **Full URL:** https://api.twitterapi.io${endpoint.path || ""}
+- **Full URL:** ${auth.baseUrl}${endpoint.path || ""}
 - **Documentation:** ${endpoint.url}
 
 ## Description
@@ -1100,9 +1125,9 @@ ${curlExample}
 \`\`\`
 
 ## Authentication
-- **Header:** ${authHeader}: ${authHeaderValue}
-- **Base URL:** ${authBaseUrl}
-- **Dashboard:** ${authDashboardUrl}
+- **Header:** ${auth.header}: ${auth.headerValue}
+- **Base URL:** ${auth.baseUrl}
+- **Dashboard:** ${auth.dashboardUrl}
 
 ${endpoint.code_snippets?.length > 0 ? `## Code Examples
 \`\`\`
@@ -1156,11 +1181,66 @@ function findSnapshotItemByUrl(data, canonicalUrl) {
   return null;
 }
 
+async function readResponseTextWithLimit(response, maxBytes) {
+  const lengthHeader = response.headers.get('content-length');
+  if (lengthHeader) {
+    const length = Number(lengthHeader);
+    if (Number.isFinite(length) && length > maxBytes) {
+      throw new Error(`Response too large (${length} bytes)`);
+    }
+  }
+
+  if (!response.body) {
+    return await response.text();
+  }
+
+  const chunks = [];
+  let total = 0;
+  for await (const chunk of response.body) {
+    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    total += buffer.length;
+    if (total > maxBytes) {
+      throw new Error(`Response exceeded ${maxBytes} bytes`);
+    }
+    chunks.push(buffer);
+  }
+
+  return Buffer.concat(chunks).toString('utf-8');
+}
+
+async function fetchWithAllowedRedirects(url, options = {}) {
+  let currentUrl = url;
+  const maxRedirects = options.maxRedirects ?? MAX_LIVE_FETCH_REDIRECTS;
+
+  for (let i = 0; i <= maxRedirects; i += 1) {
+    const response = await fetch(currentUrl, {
+      redirect: 'manual',
+      signal: options.signal,
+      headers: options.headers,
+    });
+
+    if (response.status >= 300 && response.status < 400) {
+      const location = response.headers.get('location');
+      if (!location) {
+        return { response, finalUrl: currentUrl };
+      }
+
+      const resolved = new URL(location, currentUrl).toString();
+      currentUrl = canonicalizeUrl(resolved);
+      continue;
+    }
+
+    return { response, finalUrl: currentUrl };
+  }
+
+  throw new Error(`Too many redirects (>${maxRedirects})`);
+}
+
 // ========== MCP SERVER ==========
 const server = new Server(
   {
-    name: "twitterapi-docs",
-    version: "1.0.9",
+    name: "twitterapi-io-mcp",
+    version: PACKAGE_VERSION,
   },
   {
     capabilities: {
@@ -1674,16 +1754,12 @@ ${allEndpoints.map(e => `- ${e}`).join('\n')}
       }
 
       const endpointMethod = getEndpointMethod(endpoint);
-      const authMeta = data.authentication || {};
-      const authHeader = authMeta.header || "x-api-key";
-      const authHeaderValue = authMeta.header_value || "YOUR_API_KEY";
-      const authBaseUrl = authMeta.base_url || "https://api.twitterapi.io";
-      const authDashboardUrl = authMeta.dashboard_url || "https://twitterapi.io/dashboard";
+      const authMeta = resolveAuthMeta(data.authentication);
       const curlExample =
         endpoint.curl_example ||
         `curl --request ${endpointMethod} \\
-  --url ${authBaseUrl}${endpoint.path || ''} \\
-  --header '${authHeader}: ${authHeaderValue}'`;
+  --url ${authMeta.baseUrl}${endpoint.path || ''} \\
+  --header '${authMeta.header}: ${authMeta.headerValue}'`;
 
       const info = `# ${endpoint.title || validation.value}
 
@@ -1726,10 +1802,10 @@ ${endpoint.raw_text || "No additional content available."}`;
         code_snippets: endpoint.code_snippets || [],
         raw_text: endpoint.raw_text || "",
         auth: {
-          header: authHeader,
-          header_value: authHeaderValue,
-          base_url: authBaseUrl,
-          dashboard_url: authDashboardUrl
+          header: authMeta.header,
+          header_value: authMeta.headerValue,
+          base_url: authMeta.baseUrl,
+          dashboard_url: authMeta.dashboardUrl
         },
         cached: false,
         markdown: info
@@ -1938,7 +2014,7 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
       const match = findSnapshotItemByUrl(data, lookupUrl);
       if (match) {
         const markdown = match.kind === 'endpoint'
-          ? formatEndpointMarkdown(match.name, match.item)
+          ? formatEndpointMarkdown(match.name, match.item, data.authentication)
           : formatGuideMarkdown(match.name, match.item);
 
         const structuredContent = {
@@ -1976,8 +2052,7 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
         const timeoutMs = 15000;
         const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
-        const response = await fetch(requestedUrl, {
-          redirect: 'follow',
+        const { response, finalUrl } = await fetchWithAllowedRedirects(requestedUrl, {
           signal: controller.signal,
           headers: {
             'user-agent': `twitterapi-io-mcp/${PACKAGE_VERSION} (+https://github.com/dorukardahan/twitterapi-io-mcp)`
@@ -1994,9 +2069,9 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
           });
         }
 
-        const html = await response.text();
+        const html = await readResponseTextWithLimit(response, MAX_LIVE_FETCH_BYTES);
         const extracted = extractHtmlContent(html);
-        const parsed = new URL(requestedUrl);
+        const parsed = new URL(finalUrl);
 
         let kind = 'page';
         let name = 'page';
@@ -2017,11 +2092,11 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
           name = normalizeKeyForName(parsed.pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '_'));
         }
 
-        const page = { ...extracted, url: requestedUrl };
+        const page = { ...extracted, url: finalUrl };
         const markdown = formatGuideMarkdown(name, page);
 
         const structuredContent = {
-          url: requestedUrl,
+          url: finalUrl,
           source: 'live',
           kind,
           name,
@@ -2039,6 +2114,22 @@ ${filtered.map((e) => `- **${e.name}**: ${e.method} ${e.path}\n  ${e.description
             message: `Timed out fetching URL: ${requestedUrl}`,
             suggestion: 'Try again, or run `npm run scrape` to include this page in the offline snapshot',
             retryable: true
+          });
+        }
+        if (error?.message?.includes('Response too large') || error?.message?.includes('Response exceeded')) {
+          return formatToolError({
+            type: ErrorType.INTERNAL_ERROR,
+            message: error.message,
+            suggestion: 'Use the offline snapshot or request a smaller page',
+            retryable: false
+          });
+        }
+        if (error?.message?.includes('Too many redirects')) {
+          return formatToolError({
+            type: ErrorType.INTERNAL_ERROR,
+            message: error.message,
+            suggestion: 'Check the URL or use the offline snapshot instead',
+            retryable: false
           });
         }
         logger.error('url_fetch', `Failed to fetch URL: ${requestedUrl}`, error);
@@ -2107,30 +2198,26 @@ TwitterAPI.io is **~97% cheaper** than official Twitter API.
     }
 
     case "get_twitterapi_auth": {
-      const auth = data.authentication || {};
-
-      const header = auth.header || "x-api-key";
-      const baseUrl = auth.base_url || "https://api.twitterapi.io";
-      const dashboardUrl = auth.dashboard_url || "https://twitterapi.io/dashboard";
+      const auth = resolveAuthMeta(data.authentication);
 
       const examples = {
-        curl: `curl -X GET "${baseUrl}/twitter/user/info?userName=elonmusk" \\\n  -H "${header}: YOUR_API_KEY"`,
+        curl: `curl -X GET "${auth.baseUrl}/twitter/user/info?userName=elonmusk" \\\n  -H "${auth.header}: YOUR_API_KEY"`,
         python:
-          `import requests\n\nresponse = requests.get(\n    "${baseUrl}/twitter/user/info",\n    params={"userName": "elonmusk"},\n    headers={"${header}": "YOUR_API_KEY"}\n)\nprint(response.json())`,
+          `import requests\n\nresponse = requests.get(\n    "${auth.baseUrl}/twitter/user/info",\n    params={"userName": "elonmusk"},\n    headers={"${auth.header}": "YOUR_API_KEY"}\n)\nprint(response.json())`,
         javascript:
-          `const response = await fetch(\n  "${baseUrl}/twitter/user/info?userName=elonmusk",\n  { headers: { "${header}": "YOUR_API_KEY" } }\n);\nconst data = await response.json();`
+          `const response = await fetch(\n  "${auth.baseUrl}/twitter/user/info?userName=elonmusk",\n  { headers: { "${auth.header}": "YOUR_API_KEY" } }\n);\nconst data = await response.json();`
       };
 
       const markdown = `# TwitterAPI.io Authentication
 
 ## API Key Usage
-All requests require the \`${header}\` header.
+All requests require the \`${auth.header}\` header.
 
 ## Base URL
-\`${baseUrl}\`
+\`${auth.baseUrl}\`
 
 ## Getting Your API Key
-1. Go to ${dashboardUrl}
+1. Go to ${auth.dashboardUrl}
 2. Sign up / Log in
 3. Copy your API key from the dashboard
 
@@ -2501,7 +2588,7 @@ server.setRequestHandler(CompleteRequestSchema, async () => {
 // ========== SERVER STARTUP ==========
 async function main() {
   try {
-    logger.info('init', 'Starting TwitterAPI.io Docs MCP Server v1.0.9');
+    logger.info('init', `Starting TwitterAPI.io Docs MCP Server v${PACKAGE_VERSION}`);
 
     // Validate docs file exists
     if (!fs.existsSync(DOCS_PATH)) {
@@ -2536,7 +2623,7 @@ async function main() {
     await server.connect(transport);
 
     logger.info('init', 'MCP Server ready on stdio', {
-      version: '1.0.9',
+      version: PACKAGE_VERSION,
       features: [
         'offline snapshot',
         'endpoints + pages + blogs',

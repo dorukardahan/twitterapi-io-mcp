@@ -4,6 +4,7 @@
  */
 
 import assert from 'node:assert';
+import crypto from 'crypto';
 import { describe, it, before } from 'node:test';
 import fs from 'fs';
 import path from 'path';
@@ -535,27 +536,45 @@ describe('Documentation Data', () => {
 });
 
 describe('Cache Key Normalization', () => {
+  const CACHE_KEY_HASH_LENGTH = 16;
+  const CACHE_KEY_MAX_LENGTH = 96;
+
   function normalizeKey(key) {
-    return key.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 100);
+    const raw = String(key ?? '');
+    const normalized = raw
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_+|_+$/g, '');
+    const hash = crypto.createHash('sha256').update(raw).digest('hex').slice(0, CACHE_KEY_HASH_LENGTH);
+    const maxPrefix = Math.max(0, CACHE_KEY_MAX_LENGTH - CACHE_KEY_HASH_LENGTH - 1);
+    const prefix = normalized.slice(0, maxPrefix);
+    return prefix ? `${prefix}_${hash}` : hash;
   }
 
-  it('should lowercase keys', () => {
-    assert.strictEqual(normalizeKey('HELLO'), 'hello');
+  it('should include a deterministic hash suffix', () => {
+    const key = normalizeKey('HELLO');
+    assert.match(key, /^hello_[a-f0-9]{16}$/);
+    assert.strictEqual(key, normalizeKey('HELLO'));
   });
 
-  it('should replace special chars with underscore', () => {
-    assert.strictEqual(normalizeKey('hello world'), 'hello_world');
-    assert.strictEqual(normalizeKey('hello-world'), 'hello_world');
+  it('should replace special chars with underscores in the prefix', () => {
+    const key = normalizeKey('hello world');
+    assert.ok(key.startsWith('hello_world_'));
   });
 
-  it('should limit key length to 100', () => {
-    const longKey = 'a'.repeat(150);
-    assert.strictEqual(normalizeKey(longKey).length, 100);
+  it('should keep cache keys within the max length', () => {
+    const longKey = 'a'.repeat(500);
+    assert.ok(normalizeKey(longKey).length <= CACHE_KEY_MAX_LENGTH);
+  });
+
+  it('should differentiate different inputs', () => {
+    assert.notStrictEqual(normalizeKey('HELLO'), normalizeKey('HELLO2'));
   });
 
   it('should handle search queries', () => {
     const key = normalizeKey('search_user info webhook');
-    assert.strictEqual(key, 'search_user_info_webhook');
+    assert.ok(key.startsWith('search_user_info_webhook_'));
   });
 });
 
@@ -646,6 +665,14 @@ describe('MCP Protocol Integration', () => {
       assert.strictEqual(documentationAlias.structuredContent.source, 'snapshot');
       assert.strictEqual(documentationAlias.structuredContent.kind, 'page');
       assert.strictEqual(documentationAlias.structuredContent.name, 'authentication');
+
+      const endpointDoc = await client.callTool({
+        name: 'get_twitterapi_url',
+        arguments: { url: 'https://docs.twitterapi.io/api-reference/endpoint/add_user_to_monitor_tweet' }
+      });
+      assert.ok(endpointDoc.structuredContent, 'Expected structuredContent for endpoint URL');
+      assert.strictEqual(endpointDoc.structuredContent.kind, 'endpoint');
+      assert.ok(endpointDoc.structuredContent.markdown.includes('## Authentication'));
 
       const endpointsResource = await client.readResource({ uri: 'twitterapi://docs/endpoints' });
       const endpointsText = endpointsResource.contents?.[0]?.text ?? '[]';
