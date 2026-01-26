@@ -1,60 +1,77 @@
 # twitterapi-io-mcp
 
-**npm packages**
-- `twitterapi-io-mcp` (recommended, canonical)
-- `twitterapi-docs-mcp` (deprecated compatibility wrapper → delegates to `twitterapi-io-mcp`)
+> **TL;DR**: Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. No API key needed.
+
+```bash
+# Quick Install (Claude Code)
+claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
+```
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
-[![npm version (legacy)](https://img.shields.io/npm/v/twitterapi-docs-mcp.svg)](https://www.npmjs.com/package/twitterapi-docs-mcp)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=anthropic)](https://registry.modelcontextprotocol.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.18.0-brightgreen.svg)](https://nodejs.org/)
 
-MCP (Model Context Protocol) server providing **offline access** to [TwitterAPI.io](https://twitterapi.io) documentation for Claude and other AI assistants.
+---
 
-> **Disclaimer**: This is an unofficial community project. Not affiliated with, endorsed by, or sponsored by TwitterAPI.io. TwitterAPI.io is a trademark of its respective owner.
+## What is this?
 
-**Links**
-- GitHub: https://github.com/dorukardahan/twitterapi-io-mcp
-- npm (recommended): https://www.npmjs.com/package/twitterapi-io-mcp
-- npm (legacy): https://www.npmjs.com/package/twitterapi-docs-mcp
-- Context7 (canonical): https://context7.com/dorukardahan/twitterapi-io-mcp
-- Context7 (legacy slugs): https://context7.com/dorukardahan/twitterapi-docs-mcp, https://context7.com/dorukardahan/twitterapi.io-mcp
+An MCP (Model Context Protocol) server that gives Claude and other AI assistants **instant, offline access** to [TwitterAPI.io](https://twitterapi.io) documentation.
 
-## Why I Built This
+**What's included:**
+- **59 API endpoints** with full documentation
+- **19 guide pages** (pricing, authentication, rate limits, etc.)
+- **21 blog posts** with tutorials and guides
 
-I'm an independent developer who uses [TwitterAPI.io](https://twitterapi.io) for my projects. I found myself constantly switching between my code editor and the documentation website, searching for endpoint details, checking rate limits, and looking up authentication requirements.
+> **Disclaimer**: Unofficial community project. Not affiliated with TwitterAPI.io.
 
-So I built this MCP server to have **instant access to the entire documentation** right inside Claude. No more tab-switching, no more searching — just ask Claude and get the answer.
+---
 
-I'm sharing this with the community because if it helped me, it might help you too. 🚀
+## For AI Assistants
 
-## Features
+If you're an AI assistant using this MCP server, here's how to help users:
 
-- **54 API endpoints** documented
-- **Site + docs pages** via sitemap + internal link crawl (pricing, QPS limits, privacy, contact, terms, acceptable use, dashboard, etc.)
-- **Blog posts** via blog index crawl (and internal discovery)
-- **Offline-first** - Works without network access
-- **Fast search** with fuzzy matching and camelCase support
-- **Hybrid caching** for optimal performance
+| User wants... | Use this tool | Example |
+|---------------|---------------|---------|
+| Find an endpoint | `search_twitterapi_docs` | `query: "advanced search"` |
+| Endpoint details | `get_twitterapi_endpoint` | `endpoint_name: "tweet_advanced_search"` |
+| List all endpoints | `list_twitterapi_endpoints` | `category: "user"` (optional) |
+| Pricing info | `get_twitterapi_pricing` | - |
+| Auth guide | `get_twitterapi_auth` | - |
+| Any guide/page | `get_twitterapi_guide` | `guide_name: "qps_limits"` |
+| Fetch by URL | `get_twitterapi_url` | `url: "pricing"` |
+
+**Tips:**
+- Search is fuzzy/typo-tolerant: `"twet object"` still works
+- Use `max_results: 5` for focused results
+- Check `deprecation_notice` field for legacy endpoints
+
+---
 
 ## Installation
 
-**Prerequisites**
-- Node.js `>=18.18.0` (required to run the MCP server)
-- Claude Code users: the `claude` CLI installed (for `claude mcp add`)
+**Prerequisites:** Node.js `>=18.18.0`
 
-Note: This MCP server serves an **offline docs snapshot**. You do **not** need a TwitterAPI.io key just to use the docs tools.
+### Claude Code (Recommended)
+
+```bash
+# Add globally (all projects)
+claude mcp add --scope user twitterapi-io -- npx -y twitterapi-io-mcp
+
+# Or project-only
+claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
+
+# Verify
+claude mcp list
+```
 
 ### Claude Desktop
 
-Requires Node.js `>=18.18.0` (because this runs via `npx`).
+Add to your config file:
 
-Add to your Claude Desktop configuration file:
-
-**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
@@ -67,237 +84,138 @@ Add to your Claude Desktop configuration file:
 }
 ```
 
-### Claude Code
-
-Requires Node.js `>=18.18.0` (because this runs via `npx`).
+### Other MCP Clients
 
 ```bash
-# Add globally (all projects)
-claude mcp add --scope user twitterapi-io -- npx -y twitterapi-io-mcp
-
-# Or add to current project only
-claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
-
-# Legacy name (still works, but deprecated)
-claude mcp add --scope user twitterapi-docs -- npx -y twitterapi-docs-mcp
+npx -y twitterapi-io-mcp
 ```
 
-Verify installation:
-```bash
-claude mcp list
-```
-
-Troubleshooting:
-- `claude: command not found` → install Claude Code / the `claude` CLI first
-- `npx` fails or shows syntax errors → upgrade Node.js to `>=18.18.0`
-- Corporate networks → ensure npm can reach the registry (or configure your proxy/registry)
-- Quick preflight: `node -v` and `claude --version` should both work before running `claude mcp add`
-
-## Optional Configuration
-
-- `TWITTERAPI_MCP_DISK_CACHE=0` disables disk cache across sessions (default: on). TTL cleanup runs hourly.
+---
 
 ## Available Tools
 
 | Tool | Description |
 |------|-------------|
-| `search_twitterapi_docs` | Full-text search across all docs (endpoints, guides, blogs) |
-| `get_twitterapi_endpoint` | Get detailed info for a specific API endpoint |
-| `list_twitterapi_endpoints` | List all endpoints with optional category filter |
-| `get_twitterapi_guide` | Get a page by key (guides + other site/docs pages) |
-| `get_twitterapi_url` | Fetch by URL, bare path (`pricing`), or page key (`qps_limits`) (snapshot, optional live fetch) |
-| `get_twitterapi_pricing` | Quick access to pricing information |
-| `get_twitterapi_auth` | Quick access to authentication guide |
+| `search_twitterapi_docs` | Full-text search across all docs (fuzzy matching) |
+| `get_twitterapi_endpoint` | Get detailed endpoint documentation |
+| `list_twitterapi_endpoints` | List endpoints by category |
+| `get_twitterapi_guide` | Get guide pages (pricing, auth, limits, etc.) |
+| `get_twitterapi_url` | Fetch content by URL or page key |
+| `get_twitterapi_pricing` | Quick pricing information |
+| `get_twitterapi_auth` | Quick authentication guide |
 
-## Available Resources
-
-Note: resources are optional. The canonical guide fetch is `get_twitterapi_guide` (e.g., `guide_name: "changelog"`).
-
-| Resource URI | Description |
-|--------------|-------------|
-| `twitterapi://guides/pricing` | Pricing guide |
-| `twitterapi://guides/qps-limits` | QPS limits and rate limiting |
-| `twitterapi://guides/filter-rules` | Tweet filter rules syntax |
-| `twitterapi://guides/introduction` | Introduction to TwitterAPI.io |
-| `twitterapi://guides/authentication` | Authentication guide |
-| `twitterapi://endpoints/list` | Full endpoint listing |
-| `twitterapi://status/freshness` | Data freshness status |
-
-## MCP Tool Recipes
-
-If you’re evaluating this MCP via Context7 or want copy/pasteable “tool chaining” patterns, see `CONTEXT7.md`.
-
-Focused, single-purpose recipes are in `recipes/` (e.g. `recipes/01-auth-summary.md`, `recipes/07-rate-limits.md`).
-
-Common workflows:
-- **Rate limits**: `search_twitterapi_docs` (`"rate limit qps"`) → `get_twitterapi_guide` (`"qps_limits"`)
-- **Typos are OK**: `search_twitterapi_docs` is fuzzy/typo-tolerant (e.g., `"twet object"`)
-- **Tweets Lookup**: `get_twitterapi_endpoint` (`"get_tweet_by_ids"`)
-
-## Context7 Quick Recipes (copy/paste)
-
-### Search → refine → endpoint details (Q2)
-
-```json
-{ "tool": "search_twitterapi_docs", "arguments": { "query": "advanced search", "max_results": 10 } }
-```
-
-Filter to `type: "endpoint"` results. If none, retry with a narrower query like `"advanced search endpoint"`.
-Then fetch details using the returned `name`:
-
-```json
-{ "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "tweet_advanced_search" } }
-```
-
-Ambiguity handling (if multiple endpoints are close in score):
-
-```json
-{ "tool": "search_twitterapi_docs", "arguments": { "query": "advanced search GET /twitter/tweet/advanced_search", "max_results": 10 } }
-```
-
-Then pick the top `type: "endpoint"` result and call `get_twitterapi_endpoint` with its `name`.
-
-Routing tips (dynamic refinement):
-- If a result includes `next`, you can directly call `next.tool` with `next.arguments`.
-- If you get only `page`/`blog` results, route to `get_twitterapi_guide` or `get_twitterapi_url` instead of `get_twitterapi_endpoint`.
-
-### Changelogs via `get_twitterapi_guide` (Q7)
-
-```json
-{ "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
-```
-
-Do **not** use `resources/read` for this question; the canonical tool is `get_twitterapi_guide`.
-
-### Tweets Lookup endpoint details (Q9)
-
-Tweets Lookup maps to `endpoint_name: "get_tweet_by_ids"`.
-
-```json
-{ "tool": "get_twitterapi_endpoint", "arguments": { "endpoint_name": "get_tweet_by_ids" } }
-```
-
-### Auth metadata (Q1)
-
-```json
-{ "tool": "get_twitterapi_auth", "arguments": {} }
-```
-
-Endpoint details also include an `auth` block (header/base URL). For per-endpoint extras, scan `description`/`parameters` for `login_cookie` or `proxy`.
-
-### Authentication page snapshot (Q6)
-
-```json
-{ "tool": "get_twitterapi_url", "arguments": { "url": "/documentation/authentication" } }
-```
-
-Fallback if the snapshot is missing:
-
-```json
-{ "tool": "get_twitterapi_guide", "arguments": { "guide_name": "authentication" } }
-```
-
-### Pagination search (Q5)
-
-```json
-{ "tool": "search_twitterapi_docs", "arguments": { "query": "pagination cursor next_cursor", "max_results": 10 } }
-```
-
-## Usage Examples
-
-Once installed, you can ask Claude questions like:
-
-- "What are the QPS limits for TwitterAPI.io?"
-- "Show me the advanced search endpoint"
-- "How do webhook filter rules work?"
-- "How do I get user followers?"
-- "What's the pricing structure?"
-- "How do I authenticate with the API?"
+---
 
 ## API Endpoint Categories
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| **User** | 11 | get_user_by_username, get_user_followers, batch_get_user_by_userids |
-| **Tweet** | 7 | tweet_advanced_search, get_tweet_by_ids, get_tweet_quote |
+| **User** | 12 | get_user_by_username, get_user_followers, batch_get_user_by_userids |
+| **Tweet** | 8 | tweet_advanced_search, get_tweet_by_ids, get_tweet_replies_v2 |
 | **Community** | 9 | create_community_v2, get_community_by_id, join_community_v2 |
-| **Webhook** | 4 | add_webhook_rule, get_webhook_rules |
-| **Stream** | 2 | add_user_to_monitor_tweet, remove_user_to_monitor_tweet |
-| **Action** | 15 | create_tweet_v2, like_tweet_v2, upload_media_v2 |
+| **Profile** | 3 | update_avatar_v2, update_banner_v2, update_profile_v2 |
+| **Webhook** | 4 | add_webhook_rule, get_webhook_rules, update_webhook_rule |
+| **Stream** | 3 | add_user_to_monitor_tweet, get_user_to_monitor_tweet |
+| **Action** | 14 | create_tweet_v2, like_tweet_v2, retweet_tweet_v2, upload_media_v2 |
 | **DM** | 2 | send_dm_v2, get_dm_history_by_user_id |
 | **List** | 2 | get_list_followers, get_list_members |
-| **Trend** | 1 | get_trends |
-| **Other** | 1 | get_space_detail |
+| **Other** | 2 | get_trends, get_space_detail |
+
+**Total: 59 endpoints**
+
+---
+
+## Usage Examples
+
+Ask Claude:
+
+- *"What are the rate limits for TwitterAPI.io?"*
+- *"Show me the tweet advanced search endpoint"*
+- *"How do I authenticate with the API?"*
+- *"What's the pricing?"*
+- *"How do webhook filter rules work?"*
+
+---
+
+## Configuration
+
+| Environment Variable | Default | Description |
+|---------------------|---------|-------------|
+| `TWITTERAPI_MCP_DISK_CACHE` | `1` (on) | Set to `0` to disable disk caching |
+
+---
 
 ## How It Works
 
-This MCP server bundles a snapshot of TwitterAPI.io documentation (scraped with permission patterns). When Claude or another MCP-compatible AI assistant needs information about TwitterAPI.io:
-
-1. The assistant calls one of the available tools
-2. The server searches/retrieves from the local documentation cache
-3. Results are returned instantly without network latency
-
-The documentation includes:
-- Complete API reference with request/response examples
-- Authentication guides
-- Rate limiting information
-- Pricing details
-- Best practices
-
-## Updating Documentation
-
-If TwitterAPI.io updates their documentation, clone the repo and run the scraper:
-
-```bash
-git clone https://github.com/dorukardahan/twitterapi-io-mcp.git
-cd twitterapi-io-mcp
-npm install
-node scrape-all.cjs
+```
+┌─────────────┐     MCP Protocol     ┌──────────────────┐
+│   Claude    │ ◄──────────────────► │ twitterapi-io-mcp│
+│ (or any AI) │                      │                  │
+└─────────────┘                      │  Local docs.json │
+                                     │  (59 endpoints)  │
+                                     └──────────────────┘
 ```
 
-Note: The scraper is included in the repository but not in the npm package.
+1. AI assistant calls MCP tools (search, get endpoint, etc.)
+2. Server searches local documentation snapshot
+3. Results returned instantly (no network needed)
+
+---
 
 ## Development
 
 ```bash
-# Clone repository
 git clone https://github.com/dorukardahan/twitterapi-io-mcp.git
 cd twitterapi-io-mcp
-
-# Install dependencies
 npm install
-
-# Run tests
-npm test
-
-# Start server locally
-npm start
+npm test        # Run tests
+npm start       # Start server
+npm run scrape  # Update docs snapshot
 ```
+
+---
 
 ## Technical Details
 
-- **Runtime**: Node.js 18.18.0+
-- **Module System**: ES Modules (no build step)
-- **Protocol**: MCP (Model Context Protocol) via stdio
-- **Caching**: Hybrid (memory + disk) with 24-hour TTL
-- **Search**: Advanced tokenization with n-gram fuzzy matching
+| Property | Value |
+|----------|-------|
+| Runtime | Node.js 18.18.0+ |
+| Module System | ES Modules (no build step) |
+| Protocol | MCP via stdio |
+| Caching | Hybrid (memory + disk), 24h TTL |
+| Search | N-gram fuzzy matching |
+
+---
+
+## Links
+
+- **npm**: https://www.npmjs.com/package/twitterapi-io-mcp
+- **GitHub**: https://github.com/dorukardahan/twitterapi-io-mcp
+- **MCP Registry**: https://registry.modelcontextprotocol.io
+- **TwitterAPI.io**: https://twitterapi.io
+
+---
+
+## Why I Built This
+
+I use [TwitterAPI.io](https://twitterapi.io) for my projects and got tired of switching between my editor and docs. Now I just ask Claude. If it helps me, maybe it helps you too.
+
+---
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+PRs welcome! Fork → branch → commit → PR.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+---
 
 ## License
 
-[MIT](LICENSE) - see LICENSE file for details.
+[MIT](LICENSE)
+
+---
 
 ## Acknowledgments
 
-- [TwitterAPI.io](https://twitterapi.io) for providing excellent Twitter/X API access
-- [Anthropic](https://anthropic.com) for the Model Context Protocol
-- [MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk) for the server framework
+- [TwitterAPI.io](https://twitterapi.io) for the API service
+- [Anthropic](https://anthropic.com) for MCP
+- [MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk)
