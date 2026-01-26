@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.15] - 2026-01-26
+
+### Added
+- 5 new endpoints: `update_avatar_v2`, `update_banner_v2`, `update_profile_v2`, `get_tweet_replies_v2`, `get_user_to_monitor_tweet`
+- Deprecation notices for legacy endpoints (visible in endpoint data)
+
+### Changed
+- Total endpoints: 54 → 59
+- Legacy endpoints (`login_by_2fa`, `login_by_email_or_username`, `create_tweet`, `like_tweet`, `retweet_tweet`, `upload_tweet_image`) now include deprecation notices pointing to v2 alternatives
+
+---
+
 ## [1.0.14] - 2026-01-26
 
 ### Security
