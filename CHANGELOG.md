@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.16] - 2026-01-26
+
+### Improved
+- Complete README restructure for better readability
+- Added TL;DR and quick install command at top
+- Added "For AI Assistants" section with tool usage guide
+- Added architecture diagram
+- Fixed GitHub homepage URL (was pointing to deprecated package)
+
+### SEO
+- Added GitHub topics: `offline-docs`, `twitter-api`, `api-reference`
+- Added npm keywords: `twitter-api`, `x-api`, `claude-mcp`, `twitter-docs`
+
+---
+
 ## [1.0.15] - 2026-01-26
 
 ### Added
