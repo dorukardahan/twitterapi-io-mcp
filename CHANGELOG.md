@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.14] - 2026-01-26
+
+### Security
+- Upgraded `@modelcontextprotocol/sdk` from 1.24.3 to 1.25.3 (fixes ReDoS vulnerability GHSA-8r9q-7v3j-jr4g)
+- Upgraded `qs` from 6.14.0 to 6.14.1 (fixes arrayLimit bypass DoS GHSA-6rw7-vpxm-498p)
+
+---
+
 ## [1.0.10] - 2025-12-26
 
 ### Added
