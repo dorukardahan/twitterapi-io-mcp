@@ -15,14 +15,6 @@
       "transport": {
         "type": "stdio"
       }
-    },
-    {
-      "registryType": "npm",
-      "identifier": "twitterapi-docs-mcp",
-      "version": "1.0.18",
-      "transport": {
-        "type": "stdio"
-      }
     }
   ]
 }
