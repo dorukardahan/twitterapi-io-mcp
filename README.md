@@ -28,6 +28,8 @@ Unlike other Twitter MCP servers that proxy live API calls (and need your API ke
 
 ## Installation
 
+> Previously published as `twitterapi-docs-mcp`? Just change the package name — everything else stays the same.
+
 **Requires:** Node.js 18.18.0+
 
 ### Claude Code (recommended)
