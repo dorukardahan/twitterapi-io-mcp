@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * TwitterAPI.io Documentation MCP Server v1.0.16
+ * TwitterAPI.io Documentation MCP Server v1.0.17
  *
  * Production-ready MCP server with:
  * - Comprehensive error handling with ErrorType classification
@@ -1151,7 +1151,9 @@ function resolveAuthMeta(authMeta) {
 function formatEndpointMarkdown(endpointName, endpoint, authMeta = {}) {
   const auth = resolveAuthMeta(authMeta);
   const extractedMethod = extractHttpMethodFromCurl(endpoint?.curl_example);
-  const method = endpoint.method || extractedMethod || "GET";
+  const typeUpper = endpoint.type?.toUpperCase?.();
+  const typeMethod = typeUpper && VALID_HTTP_METHODS.has(typeUpper) ? typeUpper : null;
+  const method = endpoint.method || typeMethod || extractedMethod || "GET";
   const curlExample =
     endpoint.curl_example ||
     `curl --request ${method} \\\n  --url ${auth.baseUrl}${endpoint.path || ''} \\\n  --header '${auth.header}: ${auth.headerValue}'`;
@@ -1195,8 +1197,13 @@ function extractHttpMethodFromCurl(curlExample) {
   return match?.[1] ? match[1].toUpperCase() : null;
 }
 
+const VALID_HTTP_METHODS = new Set(["GET", "POST", "PUT", "DELETE", "PATCH"]);
+
 function getEndpointMethod(endpoint) {
-  return endpoint?.method || extractHttpMethodFromCurl(endpoint?.curl_example) || "GET";
+  if (endpoint?.method) return endpoint.method;
+  const t = endpoint?.type?.toUpperCase?.();
+  if (t && VALID_HTTP_METHODS.has(t)) return t;
+  return extractHttpMethodFromCurl(endpoint?.curl_example) || "GET";
 }
 
 function safeCanonicalizeUrl(url) {
@@ -2299,9 +2306,9 @@ ${examples.javascript}
 \`\`\``;
 
       return formatToolSuccess(markdown, {
-        header,
-        base_url: baseUrl,
-        dashboard_url: dashboardUrl,
+        header: auth.header,
+        base_url: auth.baseUrl,
+        dashboard_url: auth.dashboardUrl,
         examples,
         markdown
       });

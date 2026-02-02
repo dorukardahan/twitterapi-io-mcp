@@ -142,7 +142,7 @@
       "scraped_at": "2025-12-27T12:27:28.087Z",
       "type": "endpoint",
       "title": "twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.",
-      "description": "Create a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "description": "Create a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. TROUBLESHOOTING: If you get 400 errors, the most common cause is a faulty login_cookie. Ensure you used a valid 16-character string totp_secret (not numbers) when calling user_login_v2. Re-login with the correct totp_secret to get a fresh cookie.",
       "path": "/twitter/create_tweet_v2",
       "code_snippets": [
         "curl --request POST \\\n  --url https://api.twitterapi.io/twitter/create_tweet_v2 \\\n  --header 'Content-Type: application/json' \\\n  --header 'X-API-Key: <api-key>' \\\n  --data '\n{\n  \"login_cookies\": \"<string>\",\n  \"tweet_text\": \"<string>\",\n  \"proxy\": \"<string>\",\n  \"reply_to_tweet_id\": \"<string>\",\n  \"attachment_url\": \"<string>\",\n  \"community_id\": \"<string>\",\n  \"is_note_tweet\": true,\n  \"media_ids\": \"<array>\"\n}\n'",
@@ -947,7 +947,7 @@
       "scraped_at": "2025-12-27T12:27:45.765Z",
       "type": "endpoint",
       "title": "twitterapi.io - Twitter data, 96% cheaper. No auth, no limits, just API.",
-      "description": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. ",
+      "description": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. IMPORTANT: The totp_secret (2FA secret) must be a 16-character string (not numbers). Without a valid totp_secret, the login_cookie may be faulty, causing 400 errors on all V2 action endpoints (create_tweet_v2, like_tweet_v2, etc.). We highly recommend enabling 2FA for reliable cookie generation.",
       "path": "/twitter/user_login_v2",
       "code_snippets": [
         "curl --request POST \\\n  --url https://api.twitterapi.io/twitter/user_login_v2 \\\n  --header 'Content-Type: application/json' \\\n  --header 'X-API-Key: <api-key>' \\\n  --data '\n{\n  \"user_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"proxy\": \"<string>\",\n  \"totp_secret\": \"<string>\"\n}\n'",
@@ -966,7 +966,9 @@
       "url": "https://docs.twitterapi.io/api-reference/endpoint/update_avatar_v2",
       "description": "Update Twitter profile picture. Requires login_cookies from user_login_v2. Trial price: $0.003/call. Image: JPG/PNG, 400x400px recommended, max 700KB.",
       "raw_text": "PATCH /twitter/update_avatar_v2 - Update profile picture. Parameters: login_cookies (required), proxy (required), file (binary, required). Response: {status, message}",
-      "scraped_at": "2026-01-26T10:24:36.597Z"
+      "scraped_at": "2026-01-26T10:24:36.597Z",
+      "method": "PATCH",
+      "curl_example": "curl --request PATCH \\\n  --url https://api.twitterapi.io/twitter/update_avatar_v2 \\\n  --header 'Content-Type: multipart/form-data' \\\n  --header 'X-API-Key: <api-key>' \\\n  --form file=@avatar.jpg \\\n  --form 'proxy=<string>' \\\n  --form 'login_cookies=<string>'"
     },
     "update_banner_v2": {
       "name": "update_banner_v2",
@@ -976,7 +978,9 @@
       "url": "https://docs.twitterapi.io/api-reference/endpoint/update_banner_v2",
       "description": "Update Twitter banner/header image. Requires login_cookies from user_login_v2. Trial price: $0.003/call. Image: JPG/PNG, 1500x500px recommended, max 2MB.",
       "raw_text": "PATCH /twitter/update_banner_v2 - Update banner image. Parameters: login_cookies (required), proxy (required), file (binary, required). Response: {status, message}",
-      "scraped_at": "2026-01-26T10:24:36.598Z"
+      "scraped_at": "2026-01-26T10:24:36.598Z",
+      "method": "PATCH",
+      "curl_example": "curl --request PATCH \\\n  --url https://api.twitterapi.io/twitter/update_banner_v2 \\\n  --header 'Content-Type: multipart/form-data' \\\n  --header 'X-API-Key: <api-key>' \\\n  --form file=@banner.jpg \\\n  --form 'proxy=<string>' \\\n  --form 'login_cookies=<string>'"
     },
     "update_profile_v2": {
       "name": "update_profile_v2",
@@ -986,7 +990,9 @@
       "url": "https://docs.twitterapi.io/api-reference/endpoint/update_profile_v2",
       "description": "Update Twitter profile info (name, bio, location, url). Requires login_cookies from user_login_v2. Trial price: $0.003/call.",
       "raw_text": "PATCH /twitter/update_profile_v2 - Update profile info. Parameters: login_cookies (required), proxy (required), name (optional, max 50 chars), description (optional, max 160 chars), location (optional, max 30 chars), url (optional). Response: {status, message}",
-      "scraped_at": "2026-01-26T10:24:36.598Z"
+      "scraped_at": "2026-01-26T10:24:36.598Z",
+      "method": "PATCH",
+      "curl_example": "curl --request PATCH \\\n  --url https://api.twitterapi.io/twitter/update_profile_v2 \\\n  --header 'Content-Type: application/json' \\\n  --header 'X-API-Key: <api-key>' \\\n  --data '{\n  \"login_cookies\": \"<string>\",\n  \"proxy\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": \"<string>\",\n  \"url\": \"<string>\"\n}'"
     },
     "get_tweet_replies_v2": {
       "name": "get_tweet_replies_v2",
@@ -996,7 +1002,9 @@
       "url": "https://docs.twitterapi.io/api-reference/endpoint/get_tweet_replies_v2",
       "description": "Get tweet replies by tweet ID (V2). Returns up to 20 replies per page. Supports pagination and sorting by Relevance, Latest, or Likes.",
       "raw_text": "GET /twitter/tweet/replies/v2 - Get tweet replies. Parameters: tweetId (required), cursor (optional), queryType (optional: Relevance/Latest/Likes). Response: {replies[], has_next_page, next_cursor, status, message}",
-      "scraped_at": "2026-01-26T10:24:36.598Z"
+      "scraped_at": "2026-01-26T10:24:36.598Z",
+      "method": "GET",
+      "curl_example": "curl --request GET \\\n  --url https://api.twitterapi.io/twitter/tweet/replies/v2 \\\n  --header 'X-API-Key: <api-key>'"
     },
     "get_user_to_monitor_tweet": {
       "name": "get_user_to_monitor_tweet",
@@ -1006,7 +1014,9 @@
       "url": "https://docs.twitterapi.io/api-reference/endpoint/get_user_to_monitor_tweet",
       "description": "Get all users that have been added for tweet monitoring. Returns list of monitored users with their settings.",
       "raw_text": "GET /oapi/x_user_stream/get_user_to_monitor_tweet - Get monitored users. No parameters required. Response: {status, msg, data[{id_for_user, x_user_id, x_user_name, x_user_screen_name, is_monitor_tweet, is_monitor_profile, ...}]}",
-      "scraped_at": "2026-01-26T10:24:36.598Z"
+      "scraped_at": "2026-01-26T10:24:36.598Z",
+      "method": "GET",
+      "curl_example": "curl --request GET \\\n  --url https://api.twitterapi.io/oapi/x_user_stream/get_user_to_monitor_tweet \\\n  --header 'X-API-Key: <api-key>'"
     }
   },
   "pages": {
