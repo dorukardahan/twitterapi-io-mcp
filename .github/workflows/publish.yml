@@ -51,6 +51,8 @@ jobs:
 
       - name: Publish legacy wrapper to npm (twitterapi-docs-mcp)
         working-directory: packages/twitterapi-docs-mcp
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           VERSION="$(node -p 'require("./package.json").version')"
 
@@ -59,4 +61,10 @@ jobs:
             exit 0
           fi
 
-          npm publish --provenance --access public
+          if [ -n "${NPM_TOKEN:-}" ]; then
+            echo "Publishing twitterapi-docs-mcp with NPM_TOKEN (bootstrap)."
+            NODE_AUTH_TOKEN="$NPM_TOKEN" npm publish --access public
+          else
+            echo "Publishing twitterapi-docs-mcp with OIDC trusted publishing."
+            npm publish --provenance --access public
+          fi
