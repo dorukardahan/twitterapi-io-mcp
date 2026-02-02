@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.18] - 2026-02-02
 
+### Fixed
+- Legacy wrapper CI publish step now includes NPM_TOKEN fallback for token-based authentication
+
+### Added
+- Comprehensive 5-client migration guide in legacy wrapper README (Claude Code, Claude Desktop, Cursor, VS Code, Windsurf)
+- Deprecated legacy wrapper entry in `server.json` packages array
+- Linux config path for Claude Desktop in legacy wrapper README
+- "Previously published as twitterapi-docs-mcp" note in root README
+
 ### Changed
 - **README full rewrite**: New structure matching top MCP server best practices
 - Added installation blocks for Cursor, VS Code, and Windsurf (was only Claude Code + Claude Desktop)
