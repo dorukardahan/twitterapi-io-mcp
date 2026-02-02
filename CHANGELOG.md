@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.18] - 2026-02-02
+
+### Changed
+- **README full rewrite**: New structure matching top MCP server best practices
+- Added installation blocks for Cursor, VS Code, and Windsurf (was only Claude Code + Claude Desktop)
+- Added "Best for" column to Available Tools table
+- Added "What can you ask?" section with real prompt examples and expected tool triggers
+- Wrapped 59-endpoint category table in collapsible `<details>` to reduce scroll
+- Added Troubleshooting / FAQ section (npx issues, Node version, missing tools)
+- Merged "Technical Details" into "How it works" section
+- Removed excessive horizontal rules (12 down to 0)
+- Humanized "Why I built this" section with more personality
+- Added Docker installation option
+
+### Added
+- Smithery badge and GitHub stars badge
+- `llms.txt` file for LLM discoverability (not included in npm package)
+- 7 new npm keywords: `mcp-server`, `claude-desktop`, `tweet-search`, `social-media-api`, `twitter-data`, `cursor-mcp`, `windsurf-mcp`
+
+### Removed
+- Node.js badge from README header (info moved to "How it works" table)
+- MCP Registry badge (replaced with Smithery badge)
+
+---
+
 ## [1.0.17] - 2026-02-02
 
 ### Fixed

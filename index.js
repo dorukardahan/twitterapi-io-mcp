@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * TwitterAPI.io Documentation MCP Server v1.0.17
+ * TwitterAPI.io Documentation MCP Server v1.0.18
  *
  * Production-ready MCP server with:
  * - Comprehensive error handling with ErrorType classification
