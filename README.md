@@ -1,6 +1,6 @@
 # twitterapi-io-mcp
 
-> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 59 endpoints, 19 guides, 21 blog posts. No API key needed.
+> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 56 endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
@@ -17,12 +17,20 @@ claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 
 An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistants **instant, offline access** to [TwitterAPI.io](https://twitterapi.io) documentation.
 
-- **59 API endpoints** with parameters, examples, and response schemas
-- **19 guide pages** covering pricing, authentication, rate limits, webhooks
-- **21 blog posts** with tutorials and use cases
+- **56 API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
+- **32 guide pages** covering pricing, authentication, rate limits, webhooks, streaming
+- **24 blog posts** with tutorials and use cases
+- **All v2 write endpoints** documented with `login_cookies`, `proxy`, and body params
+- **4 deprecated v1 endpoints** marked with migration notices
 - **Zero API key required** — everything is bundled locally
 
 Unlike other Twitter MCP servers that proxy live API calls (and need your API key), this one ships a complete documentation snapshot. Your AI assistant reads it locally, instantly.
+
+### v1.0.19 Highlights
+- Fresh rescrape from docs.twitterapi.io (Feb 2026)
+- All 26 write endpoints have body parameters (login_cookies, tweet_text, proxy, etc.)
+- All 27 GET endpoints have query parameters
+- Scraper auto-extracts method/body/params — `npm run scrape` keeps data fresh
 
 > **Disclaimer**: Independent community project. Not affiliated with TwitterAPI.io.
 
@@ -168,7 +176,7 @@ Here are real prompts that work well with this MCP server:
 - *"How do I upload media and create a tweet?"* — triggers sequential `get_twitterapi_endpoint` calls
 
 <details>
-<summary><strong>All 59 endpoints by category</strong></summary>
+<summary><strong>All 56 endpoints by category</strong></summary>
 
 | Category | Count | Endpoints |
 |----------|-------|-----------|
@@ -226,7 +234,7 @@ Restart your MCP client after adding the server config. Most clients (Claude Des
 │   Claude /   │ ◄──────────────────► │ twitterapi-io-mcp│
 │  Cursor /    │                      │                  │
 │  VS Code     │                      │  Bundled docs    │
-└─────────────┘                      │  (59 endpoints)  │
+└─────────────┘                      │  (56 endpoints)  │
                                      └──────────────────┘
                                        No network needed
 ```
