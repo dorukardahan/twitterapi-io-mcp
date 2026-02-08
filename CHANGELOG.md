@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.19] - 2026-02-09
+
+### Fixed
+- All 56 endpoints now have explicit HTTP method field (was missing for most)
+- Search tool crash on object-format parameters (`normalizeParams()`)
+- Parameter display in `get_twitterapi_endpoint` for both array and object formats
+- Scraper post-processing: method, body params, and query params now auto-extracted from curl/raw_text
+
+### Added
+- Body parameters for all 26 write endpoints (POST/PATCH/DELETE)
+- Query parameters for 27 GET endpoints
+- Deprecation notices for 4 legacy v1 endpoints (create_tweet, like_tweet, login_by_2fa, login_by_email_or_username)
+- `get_trends` endpoint parameters (woeid, count)
+- Post-processing step in scraper for automatic method/body/params extraction
+
+### Changed
+- Fresh rescrape of all 56 endpoints, 32 pages, 24 blog posts from docs.twitterapi.io
+- `upload_media_v2` correctly documented as multipart/form-data (not JSON)
+
 ## [1.0.18] - 2026-02-02
 
 ### Fixed
