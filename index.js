@@ -1200,10 +1200,15 @@ function extractHttpMethodFromCurl(curlExample) {
 const VALID_HTTP_METHODS = new Set(["GET", "POST", "PUT", "DELETE", "PATCH"]);
 
 function getEndpointMethod(endpoint) {
-  if (endpoint?.method) return endpoint.method;
+  // Prefer explicit method from data/docs.json
+  const explicit = endpoint?.method ? String(endpoint.method).toUpperCase() : null;
+  if (explicit && VALID_HTTP_METHODS.has(explicit)) return explicit;
+
   const t = endpoint?.type?.toUpperCase?.();
   if (t && VALID_HTTP_METHODS.has(t)) return t;
-  return extractHttpMethodFromCurl(endpoint?.curl_example) || "GET";
+
+  const inferred = extractHttpMethodFromCurl(endpoint?.curl_example);
+  return (inferred && VALID_HTTP_METHODS.has(inferred)) ? inferred : "GET";
 }
 
 function safeCanonicalizeUrl(url) {
