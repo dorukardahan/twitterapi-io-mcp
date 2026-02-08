@@ -660,6 +660,64 @@ async function scrapeAll() {
     await new Promise(r => setTimeout(r, 150));
   }
 
+  // ========== POST-PROCESS: Extract method & body from curl/raw_text ==========
+  for (const [name, ep] of Object.entries(docs.endpoints)) {
+    if (ep.error) continue;
+
+    // Extract method from curl_example
+    if (!ep.method && ep.curl_example) {
+      const m = ep.curl_example.match(/--request\s+(GET|POST|PUT|DELETE|PATCH)/i);
+      if (m) ep.method = m[1].toUpperCase();
+    }
+
+    // Extract body params from curl --data for write endpoints
+    if (ep.method && ['POST', 'PATCH', 'PUT', 'DELETE'].includes(ep.method) && !ep.body) {
+      const curl = (ep.curl_example || '').replace(/\n/g, ' ');
+      const dataMatch = curl.match(/--data\s+'([^']+)'/);
+      if (dataMatch) {
+        try {
+          const cleaned = dataMatch[1]
+            .replace(/<string>/g, '"x"')
+            .replace(/<array>/g, '[]')
+            .replace(/<boolean>/g, 'true')
+            .replace(/<number>/g, '0')
+            .replace(/:\s*true\b/g, ': "x"');
+          const parsed = JSON.parse(cleaned);
+          const body = {};
+          for (const key of Object.keys(parsed)) {
+            body[key] = { type: 'string', required: true };
+            // Check raw_text for "optional" near this param name
+            const rt = ep.raw_text || '';
+            const paramIdx = rt.indexOf(key);
+            if (paramIdx >= 0) {
+              const nearby = rt.substring(paramIdx, paramIdx + 200).toLowerCase();
+              if (nearby.includes('optional')) body[key].required = false;
+            }
+          }
+          ep.body = body;
+        } catch (e) { /* JSON parse failed, skip */ }
+      }
+    }
+
+    // Extract query parameters from raw_text for GET endpoints
+    if ((!ep.method || ep.method === 'GET') && !ep.parameters) {
+      const rt = ep.raw_text || '';
+      const qpMatch = rt.match(/Query Parameters([\s\S]*?)(?:Response|$)/i);
+      if (qpMatch) {
+        const params = {};
+        const paramRe = /(\w+)\s+string(?:<string>)?\s+(required)?\s*/g;
+        let pm;
+        while ((pm = paramRe.exec(qpMatch[1])) !== null) {
+          const pname = pm[1];
+          if (!['string', 'required', 'Status', 'Show', 'Available', 'object'].includes(pname)) {
+            params[pname] = { type: 'string', required: !!pm[2] };
+          }
+        }
+        if (Object.keys(params).length > 0) ep.parameters = params;
+      }
+    }
+  }
+
   const outPath = path.join(__dirname, 'data', 'docs.json');
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
 
