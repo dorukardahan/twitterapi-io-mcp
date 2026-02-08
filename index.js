@@ -954,7 +954,8 @@ function searchInDocs(query, maxResults = 20) {
   // Search endpoints
   for (const [name, item] of Object.entries(data.endpoints || {})) {
     const rawText = truncateText(item.raw_text, MAX_SEARCH_TEXT_CHARS);
-    const paramsText = (item.parameters || []).map(p => `${p.name} ${p.description || ''}`).join(' ');
+    const params = item.parameters || item.body || {};
+    const paramsText = (Array.isArray(params) ? params : Object.entries(params)).map(p => Array.isArray(params) ? `${p.name} ${p.description || ''}` : `${p[0]} ${(p[1] && p[1].description) || ''}`).join(' ');
     const searchText = [
       name,
       item.title || "",
@@ -1169,8 +1170,7 @@ function formatEndpointMarkdown(endpointName, endpoint, authMeta = {}) {
 ## Description
 ${endpoint.description || "No description available."}
 
-${endpoint.parameters?.length > 0 ? `## Parameters
-${endpoint.parameters.map(p => `- **${p.name}**${p.required ? ' (required)' : ''}: ${p.description}`).join('\n')}` : ''}
+${normalizeParams(endpoint.parameters || endpoint.body)?.length > 0 ? `## Parameters\n${normalizeParams(endpoint.parameters || endpoint.body).map(p => `- **${p.name}**${p.required ? ' (required)' : ''}: ${p.description || ''}`).join('\n')}` : ''}
 
 ## cURL Example
 \`\`\`bash
@@ -1198,6 +1198,18 @@ function extractHttpMethodFromCurl(curlExample) {
 }
 
 const VALID_HTTP_METHODS = new Set(["GET", "POST", "PUT", "DELETE", "PATCH"]);
+
+
+function normalizeParams(params) {
+  if (!params) return [];
+  if (Array.isArray(params)) return params;
+  return Object.entries(params).map(([name, val]) => ({
+    name,
+    required: val?.required ?? false,
+    description: val?.description || '',
+    type: val?.type || 'string'
+  }));
+}
 
 function getEndpointMethod(endpoint) {
   // Prefer explicit method from data/docs.json
@@ -1836,8 +1848,7 @@ ${allEndpoints.map(e => `- ${e}`).join('\n')}
 ## Description
 ${endpoint.description || "No description available."}
 
-${endpoint.parameters?.length > 0 ? `## Parameters
-${endpoint.parameters.map(p => `- **${p.name}**${p.required ? ' (required)' : ''}: ${p.description}`).join('\n')}` : ''}
+${normalizeParams(endpoint.parameters || endpoint.body)?.length > 0 ? `## Parameters\n${normalizeParams(endpoint.parameters || endpoint.body).map(p => `- **${p.name}**${p.required ? ' (required)' : ''}: ${p.description || ''}`).join('\n')}` : ''}
 
 ## cURL Example
 \`\`\`bash
@@ -1861,7 +1872,7 @@ ${endpoint.raw_text || "No additional content available."}`;
         full_url: `https://api.twitterapi.io${endpoint.path || ""}`,
         doc_url: endpoint.url || "",
         description: endpoint.description || "",
-        parameters: endpoint.parameters || [],
+        parameters: normalizeParams(endpoint.parameters || endpoint.body),
         curl_example: curlExample,
         code_snippets: endpoint.code_snippets || [],
         raw_text: endpoint.raw_text || "",
