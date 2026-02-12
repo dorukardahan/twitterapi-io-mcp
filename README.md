@@ -267,9 +267,16 @@ npm start       # Start server locally
 npm run scrape  # Update docs snapshot from twitterapi.io
 ```
 
+## Not using MCP?
+
+If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 55 endpoints:
+
+👉 **[twitterapi-io-skill](https://github.com/dorukardahan/twitterapi-io-skill)** — works with OpenClaw, Claude, GPT, Gemini, and any LLM.
+
 ## Links
 
 - **npm**: [twitterapi-io-mcp](https://www.npmjs.com/package/twitterapi-io-mcp)
+- **Skill version**: [dorukardahan/twitterapi-io-skill](https://github.com/dorukardahan/twitterapi-io-skill)
 - **GitHub**: [dorukardahan/twitterapi-io-mcp](https://github.com/dorukardahan/twitterapi-io-mcp)
 - **MCP Registry**: [registry.modelcontextprotocol.io](https://registry.modelcontextprotocol.io)
 - **TwitterAPI.io**: [twitterapi.io](https://twitterapi.io)
