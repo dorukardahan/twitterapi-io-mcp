@@ -26,7 +26,8 @@ An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistant
 
 Unlike other Twitter MCP servers that proxy live API calls (and need your API key), this one ships a complete documentation snapshot. Your AI assistant reads it locally, instantly.
 
-### v1.0.19 Highlights
+### v1.0.21 Highlights
+- **Security fix**: sanitized endpoint IDs to prevent path traversal in resource URIs
 - Fresh rescrape from docs.twitterapi.io (Feb 2026)
 - All 26 write endpoints have body parameters (login_cookies, tweet_text, proxy, etc.)
 - All 27 GET endpoints have query parameters
