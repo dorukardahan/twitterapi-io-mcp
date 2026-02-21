@@ -3,39 +3,10 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/update_webhook_rule
 
 ## Endpoint
 
-- Method: `POST`
 - Path: `/oapi/tweet_filter/update_rule`
-- API URL: `https://api.twitterapi.io/oapi/tweet_filter/update_rule`
 
 ## Description
 
 Update a tweet filter rule. You must set all parameters.
 
-## Example (curl)
-
-```bash
-curl --request POST \
-  --url https://api.twitterapi.io/oapi/tweet_filter/update_rule \
-  --header 'Content-Type: application/json' \
-  --header 'X-API-Key: <api-key>' \
-  --data '
-{
-  "rule_id": "<string>",
-  "tag": "<string>",
-  "value": "<string>",
-  "interval_seconds": 123,
-  "is_effect": 0
-}
-'
-```
-
-## Example Response
-
-```json
-{
-  "status": "success",
-  "msg": "<string>"
-}
-```
-
-_Scraped at: 2025-12-18T10:06:28.477Z_
+_Scraped at: 2026-02-21T05:48:01.005Z_

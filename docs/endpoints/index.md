@@ -27,6 +27,7 @@
 | `get_trends` | `/twitter/trends` | [Get Trends](./get_trends.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_trends) |
 | `get_tweet_by_ids` | `/twitter/tweets` | [Get Tweet By Ids](./get_tweet_by_ids.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_by_ids) |
 | `get_tweet_quote` | `/twitter/tweet/quotes` | [Get Tweet Quote](./get_tweet_quote.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_quote) |
+| `get_tweet_replies_v2` | `/twitter/tweet/replies/v2` | [Get Tweet Replies V2](./get_tweet_replies_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_replies_v2) |
 | `get_tweet_reply` | `/twitter/tweet/replies` | [Get Tweet Reply](./get_tweet_reply.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_reply) |
 | `get_tweet_retweeter` | `/twitter/tweet/retweeters` | [Get Tweet Retweeter](./get_tweet_retweeter.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_retweeter) |
 | `get_tweet_thread_context` | `/twitter/tweet/thread_context` | [Get Tweet Thread Context](./get_tweet_thread_context.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_tweet_thread_context) |
@@ -36,6 +37,7 @@
 | `get_user_followings` | `/twitter/user/followings` | [Get User Followings](./get_user_followings.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_followings) |
 | `get_user_last_tweets` | `/twitter/user/last_tweets` | [Get User Last Tweets](./get_user_last_tweets.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_last_tweets) |
 | `get_user_mention` | `/twitter/user/mentions` | [Get User Mention](./get_user_mention.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_mention) |
+| `get_user_to_monitor_tweet` | `/oapi/x_user_stream/get_user_to_monitor_tweet` | [Get User To Monitor Tweet](./get_user_to_monitor_tweet.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_to_monitor_tweet) |
 | `get_user_verified_followers` | `/twitter/user/verifiedFollowers` | [Get User Verified Followers](./get_user_verified_followers.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_user_verified_followers) |
 | `get_webhook_rules` | `/oapi/tweet_filter/get_rules` | [Get Webhook Rules](./get_webhook_rules.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/get_webhook_rules) |
 | `join_community_v2` | `/twitter/join_community_v2` | [Join Community V2](./join_community_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/join_community_v2) |
@@ -52,6 +54,9 @@
 | `tweet_advanced_search` | `/twitter/tweet/advanced_search` | [Tweet Advanced Search](./tweet_advanced_search.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/tweet_advanced_search) |
 | `unfollow_user_v2` | `/twitter/unfollow_user_v2` | [Unfollow User V2](./unfollow_user_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/unfollow_user_v2) |
 | `unlike_tweet_v2` | `/twitter/unlike_tweet_v2` | [Unlike Tweet V2](./unlike_tweet_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/unlike_tweet_v2) |
+| `update_avatar_v2` | `/twitter/update_avatar_v2` | [Update Avatar V2](./update_avatar_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/update_avatar_v2) |
+| `update_banner_v2` | `/twitter/update_banner_v2` | [Update Banner V2](./update_banner_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/update_banner_v2) |
+| `update_profile_v2` | `/twitter/update_profile_v2` | [Update Profile V2](./update_profile_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/update_profile_v2) |
 | `update_webhook_rule` | `/oapi/tweet_filter/update_rule` | [Update Webhook Rule](./update_webhook_rule.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/update_webhook_rule) |
 | `upload_media_v2` | `/twitter/upload_media_v2` | [Upload Media V2](./upload_media_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/upload_media_v2) |
 | `upload_tweet_image` | `/twitter/upload_image` | [Upload Tweet Image](./upload_tweet_image.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/upload_tweet_image) |

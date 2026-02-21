@@ -3,40 +3,10 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/user_login_v2
 
 ## Endpoint
 
-- Method: `POST`
 - Path: `/twitter/user_login_v2`
-- API URL: `https://api.twitterapi.io/twitter/user_login_v2`
 
 ## Description
 
-Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the "v2" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call.
+Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie, to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the &quot;v2&quot; suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets.
 
-## Example (curl)
-
-```bash
-curl --request POST \
-  --url https://api.twitterapi.io/twitter/user_login_v2 \
-  --header 'Content-Type: application/json' \
-  --header 'X-API-Key: <api-key>' \
-  --data '
-{
-  "user_name": "<string>",
-  "email": "<string>",
-  "password": "<string>",
-  "proxy": "<string>",
-  "totp_secret": "<string>"
-}
-'
-```
-
-## Example Response
-
-```json
-{
-  "login_cookie": "<string>",
-  "status": "<string>",
-  "msg": "<string>"
-}
-```
-
-_Scraped at: 2025-12-18T10:06:29.398Z_
+_Scraped at: 2026-02-21T05:47:53.277Z_

@@ -3,37 +3,10 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/like_tweet_v2
 
 ## Endpoint
 
-- Method: `POST`
 - Path: `/twitter/like_tweet_v2`
-- API URL: `https://api.twitterapi.io/twitter/like_tweet_v2`
 
 ## Description
 
 Like a tweet. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call.
 
-## Example (curl)
-
-```bash
-curl --request POST \
-  --url https://api.twitterapi.io/twitter/like_tweet_v2 \
-  --header 'Content-Type: application/json' \
-  --header 'X-API-Key: <api-key>' \
-  --data '
-{
-  "login_cookies": "<string>",
-  "tweet_id": "<string>",
-  "proxy": "<string>"
-}
-'
-```
-
-## Example Response
-
-```json
-{
-  "status": "<string>",
-  "msg": "<string>"
-}
-```
-
-_Scraped at: 2025-12-18T10:06:24.992Z_
+_Scraped at: 2026-02-21T05:47:57.130Z_

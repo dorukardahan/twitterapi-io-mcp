@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.22] - 2026-02-21
+
+### Added
+- 7 new endpoints (52 → 59 total):
+  - `get_space_detail` — Twitter Spaces detail
+  - `get_tweet_replies_v2` — Tweet replies V2 with sort options (Relevance/Latest/Likes)
+  - `get_user_about` — User profile about section
+  - `get_user_to_monitor_tweet` — List monitored users
+  - `update_avatar_v2` — Update profile avatar
+  - `update_banner_v2` — Update profile banner
+  - `update_profile_v2` — Update profile info
+
+### Changed
+- Fresh rescrape from docs.twitterapi.io (Feb 21, 2026)
+- All 59 endpoints now match official llms.txt index
+
 ## [1.0.19] - 2026-02-09
 
 ### Fixed
