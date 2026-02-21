@@ -82,10 +82,14 @@ jobs:
             --data-binary "@${SERVER_JSON_PATH}" \
             "$REGISTRY_URL/v0.1/publish")"
 
-          if [ "$STATUS_CODE" != "200" ]; then
+          if [ "$STATUS_CODE" != "200" ] && [ "$STATUS_CODE" != "409" ]; then
             echo "Registry publish failed: HTTP ${STATUS_CODE}" >&2
             cat "$RESPONSE_FILE" >&2
             exit 1
+          fi
+
+          if [ "$STATUS_CODE" = "409" ]; then
+            echo "::warning::Version already registered (409 Conflict) — skipping"
           fi
 
           cat "$RESPONSE_FILE" | tee registry-response.json
