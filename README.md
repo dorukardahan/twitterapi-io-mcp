@@ -26,6 +26,11 @@ An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistant
 
 Unlike other Twitter MCP servers that proxy live API calls (and need your API key), this one ships a complete documentation snapshot. Your AI assistant reads it locally, instantly.
 
+### v1.0.23 Highlights
+- **Platform advisory**: Twitter disabled `since:/until:` search operators and pagination (~Mar 5, 2026). Workarounds documented in `docs/platform-advisory-2026-03.md`.
+- **Workaround**: Use `since_time:UNIX` / `until_time:UNIX` format instead (tested, working)
+- **Webhook URL warning**: URL not auto-restored after API key rotation — must be manually re-set
+
 ### v1.0.22 Highlights
 - **7 new endpoints** (52 → 59 total): `get_space_detail`, `get_tweet_replies_v2`, `get_user_about`, `get_user_to_monitor_tweet`, `update_avatar_v2`, `update_banner_v2`, `update_profile_v2`
 - Fresh rescrape from docs.twitterapi.io (Feb 21, 2026)

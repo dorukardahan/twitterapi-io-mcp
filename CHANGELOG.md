@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.23] - 2026-03-08
+
+### Added
+- Platform advisory document: `docs/platform-advisory-2026-03.md`
+  - Twitter disabled `since:` / `until:` search operators (~Mar 5, 2026)
+  - Search pagination broken (returns same page repeatedly)
+  - Documented working workaround: `since_time:UNIX` / `until_time:UNIX` format
+  - Documented `within_time:Nh` relative time filter
+  - Webhook URL not auto-restored after API key rotation warning
+  - Timeline of events (Mar 3-8, 2026)
+
 ## [1.0.22] - 2026-02-21
 
 ### Added
