@@ -1,0 +1,31 @@
+# Recipe: Fetch “Changelogs” via `get_twitterapi_guide`
+
+The “Changelogs” documentation page is available via the **page key** `changelog` (lowercase). Use `get_twitterapi_guide` as the canonical tool call.
+
+Important: for this question, **do not** use `resources/read`. The canonical tool is `get_twitterapi_guide`.
+
+## JSON tool call
+
+```json
+{ "tool": "get_twitterapi_guide", "arguments": { "guide_name": "changelog" } }
+```
+
+## JavaScript
+
+```js
+const res = await callTool("get_twitterapi_guide", { guide_name: "changelog" });
+const markdown = res.structuredContent?.markdown ?? res.content?.[0]?.text ?? "";
+console.log(markdown);
+```
+
+If you want to discover the key dynamically:
+
+```json
+{ "tool": "search_twitterapi_docs", "arguments": { "query": "changelog", "max_results": 5 } }
+```
+
+If the guide key is unknown or not found, you can fall back to a URL/path fetch:
+
+```json
+{ "tool": "get_twitterapi_url", "arguments": { "url": "/changelog" } }
+```

@@ -1,0 +1,68 @@
+{
+  "name": "twitterapi-io-mcp",
+  "version": "1.0.23",
+  "mcpName": "io.github.dorukardahan/twitterapi-io-mcp",
+  "description": "TwitterAPI.io MCP server providing offline access to docs (endpoints, pages, blogs) for Claude and other AI assistants",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "twitterapi-io-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test test/index.test.js",
+    "build": "echo 'No build step required - pure ES Module'",
+    "scrape": "node scrape-all.cjs",
+    "generate:docs": "node generate-context7-docs.cjs",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "twitter",
+    "twitter-api",
+    "x-api",
+    "twitterapi",
+    "twitterapi.io",
+    "twitterapi-io",
+    "twitterapi-io-mcp",
+    "api-documentation",
+    "api-reference",
+    "ai-assistant",
+    "llm",
+    "anthropic",
+    "offline-docs",
+    "claude-mcp",
+    "twitter-docs",
+    "mcp-server",
+    "claude-desktop",
+    "tweet-search",
+    "social-media-api",
+    "twitter-data",
+    "cursor-mcp",
+    "windsurf-mcp"
+  ],
+  "author": "Doruk Ardahan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorukardahan/twitterapi-io-mcp.git"
+  },
+  "homepage": "https://github.com/dorukardahan/twitterapi-io-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/dorukardahan/twitterapi-io-mcp/issues"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "files": [
+    "index.js",
+    "data/docs.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

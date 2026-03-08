@@ -1,0 +1,13 @@
+# twitterapi-io-mcp
+
+> MCP server providing offline access to TwitterAPI.io documentation for AI assistants. 59 endpoints, 19 pages, 21 blogs. No API key required.
+
+## Docs
+
+- [README](https://github.com/dorukardahan/twitterapi-io-mcp#readme): Installation, tools, usage
+- [Changelog](https://github.com/dorukardahan/twitterapi-io-mcp/blob/main/CHANGELOG.md): Version history
+- [npm](https://www.npmjs.com/package/twitterapi-io-mcp): Package page
+
+## Optional
+
+- [Contributing](https://github.com/dorukardahan/twitterapi-io-mcp/blob/main/AGENTS.md): Development guidelines

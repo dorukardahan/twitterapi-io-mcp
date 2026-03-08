@@ -1,0 +1,95 @@
+name: Publish to MCP Registry
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  publish-registry:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      REGISTRY_URL: https://registry.modelcontextprotocol.io
+      REGISTRY_AUDIENCE: mcp-registry
+      SERVER_JSON_PATH: server.json
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Exchange GitHub OIDC token for registry JWT
+        id: exchange
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ ! -f "$SERVER_JSON_PATH" ]; then
+            echo "server.json not found at $SERVER_JSON_PATH" >&2
+            exit 1
+          fi
+
+          if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] || [ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]; then
+            echo "GitHub OIDC environment variables are missing. Ensure permissions: id-token: write" >&2
+            exit 1
+          fi
+
+          OIDC_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${REGISTRY_AUDIENCE}"
+          echo "Requesting GitHub OIDC token for audience: ${REGISTRY_AUDIENCE}"
+
+          OIDC_BODY_FILE="$(mktemp)"
+          OIDC_STATUS="$(curl -sS -o "$OIDC_BODY_FILE" -w "%{http_code}" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$OIDC_URL")"
+          if [ "$OIDC_STATUS" != "200" ]; then
+            echo "OIDC token request failed: HTTP ${OIDC_STATUS}" >&2
+            cat "$OIDC_BODY_FILE" >&2
+            exit 1
+          fi
+
+          OIDC_TOKEN="$(node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.stdout.write(d.value||'');" "$OIDC_BODY_FILE")"
+
+          if [ -z "$OIDC_TOKEN" ]; then
+            echo "Failed to obtain GitHub OIDC token" >&2
+            exit 1
+          fi
+
+          REGISTRY_BODY_FILE="$(mktemp)"
+          REGISTRY_STATUS="$(curl -sS -o "$REGISTRY_BODY_FILE" -w "%{http_code}" -H "Content-Type: application/json" -d "{\"oidc_token\":\"$OIDC_TOKEN\"}" "$REGISTRY_URL/v0.1/auth/github-oidc")"
+          if [ "$REGISTRY_STATUS" != "200" ]; then
+            echo "Registry token exchange failed: HTTP ${REGISTRY_STATUS}" >&2
+            cat "$REGISTRY_BODY_FILE" >&2
+            exit 1
+          fi
+
+          REGISTRY_TOKEN="$(node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.stdout.write(d.registry_token||'');" "$REGISTRY_BODY_FILE")"
+
+          if [ -z "$REGISTRY_TOKEN" ]; then
+            echo "Failed to exchange registry token" >&2
+            exit 1
+          fi
+
+          echo "::add-mask::$REGISTRY_TOKEN"
+          echo "registry_token=$REGISTRY_TOKEN" >> "$GITHUB_OUTPUT"
+
+      - name: Publish server.json to registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          RESPONSE_FILE="$(mktemp)"
+          STATUS_CODE="$(curl -sS -o "$RESPONSE_FILE" -w "%{http_code}" \
+            -H "Authorization: Bearer ${{ steps.exchange.outputs.registry_token }}" \
+            -H "Content-Type: application/json" \
+            --data-binary "@${SERVER_JSON_PATH}" \
+            "$REGISTRY_URL/v0.1/publish")"
+
+          if [ "$STATUS_CODE" != "200" ] && [ "$STATUS_CODE" != "409" ]; then
+            echo "Registry publish failed: HTTP ${STATUS_CODE}" >&2
+            cat "$RESPONSE_FILE" >&2
+            exit 1
+          fi
+
+          if [ "$STATUS_CODE" = "409" ]; then
+            echo "::warning::Version already registered (409 Conflict) — skipping"
+          fi
+
+          cat "$RESPONSE_FILE" | tee registry-response.json
