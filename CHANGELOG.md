@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.3...v1.1.4) (2026-03-14)
+
+
+### Bug Fixes
+
+* add npm upgrade step for automation token compatibility ([12b3eed](https://github.com/dorukardahan/twitterapi-io-mcp/commit/12b3eede2e4ad39601ffb870a022278e2f8870ea))
+
 ## [1.1.3](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.2...v1.1.3) (2026-03-14)
 
 
