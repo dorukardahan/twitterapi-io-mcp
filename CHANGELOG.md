@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.0.22...v1.1.0) (2026-03-14)
+
+
+### Bug Fixes
+
+* handle 409 Conflict in MCP Registry publish (idempotent re-releases) ([476b270](https://github.com/dorukardahan/twitterapi-io-mcp/commit/476b270ce89e0256b1cc67cbdec5666556b198ec))
+* update dependencies to resolve security vulnerabilities ([d61013e](https://github.com/dorukardahan/twitterapi-io-mcp/commit/d61013ea4845f0441a0f902059eed839d3bca3dd))
+
+
+### Features
+
+* add semantic-release for automated versioning and publishing ([f9aa0d4](https://github.com/dorukardahan/twitterapi-io-mcp/commit/f9aa0d4c5b4eccc0bf1b29cf96754baad1617dc5))
+* add Twitter platform advisory for search operator degradation (v1.0.23) ([7c2b784](https://github.com/dorukardahan/twitterapi-io-mcp/commit/7c2b784071f10d700fe2823a05f34ec0d6da79a1))
+* sync endpoints with live API docs — add 2 new, remove 7 deprecated ([b9d0d37](https://github.com/dorukardahan/twitterapi-io-mcp/commit/b9d0d370a9290e723317e09b10b43f4bbb7f3980))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
