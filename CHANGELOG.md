@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.2...v1.1.3) (2026-03-14)
+
+
+### Bug Fixes
+
+* use NPM_TOKEN for npm publish instead of OIDC (2FA-protected account) ([89c549b](https://github.com/dorukardahan/twitterapi-io-mcp/commit/89c549bb40939a87548a7c1bb3d41efef0f7e7d6))
+
 ## [1.1.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.1...v1.1.2) (2026-03-14)
 
 
