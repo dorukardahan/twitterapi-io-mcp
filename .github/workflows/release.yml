@@ -67,6 +67,9 @@ jobs:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Upgrade npm (required for automation token compatibility)
+        run: npm install -g npm@11.6.0
+
       - name: Install dependencies
         run: npm ci
 
@@ -82,7 +85,13 @@ jobs:
             exit 0
           fi
 
-          NODE_AUTH_TOKEN="$NPM_TOKEN" npm publish --access public
+          if [ -n "${NPM_TOKEN:-}" ]; then
+            echo "Publishing with NPM_TOKEN."
+            NODE_AUTH_TOKEN="$NPM_TOKEN" npm publish --access public
+          else
+            echo "Publishing with OIDC trusted publishing."
+            npm publish --provenance --access public
+          fi
 
       - name: Publish legacy wrapper (twitterapi-docs-mcp)
         working-directory: packages/twitterapi-docs-mcp
