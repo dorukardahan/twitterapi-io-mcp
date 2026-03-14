@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.5...v1.1.6) (2026-03-14)
+
+
+### Bug Fixes
+
+* run MCP registry publish after npm publish to avoid 404 race condition ([d043d29](https://github.com/dorukardahan/twitterapi-io-mcp/commit/d043d29097dd72147a3fce573ba3540d7d1d1a51))
+
 ## [1.1.5](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.4...v1.1.5) (2026-03-14)
 
 
