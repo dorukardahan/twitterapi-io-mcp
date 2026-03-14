@@ -7,7 +7,7 @@
       "changelogFile": "CHANGELOG.md"
     }],
     ["@semantic-release/npm", {
-      "npmPublish": true
+      "npmPublish": false
     }],
     ["@semantic-release/exec", {
       "prepareCmd": "node -e \"const f='server.json';const d=JSON.parse(require('fs').readFileSync(f,'utf8'));d.version='${nextRelease.version}';d.packages[0].version='${nextRelease.version}';require('fs').writeFileSync(f,JSON.stringify(d,null,2)+'\\n')\""

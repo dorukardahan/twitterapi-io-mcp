@@ -40,8 +40,6 @@ jobs:
         id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           OUTPUT=$(npx semantic-release 2>&1) || true
           echo "$OUTPUT"
@@ -53,12 +51,12 @@ jobs:
             echo "new_release_published=false" >> "$GITHUB_OUTPUT"
           fi
 
-  publish-legacy:
+  publish-npm:
     needs: release
     if: needs.release.outputs.new_release_published == 'true'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (latest, includes semantic-release commit)
         uses: actions/checkout@v4
         with:
           ref: main
@@ -68,6 +66,23 @@ jobs:
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish twitterapi-io-mcp to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VERSION="$(node -p 'require("./package.json").version')"
+          echo "Publishing twitterapi-io-mcp@$VERSION"
+
+          if npm view twitterapi-io-mcp@"$VERSION" version >/dev/null 2>&1; then
+            echo "twitterapi-io-mcp@$VERSION already published; skipping."
+            exit 0
+          fi
+
+          NODE_AUTH_TOKEN="$NPM_TOKEN" npm publish --access public
 
       - name: Publish legacy wrapper (twitterapi-docs-mcp)
         working-directory: packages/twitterapi-docs-mcp
@@ -93,7 +108,7 @@ jobs:
       REGISTRY_AUDIENCE: mcp-registry
       SERVER_JSON_PATH: server.json
     steps:
-      - name: Checkout
+      - name: Checkout (latest, includes semantic-release commit)
         uses: actions/checkout@v4
         with:
           ref: main
@@ -103,48 +118,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           if [ ! -f "$SERVER_JSON_PATH" ]; then
-            echo "server.json not found at $SERVER_JSON_PATH" >&2
-            exit 1
+            echo "server.json not found" >&2; exit 1
           fi
-
           if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] || [ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]; then
-            echo "GitHub OIDC environment variables are missing. Ensure permissions: id-token: write" >&2
-            exit 1
+            echo "OIDC env missing" >&2; exit 1
           fi
-
           OIDC_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${REGISTRY_AUDIENCE}"
-          echo "Requesting GitHub OIDC token for audience: ${REGISTRY_AUDIENCE}"
-
           OIDC_BODY_FILE="$(mktemp)"
           OIDC_STATUS="$(curl -sS -o "$OIDC_BODY_FILE" -w "%{http_code}" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$OIDC_URL")"
           if [ "$OIDC_STATUS" != "200" ]; then
-            echo "OIDC token request failed: HTTP ${OIDC_STATUS}" >&2
-            cat "$OIDC_BODY_FILE" >&2
-            exit 1
+            echo "OIDC token request failed: HTTP ${OIDC_STATUS}" >&2; cat "$OIDC_BODY_FILE" >&2; exit 1
           fi
-
-          OIDC_TOKEN="$(node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.stdout.write(d.value||'');" "$OIDC_BODY_FILE")"
-          if [ -z "$OIDC_TOKEN" ]; then
-            echo "Failed to obtain GitHub OIDC token" >&2
-            exit 1
-          fi
-
+          OIDC_TOKEN="$(node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(d.value||'');" "$OIDC_BODY_FILE")"
+          if [ -z "$OIDC_TOKEN" ]; then echo "No OIDC token" >&2; exit 1; fi
           REGISTRY_BODY_FILE="$(mktemp)"
           REGISTRY_STATUS="$(curl -sS -o "$REGISTRY_BODY_FILE" -w "%{http_code}" -H "Content-Type: application/json" -d "{\"oidc_token\":\"$OIDC_TOKEN\"}" "$REGISTRY_URL/v0.1/auth/github-oidc")"
           if [ "$REGISTRY_STATUS" != "200" ]; then
-            echo "Registry token exchange failed: HTTP ${REGISTRY_STATUS}" >&2
-            cat "$REGISTRY_BODY_FILE" >&2
-            exit 1
+            echo "Registry exchange failed: HTTP ${REGISTRY_STATUS}" >&2; cat "$REGISTRY_BODY_FILE" >&2; exit 1
           fi
-
-          REGISTRY_TOKEN="$(node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.stdout.write(d.registry_token||'');" "$REGISTRY_BODY_FILE")"
-          if [ -z "$REGISTRY_TOKEN" ]; then
-            echo "Failed to exchange registry token" >&2
-            exit 1
-          fi
-
+          REGISTRY_TOKEN="$(node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(d.registry_token||'');" "$REGISTRY_BODY_FILE")"
+          if [ -z "$REGISTRY_TOKEN" ]; then echo "No registry token" >&2; exit 1; fi
           echo "::add-mask::$REGISTRY_TOKEN"
           echo "registry_token=$REGISTRY_TOKEN" >> "$GITHUB_OUTPUT"
 
@@ -158,15 +152,10 @@ jobs:
             -H "Content-Type: application/json" \
             --data-binary "@${SERVER_JSON_PATH}" \
             "$REGISTRY_URL/v0.1/publish")"
-
           if [ "$STATUS_CODE" != "200" ] && [ "$STATUS_CODE" != "409" ]; then
-            echo "Registry publish failed: HTTP ${STATUS_CODE}" >&2
-            cat "$RESPONSE_FILE" >&2
-            exit 1
+            echo "Registry publish failed: HTTP ${STATUS_CODE}" >&2; cat "$RESPONSE_FILE" >&2; exit 1
           fi
-
           if [ "$STATUS_CODE" = "409" ]; then
             echo "::warning::Version already registered (409 Conflict) — skipping"
           fi
-
           cat "$RESPONSE_FILE" | tee registry-response.json
