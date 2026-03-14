@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.4...v1.1.5) (2026-03-14)
+
+
+### Bug Fixes
+
+* add CI/CD notes to CLAUDE.md for token expiry awareness ([8ddc15d](https://github.com/dorukardahan/twitterapi-io-mcp/commit/8ddc15d62386203460d3b57bb87de3ee7831f3cf))
+
 ## [1.1.4](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.3...v1.1.4) (2026-03-14)
 
 
