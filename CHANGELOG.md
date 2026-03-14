@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.0...v1.1.1) (2026-03-14)
+
+
+### Bug Fixes
+
+* update server.json version to 1.1.0 for MCP registry publish ([60008cc](https://github.com/dorukardahan/twitterapi-io-mcp/commit/60008cc994565b1c7a985d8ec6d6e2afea644c9a))
+
 # [1.1.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.0.22...v1.1.0) (2026-03-14)
 
 
