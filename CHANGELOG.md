@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.1...v1.1.2) (2026-03-14)
+
+
+### Bug Fixes
+
+* unified release pipeline — semantic-release handles npm + registry + GitHub release ([5f272c7](https://github.com/dorukardahan/twitterapi-io-mcp/commit/5f272c7a4896e65fbee7abe578460d1f59862648))
+
 ## [1.1.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.0...v1.1.1) (2026-03-14)
 
 
