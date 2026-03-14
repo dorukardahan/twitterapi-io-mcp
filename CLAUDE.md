@@ -16,7 +16,7 @@ MCP server providing offline access to TwitterAPI.io documentation for Claude an
 | File | Purpose |
 |------|---------|
 | `index.js` | Main MCP server (ES Module, no build step) |
-| `data/docs.json` | Bundled docs snapshot (59 endpoints, 19 pages, 21 blog posts) |
+| `data/docs.json` | Bundled docs snapshot (54 endpoints, 19 pages, 21 blog posts) |
 | `scrape-all.cjs` | Documentation scraper (not in npm package) |
 | `test/index.test.js` | Unit + MCP integration tests |
 | `packages/twitterapi-docs-mcp/` | Legacy npm wrapper (deprecated) |

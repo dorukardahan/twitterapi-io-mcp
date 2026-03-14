@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.24] - 2026-03-14
+
+### Added
+- `list_timeline` - Get List Tweet TimeLine
+- `get_user_timeline` - Get User TimeLine
+
+### Removed
+- 6 deprecated V1 endpoints: `create_tweet`, `like_tweet`, `retweet_tweet`, `login_by_email_or_username`, `login_by_2fa`, `upload_tweet_image`
+- `get_dm_history_by_user_id` removed from live docs
+
+### Changed
+- Total endpoints: 59 → 54
+
 ## [1.0.23] - 2026-03-08
 
 ### Added

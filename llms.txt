@@ -1,6 +1,6 @@
 # twitterapi-io-mcp
 
-> MCP server providing offline access to TwitterAPI.io documentation for AI assistants. 59 endpoints, 19 pages, 21 blogs. No API key required.
+> MCP server providing offline access to TwitterAPI.io documentation for AI assistants. 54 endpoints, 19 pages, 21 blogs. No API key required.
 
 ## Docs
 
