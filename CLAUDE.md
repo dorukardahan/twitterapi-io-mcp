@@ -53,3 +53,9 @@ Before publishing a new version:
 - `scrape-*.cjs` - Scrapers
 - `MCP-*.md` - Development notes (gitignored)
 - `cache/` - Local cache (gitignored)
+
+## CI/CD Notes
+
+- npm publish uses Granular Access Token (NPM_TOKEN secret) — expires every 90 days
+- semantic-release manages versioning, changelog, GitHub releases
+- Pipeline: push to main → semantic-release → npm publish → MCP registry publish (all in release.yml)
