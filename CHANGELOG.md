@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Total endpoints: 59 → 54
 
+### Fixed
+- Security: updated hono 4.11.9 → 4.12.8 (5 CVEs), @hono/node-server → 1.19.11, ajv → 8.18.0, express-rate-limit → 8.3.1
+
+### Infrastructure
+- Added semantic-release for automated versioning, changelog, and GitHub releases
+- Added `.releaserc.json` configuration
+- Added `.github/workflows/release.yml` — triggers on push to main
+
 ## [1.0.23] - 2026-03-08
 
 ### Added
