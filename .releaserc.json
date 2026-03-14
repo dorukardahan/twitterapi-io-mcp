@@ -7,10 +7,13 @@
       "changelogFile": "CHANGELOG.md"
     }],
     ["@semantic-release/npm", {
-      "npmPublish": false
+      "npmPublish": true
+    }],
+    ["@semantic-release/exec", {
+      "prepareCmd": "node -e \"const f='server.json';const d=JSON.parse(require('fs').readFileSync(f,'utf8'));d.version='${nextRelease.version}';d.packages[0].version='${nextRelease.version}';require('fs').writeFileSync(f,JSON.stringify(d,null,2)+'\\n')\""
     }],
     ["@semantic-release/git", {
-      "assets": ["CHANGELOG.md", "package.json", "package-lock.json"],
+      "assets": ["CHANGELOG.md", "package.json", "package-lock.json", "server.json"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
     "@semantic-release/github"
