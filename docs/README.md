@@ -4,7 +4,7 @@ This folder contains a **Markdown representation** of the bundled documentation 
 
 - Source: https://docs.twitterapi.io
 - Snapshot date: 2026-02-21T05:47:44.293Z
-- Endpoints: 59
+- Endpoints: 54
 - Pages: 0
 - Blog posts: 0
 

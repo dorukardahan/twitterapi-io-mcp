@@ -13,6 +13,7 @@ const ENDPOINTS = [
   'get_user_by_username',
   'batch_get_user_by_userids',
   'get_user_last_tweets',
+  'get_user_timeline',
   'get_user_followers',
   'get_user_followings',
   'get_user_mention',
@@ -34,6 +35,7 @@ const ENDPOINTS = [
   // List Endpoints
   'get_list_followers',
   'get_list_members',
+  'list_timeline',
 
   // Community Endpoints
   'get_community_by_id',
@@ -53,18 +55,11 @@ const ENDPOINTS = [
 
   // Post & Action V2
   'user_login_v2',
-  'login_by_email_or_username',
-  'login_by_2fa',
   'upload_media_v2',
-  'upload_tweet_image',
-  'create_tweet',
   'create_tweet_v2',
   'delete_tweet_v2',
   'send_dm_v2',
-  'get_dm_history_by_user_id',
-  'retweet_tweet',
   'retweet_tweet_v2',
-  'like_tweet',
   'like_tweet_v2',
   'unlike_tweet_v2',
   'follow_user_v2',

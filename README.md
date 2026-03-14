@@ -1,6 +1,6 @@
 # twitterapi-io-mcp
 
-> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 59 endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
+> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 54 endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
@@ -17,11 +17,11 @@ claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 
 An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistants **instant, offline access** to [TwitterAPI.io](https://twitterapi.io) documentation.
 
-- **59 API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
+- **54 API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
 - **32 guide pages** covering pricing, authentication, rate limits, webhooks, streaming
 - **24 blog posts** with tutorials and use cases
 - **All v2 write endpoints** documented with `login_cookies`, `proxy`, and body params
-- **4 deprecated v1 endpoints** marked with migration notices
+- **All deprecated v1 endpoints removed** — only current v2 endpoints remain
 - **Zero API key required** — everything is bundled locally
 
 Unlike other Twitter MCP servers that proxy live API calls (and need your API key), this one ships a complete documentation snapshot. Your AI assistant reads it locally, instantly.
@@ -34,7 +34,7 @@ Unlike other Twitter MCP servers that proxy live API calls (and need your API ke
 ### v1.0.22 Highlights
 - **7 new endpoints** (52 → 59 total): `get_space_detail`, `get_tweet_replies_v2`, `get_user_about`, `get_user_to_monitor_tweet`, `update_avatar_v2`, `update_banner_v2`, `update_profile_v2`
 - Fresh rescrape from docs.twitterapi.io (Feb 21, 2026)
-- All 59 endpoints now match official llms.txt index
+- All 54 endpoints now match official llms.txt index
 
 - Scraper auto-extracts method/body/params — `npm run scrape` keeps data fresh
 
@@ -182,19 +182,19 @@ Here are real prompts that work well with this MCP server:
 - *"How do I upload media and create a tweet?"* — triggers sequential `get_twitterapi_endpoint` calls
 
 <details>
-<summary><strong>All 59 endpoints by category</strong></summary>
+<summary><strong>All 54 endpoints by category</strong></summary>
 
 | Category | Count | Endpoints |
 |----------|-------|-----------|
-| **User** | 12 | `get_user_by_username`, `get_user_followers`, `get_user_followings`, `batch_get_user_by_userids`, and 8 more |
+| **User** | 12 | `get_user_by_username`, `get_user_followers`, `get_user_followings`, `get_user_timeline`, and 8 more |
 | **Tweet** | 8 | `tweet_advanced_search`, `get_tweet_by_ids`, `get_tweet_replies_v2`, `get_user_tweets`, and 4 more |
 | **Community** | 9 | `create_community_v2`, `get_community_by_id`, `join_community_v2`, and 6 more |
 | **Profile** | 3 | `update_avatar_v2`, `update_banner_v2`, `update_profile_v2` |
 | **Webhook** | 4 | `add_webhook_rule`, `get_webhook_rules`, `update_webhook_rule`, `delete_webhook_rule` |
 | **Stream** | 3 | `add_user_to_monitor_tweet`, `get_user_to_monitor_tweet`, `remove_user_from_monitor_tweet` |
-| **Action** | 14 | `create_tweet_v2`, `like_tweet_v2`, `retweet_tweet_v2`, `upload_media_v2`, and 10 more |
-| **DM** | 2 | `send_dm_v2`, `get_dm_history_by_user_id` |
-| **List** | 2 | `get_list_followers`, `get_list_members` |
+| **Action** | 12 | `create_tweet_v2`, `like_tweet_v2`, `retweet_tweet_v2`, `upload_media_v2`, and 8 more |
+| **DM** | 1 | `send_dm_v2` |
+| **List** | 3 | `get_list_followers`, `get_list_members`, `list_timeline` |
 | **Other** | 2 | `get_trends`, `get_space_detail` |
 
 </details>
@@ -240,7 +240,7 @@ Restart your MCP client after adding the server config. Most clients (Claude Des
 │   Claude /   │ ◄──────────────────► │ twitterapi-io-mcp│
 │  Cursor /    │                      │                  │
 │  VS Code     │                      │  Bundled docs    │
-└─────────────┘                      │  (59 endpoints)  │
+└─────────────┘                      │  (54 endpoints)  │
                                      └──────────────────┘
                                        No network needed
 ```
@@ -275,7 +275,7 @@ npm run scrape  # Update docs snapshot from twitterapi.io
 
 ## Not using MCP?
 
-If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 55 endpoints:
+If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 54 endpoints:
 
 👉 **[twitterapi-io-skill](https://github.com/dorukardahan/twitterapi-io-skill)** — works with OpenClaw, Claude, GPT, Gemini, and any LLM.
 
