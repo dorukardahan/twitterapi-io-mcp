@@ -26,17 +26,12 @@ An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistant
 
 Unlike other Twitter MCP servers that proxy live API calls (and need your API key), this one ships a complete documentation snapshot. Your AI assistant reads it locally, instantly.
 
-### v1.0.23 Highlights
-- **Platform advisory**: Twitter disabled `since:/until:` search operators and pagination (~Mar 5, 2026). Workarounds documented in `docs/platform-advisory-2026-03.md`.
-- **Workaround**: Use `since_time:UNIX` / `until_time:UNIX` format instead (tested, working)
-- **Webhook URL warning**: URL not auto-restored after API key rotation — must be manually re-set
+### Recent Changes
+- **v1.1.x**: Added `list_timeline` + `get_user_timeline`, removed 7 deprecated V1 endpoints, security fixes (hono, ajv, express-rate-limit)
+- **v1.0.23**: Platform advisory — Twitter disabled `since:/until:` search operators. Use `since_time:UNIX` / `until_time:UNIX` instead
+- **v1.0.22**: Added 7 endpoints (`get_space_detail`, `get_tweet_replies_v2`, `get_user_about`, etc.)
 
-### v1.0.22 Highlights
-- **7 new endpoints** (52 → 59 total): `get_space_detail`, `get_tweet_replies_v2`, `get_user_about`, `get_user_to_monitor_tweet`, `update_avatar_v2`, `update_banner_v2`, `update_profile_v2`
-- Fresh rescrape from docs.twitterapi.io (Feb 21, 2026)
-- All 54 endpoints now match official llms.txt index
-
-- Scraper auto-extracts method/body/params — `npm run scrape` keeps data fresh
+See [CHANGELOG.md](CHANGELOG.md) for full history.
 
 > **Disclaimer**: Independent community project. Not affiliated with TwitterAPI.io.
 
@@ -166,7 +161,7 @@ If you're an AI assistant using this MCP server, here's a quick reference:
 **Tips:**
 - Search is fuzzy and typo-tolerant: `"twet object"` still finds results
 - Use `max_results: 5` for focused results
-- Check the `deprecation_notice` field — some legacy endpoints have v2 replacements
+- All endpoints are current v2 — no deprecated endpoints remain
 
 ## What can you ask?
 
@@ -178,7 +173,7 @@ Here are real prompts that work well with this MCP server:
 - *"What's the pricing?"* — triggers `get_twitterapi_pricing`
 - *"List all user-related endpoints"* — triggers `list_twitterapi_endpoints` with `category: "user"`
 - *"How do webhook filter rules work?"* — triggers `search_twitterapi_docs`
-- *"What endpoints are deprecated?"* — triggers `search_twitterapi_docs` with `query: "deprecated"`
+- *"What write endpoints need login?"* — triggers `search_twitterapi_docs` with `query: "login_cookies"`
 - *"How do I upload media and create a tweet?"* — triggers sequential `get_twitterapi_endpoint` calls
 
 <details>
@@ -186,15 +181,17 @@ Here are real prompts that work well with this MCP server:
 
 | Category | Count | Endpoints |
 |----------|-------|-----------|
-| **User** | 12 | `get_user_by_username`, `get_user_followers`, `get_user_followings`, `get_user_timeline`, and 8 more |
-| **Tweet** | 8 | `tweet_advanced_search`, `get_tweet_by_ids`, `get_tweet_replies_v2`, `get_user_tweets`, and 4 more |
-| **Community** | 9 | `create_community_v2`, `get_community_by_id`, `join_community_v2`, and 6 more |
+| **User** | 11 | `get_user_by_username`, `get_user_timeline`, `get_user_last_tweets`, `get_user_followers`, `get_user_followings`, `get_user_mention`, `get_user_verified_followers`, `get_user_about`, `batch_get_user_by_userids`, `check_follow_relationship`, `search_user` |
+| **Tweet** | 8 | `tweet_advanced_search`, `get_tweet_by_ids`, `get_tweet_reply`, `get_tweet_replies_v2`, `get_tweet_quote`, `get_tweet_retweeter`, `get_tweet_thread_context`, `get_article` |
+| **Action** | 8 | `create_tweet_v2`, `delete_tweet_v2`, `like_tweet_v2`, `unlike_tweet_v2`, `retweet_tweet_v2`, `follow_user_v2`, `unfollow_user_v2`, `upload_media_v2` |
+| **Community** | 9 | `get_community_by_id`, `get_community_members`, `get_community_moderators`, `get_community_tweets`, `get_all_community_tweets`, `create_community_v2`, `delete_community_v2`, `join_community_v2`, `leave_community_v2` |
+| **List** | 3 | `get_list_followers`, `get_list_members`, `list_timeline` |
 | **Profile** | 3 | `update_avatar_v2`, `update_banner_v2`, `update_profile_v2` |
 | **Webhook** | 4 | `add_webhook_rule`, `get_webhook_rules`, `update_webhook_rule`, `delete_webhook_rule` |
-| **Stream** | 3 | `add_user_to_monitor_tweet`, `get_user_to_monitor_tweet`, `remove_user_from_monitor_tweet` |
-| **Action** | 12 | `create_tweet_v2`, `like_tweet_v2`, `retweet_tweet_v2`, `upload_media_v2`, and 8 more |
+| **Stream** | 3 | `add_user_to_monitor_tweet`, `get_user_to_monitor_tweet`, `remove_user_to_monitor_tweet` |
+| **Auth** | 1 | `user_login_v2` |
 | **DM** | 1 | `send_dm_v2` |
-| **List** | 3 | `get_list_followers`, `get_list_members`, `list_timeline` |
+| **Account** | 1 | `get_my_info` |
 | **Other** | 2 | `get_trends`, `get_space_detail` |
 
 </details>
@@ -268,7 +265,7 @@ If you work with the Twitter/X API through TwitterAPI.io, this saves you the sam
 git clone https://github.com/dorukardahan/twitterapi-io-mcp.git
 cd twitterapi-io-mcp
 npm install
-npm test        # Run tests (52 tests)
+npm test        # Run tests (48 tests)
 npm start       # Start server locally
 npm run scrape  # Update docs snapshot from twitterapi.io
 ```
