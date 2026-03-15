@@ -1,3 +1,23 @@
+# 1.0.0 (2026-03-15)
+
+
+### Bug Fixes
+
+* add CI/CD notes to CLAUDE.md for token expiry awareness ([d945b99](https://github.com/dorukardahan/twitterapi-io-mcp/commit/d945b99250bad0dd65b003b3850741a3ec0ebb38))
+* add npm upgrade step for automation token compatibility ([6b8e926](https://github.com/dorukardahan/twitterapi-io-mcp/commit/6b8e92602ce1d23c233522523acf9610f8e29809))
+* run MCP registry publish after npm publish to avoid 404 race condition ([85cb9ee](https://github.com/dorukardahan/twitterapi-io-mcp/commit/85cb9ee00deeb85f47eaaf8fa63c8c4bcf8e62cd))
+* unified release pipeline — semantic-release handles npm + registry + GitHub release ([da9e0e1](https://github.com/dorukardahan/twitterapi-io-mcp/commit/da9e0e15f133f4189a87915065e0c1687bb2f7da))
+* update dependencies to resolve security vulnerabilities ([0280f4a](https://github.com/dorukardahan/twitterapi-io-mcp/commit/0280f4a96dc420f7683c14a7e4aa0fac2ccbb7ae))
+* update server.json version to 1.1.0 for MCP registry publish ([372fdab](https://github.com/dorukardahan/twitterapi-io-mcp/commit/372fdabda7974b93fd28bbfee56e33e3b7104ed2))
+* use NPM_TOKEN for npm publish instead of OIDC (2FA-protected account) ([3e9573f](https://github.com/dorukardahan/twitterapi-io-mcp/commit/3e9573f06401f70122b3e187b82148f680f96921))
+
+
+### Features
+
+* add semantic-release for automated versioning and publishing ([5c07067](https://github.com/dorukardahan/twitterapi-io-mcp/commit/5c07067649ffff3c362d7f39ffe0bdb57d7431bd))
+* add Twitter platform advisory for search operator degradation (v1.0.23) ([0c99ab2](https://github.com/dorukardahan/twitterapi-io-mcp/commit/0c99ab209a195f1f4d5b31d5426f8935c65f4ba2))
+* sync endpoints with live API docs — add 2 new, remove 7 deprecated ([838d453](https://github.com/dorukardahan/twitterapi-io-mcp/commit/838d4533044e032170a06a8cc112bd61839f45e8))
+
 ## [1.1.6](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.5...v1.1.6) (2026-03-14)
 
 
