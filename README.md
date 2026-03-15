@@ -297,3 +297,4 @@ PRs welcome! Fork the repo, create a branch, make your changes, and open a pull 
 - [TwitterAPI.io](https://twitterapi.io) for the API service
 - [Anthropic](https://anthropic.com) for the Model Context Protocol
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
+
