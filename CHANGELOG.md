@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.7...v1.1.8) (2026-03-15)
+
+
+### Bug Fixes
+
+* correct package version to 1.1.7 and update npm README ([0a6e2e6](https://github.com/dorukardahan/twitterapi-io-mcp/commit/0a6e2e644a2def3a451afe470e863c57a298b090))
+
 # 1.0.0 (2026-03-15)
 
 
