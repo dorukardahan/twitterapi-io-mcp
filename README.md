@@ -27,6 +27,7 @@ An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistant
 Unlike other Twitter MCP servers that proxy live API calls (and need your API key), this one ships a complete documentation snapshot. Your AI assistant reads it locally, instantly.
 
 ### Recent Changes
+- **v1.2.0**: OpenAPI-first scraper rewrite — structured parameters with types, response schemas, eliminates Vercel checkpoint issues
 - **v1.1.x**: Added `list_timeline` + `get_user_timeline`, removed 7 deprecated V1 endpoints, security fixes (hono, ajv, express-rate-limit)
 - **v1.0.23**: Platform advisory — Twitter disabled `since:/until:` search operators. Use `since_time:UNIX` / `until_time:UNIX` instead
 - **v1.0.22**: Added 7 endpoints (`get_space_detail`, `get_tweet_replies_v2`, `get_user_about`, etc.)
