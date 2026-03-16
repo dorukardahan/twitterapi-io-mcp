@@ -3,10 +3,20 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/get_list_followers
 
 ## Endpoint
 
+- Method: `GET`
 - Path: `/twitter/list/followers`
+- API URL: `'https://api.twitterapi.io/twitter/list/followers?list_id=LIST_ID&cursor=CURSOR'`
 
 ## Description
 
 Get followers of a list. Page size is 20.
 
-_Scraped at: 2026-02-21T05:47:50.239Z_
+## Example (curl)
+
+```bash
+curl --request GET \
+  --url 'https://api.twitterapi.io/twitter/list/followers?list_id=LIST_ID&cursor=CURSOR' \
+  --header 'X-API-Key: <api-key>'
+```
+
+_Scraped at: 2026-03-16T02:37:54.447Z_
