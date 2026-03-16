@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.8...v1.2.0) (2026-03-16)
+
+
+### Features
+
+* rewrite scraper to OpenAPI-first approach (v3.0) ([19a7992](https://github.com/dorukardahan/twitterapi-io-mcp/commit/19a7992c8602a67557dae7cd000470bc3f2b6c8f))
+
 ## [1.1.8](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.7...v1.1.8) (2026-03-15)
 
 
