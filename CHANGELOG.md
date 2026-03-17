@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.3.0...v1.3.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* correct avatar/banner to multipart/form-data upload, add update_profile params and bug note ([4284789](https://github.com/dorukardahan/twitterapi-io-mcp/commit/4284789b87348ea9079594c113d9d706e5ac2fb2))
+
 # [1.3.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.2.0...v1.3.0) (2026-03-17)
 
 
