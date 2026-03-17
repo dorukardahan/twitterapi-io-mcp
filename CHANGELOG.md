@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.2.0...v1.3.0) (2026-03-17)
+
+
+### Features
+
+* add 4 missing endpoints to docs.json, update README count to 58 ([6b0b9a9](https://github.com/dorukardahan/twitterapi-io-mcp/commit/6b0b9a909f4b07f9321cdc40b71e59f202f6a318))
+
 # [1.2.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.1.8...v1.2.0) (2026-03-16)
 
 
