@@ -2253,7 +2253,33 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/delete_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Delete a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookie: The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set community_name: The name of the community to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Delete a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookie: The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set community_name: The name of the community to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "type": "string",
+          "required": true,
+          "description": "Base64 encoded login cookies from /twitter/user_login_v2"
+        },
+        {
+          "name": "community_id",
+          "type": "string",
+          "required": true,
+          "description": "The community ID to delete"
+        },
+        {
+          "name": "community_name",
+          "type": "string",
+          "required": true,
+          "description": "The community name"
+        },
+        {
+          "name": "proxy",
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL"
+        }
+      ]
     },
     "join_community_v2": {
       "name": "join_community_v2",
@@ -2682,7 +2708,35 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/oapi/tweet_filter/update_rule' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Update a tweet filter rule. You must set all parameters. rule_id: ID of the rule to update.Must be set tag: Custom tag to identify the rule.Must be set.Max length is 255 value: Rule to filter tweets.eg \"from:elonmusk OR from:kaitoeasyapi\".Must be set.Max length is 255 interval_seconds: Interval to check tweets.Must be set.Min value is 0.1.Max value is 86400 () is_effect: Whether the rule is effective.Must be set.1 means effective, 0 means not effective.Default value is 0"
+      "raw_text": "Update a tweet filter rule. You must set all parameters. rule_id: ID of the rule to update.Must be set tag: Custom tag to identify the rule.Must be set.Max length is 255 value: Rule to filter tweets.eg \"from:elonmusk OR from:kaitoeasyapi\".Must be set.Max length is 255 interval_seconds: Interval to check tweets.Must be set.Min value is 0.1.Max value is 86400 () is_effect: Whether the rule is effective.Must be set.1 means effective, 0 means not effective.Default value is 0",
+      "parameters": [
+        {
+          "name": "rule_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "tag",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "interval_seconds",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "is_effect",
+          "type": "integer",
+          "required": false,
+          "description": "0=inactive, 1=active"
+        }
+      ]
     },
     "delete_webhook_rule": {
       "name": "delete_webhook_rule",
@@ -2724,7 +2778,14 @@
       "code_snippets": [
         "curl --request DELETE \\\n  --url 'https://api.twitterapi.io/oapi/tweet_filter/delete_rule' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Delete a tweet filter rule. You must set all parameters. rule_id: ID of the rule to delete.Must be set"
+      "raw_text": "Delete a tweet filter rule. You must set all parameters. rule_id: ID of the rule to delete.Must be set",
+      "parameters": [
+        {
+          "name": "rule_id",
+          "type": "string",
+          "required": false
+        }
+      ]
     },
     "get_community_by_id": {
       "name": "get_community_by_id",
