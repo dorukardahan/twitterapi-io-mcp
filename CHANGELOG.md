@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.3.1...v1.3.2) (2026-03-17)
+
+
+### Bug Fixes
+
+* add missing params for delete_community, update_rule, delete_rule in docs.json ([9988259](https://github.com/dorukardahan/twitterapi-io-mcp/commit/9988259565558fb7cb9925f7f7b107d7ad55f526))
+
 ## [1.3.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.3.0...v1.3.1) (2026-03-17)
 
 
