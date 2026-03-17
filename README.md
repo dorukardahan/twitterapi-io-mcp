@@ -1,6 +1,6 @@
 # twitterapi-io-mcp
 
-> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 54 endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
+> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 58 endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
@@ -17,7 +17,7 @@ claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 
 An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistants **instant, offline access** to [TwitterAPI.io](https://twitterapi.io) documentation.
 
-- **54 API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
+- **58 API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
 - **32 guide pages** covering pricing, authentication, rate limits, webhooks, streaming
 - **24 blog posts** with tutorials and use cases
 - **All v2 write endpoints** documented with `login_cookies`, `proxy`, and body params
@@ -178,7 +178,7 @@ Here are real prompts that work well with this MCP server:
 - *"How do I upload media and create a tweet?"* — triggers sequential `get_twitterapi_endpoint` calls
 
 <details>
-<summary><strong>All 54 endpoints by category</strong></summary>
+<summary><strong>All 58 endpoints by category</strong></summary>
 
 | Category | Count | Endpoints |
 |----------|-------|-----------|
@@ -186,12 +186,12 @@ Here are real prompts that work well with this MCP server:
 | **Tweet** | 8 | `tweet_advanced_search`, `get_tweet_by_ids`, `get_tweet_reply`, `get_tweet_replies_v2`, `get_tweet_quote`, `get_tweet_retweeter`, `get_tweet_thread_context`, `get_article` |
 | **Action** | 8 | `create_tweet_v2`, `delete_tweet_v2`, `like_tweet_v2`, `unlike_tweet_v2`, `retweet_tweet_v2`, `follow_user_v2`, `unfollow_user_v2`, `upload_media_v2` |
 | **Community** | 9 | `get_community_by_id`, `get_community_members`, `get_community_moderators`, `get_community_tweets`, `get_all_community_tweets`, `create_community_v2`, `delete_community_v2`, `join_community_v2`, `leave_community_v2` |
-| **List** | 3 | `get_list_followers`, `get_list_members`, `list_timeline` |
+| **List** | 6 | `get_list_followers`, `get_list_members`, `get_list_tweets`, `list_timeline`, `add_list_member`, `remove_list_member` |
 | **Profile** | 3 | `update_avatar_v2`, `update_banner_v2`, `update_profile_v2` |
 | **Webhook** | 4 | `add_webhook_rule`, `get_webhook_rules`, `update_webhook_rule`, `delete_webhook_rule` |
 | **Stream** | 3 | `add_user_to_monitor_tweet`, `get_user_to_monitor_tweet`, `remove_user_to_monitor_tweet` |
 | **Auth** | 1 | `user_login_v2` |
-| **DM** | 1 | `send_dm_v2` |
+| **DM** | 2 | `get_dm_history`, `send_dm_v2` |
 | **Account** | 1 | `get_my_info` |
 | **Other** | 2 | `get_trends`, `get_space_detail` |
 
@@ -238,7 +238,7 @@ Restart your MCP client after adding the server config. Most clients (Claude Des
 │   Claude /   │ ◄──────────────────► │ twitterapi-io-mcp│
 │  Cursor /    │                      │                  │
 │  VS Code     │                      │  Bundled docs    │
-└─────────────┘                      │  (54 endpoints)  │
+└─────────────┘                      │  (58 endpoints)  │
                                      └──────────────────┘
                                        No network needed
 ```
@@ -273,7 +273,7 @@ npm run scrape  # Update docs snapshot from twitterapi.io
 
 ## Not using MCP?
 
-If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 54 endpoints:
+If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 58 endpoints:
 
 👉 **[twitterapi-io-skill](https://github.com/dorukardahan/twitterapi-io-skill)** — works with OpenClaw, Claude, GPT, Gemini, and any LLM.
 
