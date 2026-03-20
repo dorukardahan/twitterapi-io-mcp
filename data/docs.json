@@ -3648,6 +3648,277 @@
         "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/list/tweets?listId=LIST_ID&cursor=CURSOR' \\\n  --header 'X-API-Key: <api-key>'"
       ],
       "raw_text": "Get tweets by list id. Each page returns exactly 20 tweets. Use cursor for pagination. listId: list id sinceTime: unix timestamp untilTime: unix timestamp includeReplies: include replies cursor: pagination cursor"
+    },
+    "user_login_v3": {
+      "name": "user_login_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/user_login_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Login API",
+      "description": "V3 Login API - Log in using your email, username, password, and 2FA code. This is an asynchronous login method. After calling this API, the system will process your login request in the background.",
+      "method": "POST",
+      "path": "/twitter/user_login_v3",
+      "parameters": [],
+      "requestBody": {
+        "contentType": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "user_name": {
+              "type": "string",
+              "description": "Twitter username. Must be set.",
+              "required": true
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address associated with the account. Must be set if cookie is empty.",
+              "required": false
+            },
+            "password": {
+              "type": "string",
+              "description": "The password of the user. Must be set if cookie is empty.",
+              "required": false
+            },
+            "totp_code": {
+              "type": "string",
+              "description": "The TOTP secret key for 2FA authentication. It is a 10-character string.",
+              "required": false
+            },
+            "cookie": {
+              "type": "string",
+              "description": "Optional. Pre-existing cookie string to resume a previous session.",
+              "required": false
+            },
+            "proxy": {
+              "type": "string",
+              "description": "The proxy to use. Must use high-quality residential proxies.",
+              "required": true
+            }
+          },
+          "required": [
+            "user_name",
+            "proxy"
+          ]
+        }
+      },
+      "curl": "curl -s -X POST \"https://api.twitterapi.io/twitter/user_login_v3\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\" -H \"Content-Type: application/json\" -d '{\"user_name\": \"USERNAME\", \"email\": \"EMAIL\", \"password\": \"PASSWORD\", \"proxy\": \"http://user:pass@host:port\"}'"
+    },
+    "send_tweet_v3": {
+      "name": "send_tweet_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/send_tweet_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Send Tweet API",
+      "description": "V3 Send Tweet API - Send a tweet using your username. This is an asynchronous method that queues your tweet for posting. You must have logged in via user_login_v3 first.",
+      "method": "POST",
+      "path": "/twitter/send_tweet_v3",
+      "parameters": [],
+      "requestBody": {
+        "contentType": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "user_name": {
+              "type": "string",
+              "description": "Twitter username. Must be set.",
+              "required": true
+            },
+            "text": {
+              "type": "string",
+              "description": "The text content of the tweet. Must be set.",
+              "required": true
+            },
+            "media_data_base64": {
+              "type": "string",
+              "description": "Optional. Base64 encoded media data.",
+              "required": false
+            },
+            "media_type": {
+              "type": "string",
+              "description": "Optional. MIME type: image/jpeg, image/png, image/gif, video/mp4",
+              "required": false
+            },
+            "community_id": {
+              "type": "string",
+              "description": "Optional. Community ID to post to.",
+              "required": false
+            }
+          },
+          "required": [
+            "user_name",
+            "text"
+          ]
+        }
+      },
+      "curl": "curl -s -X POST \"https://api.twitterapi.io/twitter/send_tweet_v3\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\" -H \"Content-Type: application/json\" -d '{\"user_name\": \"USERNAME\", \"text\": \"Hello world!\"}'"
+    },
+    "like_tweet_v3": {
+      "name": "like_tweet_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/like_tweet_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Like Tweet API",
+      "description": "V3 Like Tweet API - Like a tweet using your username. You must have logged in via user_login_v3 first. Trial operation price: $0.002 per call.",
+      "method": "POST",
+      "path": "/twitter/like_tweet_v3",
+      "parameters": [],
+      "requestBody": {
+        "contentType": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "user_name": {
+              "type": "string",
+              "description": "Twitter username. Must be set.",
+              "required": true
+            },
+            "tweet_id": {
+              "type": "string",
+              "description": "The ID of the tweet to like. Must be set.",
+              "required": true
+            }
+          },
+          "required": [
+            "user_name",
+            "tweet_id"
+          ]
+        }
+      },
+      "curl": "curl -s -X POST \"https://api.twitterapi.io/twitter/like_tweet_v3\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\" -H \"Content-Type: application/json\" -d '{\"user_name\": \"USERNAME\", \"tweet_id\": \"TWEET_ID\"}'"
+    },
+    "retweet_v3": {
+      "name": "retweet_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/retweet_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Retweet API",
+      "description": "V3 Retweet API - Retweet a tweet using your username. You must have logged in via user_login_v3 first. Trial operation price: $0.002 per call.",
+      "method": "POST",
+      "path": "/twitter/retweet_v3",
+      "parameters": [],
+      "requestBody": {
+        "contentType": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "user_name": {
+              "type": "string",
+              "description": "Twitter username. Must be set.",
+              "required": true
+            },
+            "tweet_id": {
+              "type": "string",
+              "description": "The ID of the tweet to retweet. Must be set.",
+              "required": true
+            }
+          },
+          "required": [
+            "user_name",
+            "tweet_id"
+          ]
+        }
+      },
+      "curl": "curl -s -X POST \"https://api.twitterapi.io/twitter/retweet_v3\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\" -H \"Content-Type: application/json\" -d '{\"user_name\": \"USERNAME\", \"tweet_id\": \"TWEET_ID\"}'"
+    },
+    "update_profile_v3": {
+      "name": "update_profile_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/update_profile_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Update Profile API",
+      "description": "V3 Update Profile API - Update your X profile information. Only non-empty fields will be updated. You must have logged in via user_login_v3 first.",
+      "method": "PUT",
+      "path": "/twitter/update_profile_v3",
+      "parameters": [],
+      "requestBody": {
+        "contentType": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "user_name": {
+              "type": "string",
+              "description": "Twitter username. Must be set.",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "description": "Optional. Display name.",
+              "required": false
+            },
+            "bio": {
+              "type": "string",
+              "description": "Optional. Profile bio/description.",
+              "required": false
+            },
+            "location": {
+              "type": "string",
+              "description": "Optional. Location.",
+              "required": false
+            },
+            "website": {
+              "type": "string",
+              "description": "Optional. Website URL.",
+              "required": false
+            },
+            "avatar": {
+              "type": "string",
+              "description": "Optional. Avatar image (base64 or URL).",
+              "required": false
+            },
+            "banner": {
+              "type": "string",
+              "description": "Optional. Banner image (base64 or URL).",
+              "required": false
+            }
+          },
+          "required": [
+            "user_name"
+          ]
+        }
+      },
+      "curl": "curl -s -X PUT \"https://api.twitterapi.io/twitter/update_profile_v3\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\" -H \"Content-Type: application/json\" -d '{\"user_name\": \"USERNAME\", \"name\": \"Display Name\", \"bio\": \"Bio text\"}'"
+    },
+    "delete_my_x_account_v3": {
+      "name": "delete_my_x_account_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/delete_my_x_account_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Delete Account API",
+      "description": "Remove your X account cookie from the system. This will delete the account data that was logged in via user_login_v3.",
+      "method": "DELETE",
+      "path": "/twitter/delete_my_x_account_v3",
+      "parameters": [],
+      "requestBody": {
+        "contentType": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "user_name": {
+              "type": "string",
+              "description": "Twitter username. Must be set.",
+              "required": true
+            }
+          },
+          "required": [
+            "user_name"
+          ]
+        }
+      },
+      "curl": "curl -s -X DELETE \"https://api.twitterapi.io/twitter/delete_my_x_account_v3\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\" -H \"Content-Type: application/json\" -d '{\"user_name\": \"USERNAME\"}'"
+    },
+    "get_my_x_account_detail_v3": {
+      "name": "get_my_x_account_detail_v3",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/get_my_x_account_detail_v3",
+      "scraped_at": "2026-03-20T20:06:00.000Z",
+      "title": "V3 Get Account Detail API",
+      "description": "V3 Get Account Detail API - Get the details of your X account that was logged in via user_login_v3. Once status is Active, then you can use the account to post tweets, etc.",
+      "method": "GET",
+      "path": "/twitter/get_my_x_account_detail_v3",
+      "parameters": [
+        {
+          "name": "user_name",
+          "in": "query",
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "description": "Twitter username. Must be set. The user must have been logged in via user_login_v3."
+        }
+      ],
+      "curl": "curl -s \"https://api.twitterapi.io/twitter/get_my_x_account_detail_v3?user_name=USERNAME\" -H \"X-API-Key: $TWITTERAPI_IO_KEY\""
     }
   },
   "pages": {
