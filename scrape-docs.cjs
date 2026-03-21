@@ -89,7 +89,7 @@ const PATH_TO_NAME = {
   '/oapi/x_user_stream/get_user_to_monitor_tweet': 'get_user_to_monitor_tweet',
 };
 
-// Paths to skip (deprecated V1, V3 beta, non-API)
+// Paths to skip (deprecated V1, offline endpoints, non-API)
 const SKIP_PATHS = new Set([
   '/twitter/create_tweet',
   '/twitter/like_tweet',
@@ -98,13 +98,6 @@ const SKIP_PATHS = new Set([
   '/twitter/login_by_2fa',
   '/twitter/upload_image',
   '/twitter/get_dm_history_by_user_id',
-  '/twitter/like_tweet_v3',
-  '/twitter/retweet_v3',
-  '/twitter/send_tweet_v3',
-  '/twitter/user_login_v3',
-  '/twitter/update_profile_v3',
-  '/twitter/delete_my_x_account_v3',
-  '/twitter/get_my_x_account_detail_v3',
   '/twitter/list/tweets',
   '/twitter/list/add_member',
   '/twitter/list/remove_member',
@@ -362,7 +355,7 @@ async function scrapeAll() {
   console.log(`
 ✅ Scraping tamamlandı! (v3.0 — OpenAPI-first)
    - ${processed} endpoint (OpenAPI'den)
-   - ${skipped} deprecated/V3 atlandı
+   - ${skipped} deprecated/offline atlandı
    - ${unmapped} unmapped path
    - ${Object.keys(docs.pages).length} sayfa (korundu)
    - ${Object.keys(docs.blogs).length} blog (korundu)
