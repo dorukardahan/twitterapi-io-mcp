@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.4.0...v1.4.1) (2026-03-21)
+
+
+### Bug Fixes
+
+* remove offline V3 endpoints ([1741ede](https://github.com/dorukardahan/twitterapi-io-mcp/commit/1741edea7dca70f6538eb4fe850a3b5b014443b2))
+
 # [1.4.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.3.2...v1.4.0) (2026-03-20)
 
 
