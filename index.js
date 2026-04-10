@@ -2348,7 +2348,7 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: "twitterapi://docs/all",
       mimeType: "application/json",
       name: "All TwitterAPI.io Documentation",
-      description: "58 endpoints + guide pages + blog posts",
+      description: "67 endpoints + guide pages + blog posts",
     },
     {
       uri: "twitterapi://docs/endpoints",

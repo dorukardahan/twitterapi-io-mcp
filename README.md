@@ -1,6 +1,6 @@
 # twitterapi-io-mcp
 
-> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 58 active endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
+> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 67 active endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
@@ -17,7 +17,7 @@ claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 
 An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistants **instant, offline access** to [TwitterAPI.io](https://twitterapi.io) documentation.
 
-- **58 active API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
+- **67 active API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
 - **32 guide pages** covering pricing, authentication, rate limits, webhooks, streaming
 - **24 blog posts** with tutorials and use cases
 - **All v2 write endpoints** documented with `login_cookies`, `proxy`, and body params
@@ -178,7 +178,7 @@ Here are real prompts that work well with this MCP server:
 - *"How do I upload media and create a tweet?"* — triggers sequential `get_twitterapi_endpoint` calls
 
 <details>
-<summary><strong>All 58 endpoints by category</strong></summary>
+<summary><strong>All 67 endpoints by category</strong></summary>
 
 | Category | Count | Endpoints |
 |----------|-------|-----------|
@@ -238,7 +238,7 @@ Restart your MCP client after adding the server config. Most clients (Claude Des
 │   Claude /   │ ◄──────────────────► │ twitterapi-io-mcp│
 │  Cursor /    │                      │                  │
 │  VS Code     │                      │  Bundled docs    │
-└─────────────┘                      │  (58 endpoints)  │
+└─────────────┘                      │  (67 endpoints)  │
                                      └──────────────────┘
                                        No network needed
 ```
@@ -273,7 +273,7 @@ npm run scrape  # Update docs snapshot from twitterapi.io
 
 ## Not using MCP?
 
-If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 58 active endpoints:
+If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 67 active endpoints:
 
 👉 **[twitterapi-io-skill](https://github.com/dorukardahan/twitterapi-io-skill)** — works with OpenClaw, Claude, GPT, Gemini, and any LLM.
 
