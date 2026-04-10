@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.4.1...v1.5.0) (2026-04-10)
+
+
+### Features
+
+* add 9 active openapi endpoints ([7cd9646](https://github.com/dorukardahan/twitterapi-io-mcp/commit/7cd964644e05fe0fd4ea1c3d01ef7de951ce98c0))
+
 ## [1.4.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.4.0...v1.4.1) (2026-03-21)
 
 
