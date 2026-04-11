@@ -1673,7 +1673,51 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/upload_media_v2' \\\n  --header 'X-API-Key: <api-key>'"
       ],
-      "raw_text": "Upload media to twitter.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. "
+      "raw_text": "Upload media to twitter.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "body": {
+        "file": {
+          "type": "file",
+          "required": true,
+          "description": "The media file to upload (image/video). Use multipart/form-data."
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies from /twitter/user_login_v2"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL. Example: http://username:password@ip:port"
+        },
+        "is_long_video": {
+          "type": "boolean",
+          "required": false,
+          "description": "Set to true for videos longer than 2:20 (Premium only)"
+        }
+      },
+      "body_parameters": {
+        "file": {
+          "type": "file",
+          "required": true,
+          "description": "The media file to upload (image/video). Use multipart/form-data."
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies from /twitter/user_login_v2"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL. Example: http://username:password@ip:port"
+        },
+        "is_long_video": {
+          "type": "boolean",
+          "required": false,
+          "description": "Set to true for videos longer than 2:20 (Premium only)"
+        }
+      }
     },
     "like_tweet_v2": {
       "name": "like_tweet_v2",
@@ -2444,7 +2488,8 @@
       "code_snippets": [
         "curl --request GET \\\n  --url 'https://api.twitterapi.io/oapi/tweet_filter/get_rules' \\\n  --header 'X-API-Key: <api-key>'"
       ],
-      "raw_text": "Get all tweet filter rules.Rule can be used in webhook and websocket.You can also modify the rule in our web page."
+      "raw_text": "Get all tweet filter rules.Rule can be used in webhook and websocket.You can also modify the rule in our web page.",
+      "parameters": {}
     },
     "add_user_to_monitor_tweet": {
       "name": "add_user_to_monitor_tweet",
@@ -2560,7 +2605,8 @@
       "code_snippets": [
         "curl --request GET \\\n  --url 'https://api.twitterapi.io/oapi/x_user_stream/get_user_to_monitor_tweet' \\\n  --header 'X-API-Key: <api-key>'"
       ],
-      "raw_text": "Get the list of users being monitored for real-time tweets. Returns all users that have been added for tweet monitoring. Please ref:https://twitterapi.io/twitter-stream"
+      "raw_text": "Get the list of users being monitored for real-time tweets. Returns all users that have been added for tweet monitoring. Please ref:https://twitterapi.io/twitter-stream",
+      "parameters": {}
     },
     "add_webhook_rule": {
       "name": "add_webhook_rule",
@@ -3165,7 +3211,8 @@
       "code_snippets": [
         "curl --request GET \\\n  --url 'https://api.twitterapi.io/oapi/my/info' \\\n  --header 'X-API-Key: <api-key>'"
       ],
-      "raw_text": "Get my info"
+      "raw_text": "Get my info",
+      "parameters": {}
     },
     "update_avatar_v2": {
       "name": "update_avatar_v2",
@@ -3501,7 +3548,34 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/list/add_member' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"auth_session\": \"SESSION\", \"list_id\": \"LIST_ID\", \"user_name\": \"USERNAME\", \"proxy\": \"http://user:pass@host:port\"}'"
       ],
-      "raw_text": "Add member to a list. Need to login first. auth_session: login session list_id: list id user_id: user id user_name: username proxy: proxy URL"
+      "raw_text": "Add member to a list. Need to login first. auth_session: login session list_id: list id user_id: user id user_name: username proxy: proxy URL",
+      "body": {
+        "auth_session": {
+          "type": "string",
+          "required": true,
+          "description": "The session from /twitter/login_by_2fa"
+        },
+        "list_id": {
+          "type": "string",
+          "required": true,
+          "description": "The id of the list"
+        },
+        "user_id": {
+          "type": "string",
+          "required": false,
+          "description": "The id of the user to add. user_id and user_name must be set at least one."
+        },
+        "user_name": {
+          "type": "string",
+          "required": false,
+          "description": "The name of the user to add. user_id and user_name must be set at least one."
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL"
+        }
+      }
     },
     "remove_list_member": {
       "name": "remove_list_member",
@@ -3557,7 +3631,34 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/list/remove_member' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"auth_session\": \"SESSION\", \"list_id\": \"LIST_ID\", \"user_name\": \"USERNAME\", \"proxy\": \"http://user:pass@host:port\"}'"
       ],
-      "raw_text": "Remove member from a list. Need to login first. auth_session: login session list_id: list id user_id: user id user_name: username proxy: proxy URL"
+      "raw_text": "Remove member from a list. Need to login first. auth_session: login session list_id: list id user_id: user id user_name: username proxy: proxy URL",
+      "body": {
+        "auth_session": {
+          "type": "string",
+          "required": true,
+          "description": "The session from /twitter/login_by_2fa"
+        },
+        "list_id": {
+          "type": "string",
+          "required": true,
+          "description": "The id of the list"
+        },
+        "user_id": {
+          "type": "string",
+          "required": false,
+          "description": "The id of the user to remove. user_id and user_name must be set at least one."
+        },
+        "user_name": {
+          "type": "string",
+          "required": false,
+          "description": "The name of the user to remove. user_id and user_name must be set at least one."
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL"
+        }
+      }
     },
     "get_list_tweets": {
       "name": "get_list_tweets",
@@ -3689,7 +3790,41 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/bookmark_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Bookmark a tweet. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call. login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the tweet to bookmark. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+      "raw_text": "Bookmark a tweet. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call. login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the tweet to bookmark. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set"
+        },
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to bookmark. Must be set"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set"
+        },
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to bookmark. Must be set"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+        }
+      }
     },
     "bookmarks_v2": {
       "name": "bookmarks_v2",
@@ -3739,7 +3874,51 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/bookmarks_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Get the bookmarks list of the logged-in user. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Returns tweets in the same format as other tweet endpoints. Use cursor for pagination. login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port count: Number of bookmarks to return per page. Default is 20 cursor: Cursor for pagination. Use next_cursor from previous response to get next page"
+      "raw_text": "Get the bookmarks list of the logged-in user. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Returns tweets in the same format as other tweet endpoints. Use cursor for pagination. login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port count: Number of bookmarks to return per page. Default is 20 cursor: Cursor for pagination. Use next_cursor from previous response to get next page",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+        },
+        "count": {
+          "type": "integer",
+          "required": false,
+          "description": "Number of bookmarks to return per page. Default is 20"
+        },
+        "cursor": {
+          "type": "string",
+          "required": false,
+          "description": "Cursor for pagination. Use next_cursor from previous response to get next page"
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+        },
+        "count": {
+          "type": "integer",
+          "required": false,
+          "description": "Number of bookmarks to return per page. Default is 20"
+        },
+        "cursor": {
+          "type": "string",
+          "required": false,
+          "description": "Cursor for pagination. Use next_cursor from previous response to get next page"
+        }
+      }
     },
     "unbookmark_tweet_v2": {
       "name": "unbookmark_tweet_v2",
@@ -3781,7 +3960,41 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/unbookmark_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Remove a tweet from bookmarks. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call. login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the tweet to unbookmark. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+      "raw_text": "Remove a tweet from bookmarks. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call. login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the tweet to unbookmark. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set"
+        },
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to unbookmark. Must be set"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set"
+        },
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to unbookmark. Must be set"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+        }
+      }
     },
     "login_by_2fa": {
       "name": "login_by_2fa",
