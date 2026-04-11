@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.0...v1.5.1) (2026-04-11)
+
+
+### Bug Fixes
+
+* add missing body/parameters docs for 9 endpoints ([a38ab91](https://github.com/dorukardahan/twitterapi-io-mcp/commit/a38ab9133e8f282d82573cd87b8b4b8b4903210e))
+
 # [1.5.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.4.1...v1.5.0) (2026-04-10)
 
 
