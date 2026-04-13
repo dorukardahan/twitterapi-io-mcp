@@ -1,3 +1,8 @@
+## 1.5.2
+
+- fix: add audit to prepublishOnly and include CHANGELOG.md in package files
+- fix: relax CI npm upgrade from pinned npm@11.6.0 to npm@11
+
 ## [1.5.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.0...v1.5.1) (2026-04-11)
 
 

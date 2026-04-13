@@ -68,7 +68,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Upgrade npm (required for automation token compatibility)
-        run: npm install -g npm@11.6.0
+        run: npm install -g npm@11
 
       - name: Install dependencies
         run: npm ci
