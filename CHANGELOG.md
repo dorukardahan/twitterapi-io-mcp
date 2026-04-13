@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.1...v1.5.2) (2026-04-13)
+
+
+### Bug Fixes
+
+* tighten release hygiene ([96c5826](https://github.com/dorukardahan/twitterapi-io-mcp/commit/96c5826c937fa77cb1a42c6f2d76c4e65e33f505))
+
 ## 1.5.2
 
 - fix: add audit to prepublishOnly and include CHANGELOG.md in package files
