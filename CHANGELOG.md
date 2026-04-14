@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.3...v1.5.4) (2026-04-14)
+
+
+### Bug Fixes
+
+* **ci:** use npm@latest instead of npm@11 to avoid MODULE_NOT_FOUND promise-retry ([1ce75ce](https://github.com/dorukardahan/twitterapi-io-mcp/commit/1ce75cefcbaf7a30fe4baa25872654f989bf6732))
+
 ## [1.5.3](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.2...v1.5.3) (2026-04-14)
 
 
