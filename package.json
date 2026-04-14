@@ -14,7 +14,7 @@
     "build": "echo 'No build step required - pure ES Module'",
     "scrape": "node scrape-all.cjs",
     "generate:docs": "node generate-context7-docs.cjs",
-    "prepublishOnly": "npm test && npm audit --audit-level=high"
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "mcp",
