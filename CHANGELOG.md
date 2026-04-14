@@ -1,3 +1,10 @@
+## [1.5.6](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.5...v1.5.6) (2026-04-14)
+
+
+### Bug Fixes
+
+* **ci:** remove npm audit from prepublishOnly (transitive CVEs block publish) ([cd9945d](https://github.com/dorukardahan/twitterapi-io-mcp/commit/cd9945d09a7e9c5ac398de031e1bf3d639980f3e))
+
 ## [1.5.5](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.4...v1.5.5) (2026-04-14)
 
 
