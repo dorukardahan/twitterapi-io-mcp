@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.4...v1.5.5) (2026-04-14)
+
+
+### Bug Fixes
+
+* **ci:** remove broken npm upgrade step on Node 22.22.2 toolcache ([fdc39f9](https://github.com/dorukardahan/twitterapi-io-mcp/commit/fdc39f954719b1bfa636f37e5ba421c0715cea41))
+
 ## [1.5.4](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.3...v1.5.4) (2026-04-14)
 
 
