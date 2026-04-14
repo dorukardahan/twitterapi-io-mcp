@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.2...v1.5.3) (2026-04-14)
+
+
+### Bug Fixes
+
+* recommend since_time/until_time over since/until in advanced_search ([3ec2d5a](https://github.com/dorukardahan/twitterapi-io-mcp/commit/3ec2d5a268f8d54711d1ae8550ff2669ca40592c))
+
 ## [1.5.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.1...v1.5.2) (2026-04-13)
 
 
