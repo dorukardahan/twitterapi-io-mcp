@@ -1286,8 +1286,8 @@
       "name": "tweet_advanced_search",
       "url": "https://docs.twitterapi.io/api-reference/endpoint/tweet_advanced_search",
       "scraped_at": "2026-03-16T02:37:54.444Z",
-      "title": "Advanced search for tweets.Each page returns up to 20 replies(Sometimes less than 20,because we will filter out ads or other not  tweets). Use cursor for pagination.",
-      "description": "Advanced search for tweets.Each page returns up to 20 replies(Sometimes less than 20,because we will filter out ads or other not  tweets). Use cursor for pagination.",
+      "title": "Advanced search for tweets. Each page returns up to 20 replies (sometimes less, ads filtered). Use cursor for pagination. IMPORTANT for date filtering: use since_time:UNIX_TIMESTAMP and until_time:UNIX_TIMESTAMP instead of since:DATE/until:DATE (date format is currently degraded on Twitter). Convert your dates to Unix timestamps for correct results.",
+      "description": "Advanced search for tweets. Each page returns up to 20 replies (sometimes less, ads filtered). Use cursor for pagination. IMPORTANT for date filtering: use since_time:UNIX_TIMESTAMP and until_time:UNIX_TIMESTAMP instead of since:DATE/until:DATE (date format is currently degraded on Twitter). Convert your dates to Unix timestamps for correct results.",
       "method": "GET",
       "path": "/twitter/tweet/advanced_search",
       "parameters": [
@@ -1297,7 +1297,7 @@
           "type": "string",
           "format": "string",
           "required": true,
-          "description": "The query to search for.eg.  \"AI\"  OR \"Twitter\" from:elonmusk since:2021-12-31_23:59:59_UTC . Get more examples from https://github.com/igorbrigadir/twitter-advanced-search "
+          "description": "The query to search for. eg. \"AI\" OR \"Twitter\" from:elonmusk since_time:1640995200 until_time:1641081600 . IMPORTANT: Use since_time/until_time with Unix timestamps instead of since/until date format (since/until is currently degraded on Twitter). Get more examples from https://github.com/igorbrigadir/twitter-advanced-search"
         },
         {
           "name": "queryType",
@@ -1336,11 +1336,11 @@
           "description": "Cursor for fetching the next page of results"
         }
       },
-      "curl_example": "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/tweet/advanced_search?query=QUERY&queryType=QUERYTYPE&cursor=CURSOR' \\\n  --header 'X-API-Key: <api-key>'",
+      "curl_example": "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/tweet/advanced_search?query=from%3Aelonmusk%20since_time%3A1640995200%20until_time%3A1641081600&queryType=Latest' \\\n  --header 'X-API-Key: <api-key>'",
       "code_snippets": [
-        "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/tweet/advanced_search?query=QUERY&queryType=QUERYTYPE&cursor=CURSOR' \\\n  --header 'X-API-Key: <api-key>'"
+        "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/tweet/advanced_search?query=from%3Aelonmusk%20since_time%3A1640995200%20until_time%3A1641081600&queryType=Latest' \\\n  --header 'X-API-Key: <api-key>'"
       ],
-      "raw_text": "Advanced search for tweets.Each page returns up to 20 replies(Sometimes less than 20,because we will filter out ads or other not  tweets). Use cursor for pagination. query: The query to search for.eg.  \"AI\"  OR \"Twitter\" from:elonmusk since:2021-12-31_23:59:59_UTC . Get more examples from https://github.com/igorbrigadir/twitter-advanced-search  queryType: The query type to search for.eg.  \"Latest\"  OR \"Top\" cursor: The cursor to paginate through the results. First page is \"\"."
+      "raw_text": "Advanced search for tweets. Each page returns up to 20 replies (sometimes less, ads filtered). Use cursor for pagination. IMPORTANT for date filtering: use since_time:UNIX_TIMESTAMP and until_time:UNIX_TIMESTAMP instead of since:DATE/until:DATE (date format is currently degraded on Twitter). Convert your dates to Unix timestamps for correct results. query: The query to search for. eg. \"AI\" OR \"Twitter\" from:elonmusk since_time:1640995200 until_time:1641081600 . IMPORTANT: Use since_time/until_time with Unix timestamps instead of since/until date format (since/until is currently degraded on Twitter). Get more examples from https://github.com/igorbrigadir/twitter-advanced-search queryType: \"Latest\" or \"Top\" cursor: pagination cursor, first page is empty string."
     },
     "list_timeline": {
       "name": "list_timeline",
