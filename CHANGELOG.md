@@ -1,3 +1,10 @@
+## [1.5.7](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.6...v1.5.7) (2026-04-19)
+
+
+### Bug Fixes
+
+* use npm@11 instead of hardcoded npm@11.6.0 in publish.yml ([effa047](https://github.com/dorukardahan/twitterapi-io-mcp/commit/effa047ad21ff2f661d32bba68f79595de081256))
+
 ## [1.5.6](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.5...v1.5.6) (2026-04-14)
 
 
