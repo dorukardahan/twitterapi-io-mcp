@@ -1,3 +1,9 @@
+## Unreleased
+
+### Bug Fixes
+
+* align community v2 auth fields with live OpenAPI (`login_cookies`), mark upload_media_v2 as multipart/form-data, and refresh lockfile via `npm audit fix --package-lock-only`
+
 ## [1.5.7](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.6...v1.5.7) (2026-04-19)
 
 

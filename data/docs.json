@@ -1717,7 +1717,34 @@
           "required": false,
           "description": "Set to true for videos longer than 2:20 (Premium only)"
         }
-      }
+      },
+      "contentType": "multipart/form-data",
+      "parameters": [
+        {
+          "name": "file",
+          "type": "binary",
+          "required": true,
+          "description": "The media file to upload (image/video). Use multipart/form-data."
+        },
+        {
+          "name": "login_cookies",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies from /twitter/user_login_v2"
+        },
+        {
+          "name": "proxy",
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL. Example: http://username:password@ip:port"
+        },
+        {
+          "name": "is_long_video",
+          "type": "boolean",
+          "required": false,
+          "description": "Set to true for videos longer than 2:20 (Premium only)"
+        }
+      ]
     },
     "like_tweet_v2": {
       "name": "like_tweet_v2",
@@ -2235,16 +2262,11 @@
       "name": "delete_community_v2",
       "url": "https://docs.twitterapi.io/api-reference/endpoint/delete_community_v2",
       "scraped_at": "2026-03-16T02:37:54.446Z",
-      "title": "Delete a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
-      "description": "Delete a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "title": "Delete a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "description": "Delete a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
       "method": "POST",
       "path": "/twitter/delete_community_v2",
       "body": {
-        "login_cookie": {
-          "type": "string",
-          "required": true,
-          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
-        },
         "community_id": {
           "type": "string",
           "required": true,
@@ -2259,14 +2281,14 @@
           "type": "string",
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
         }
       },
       "body_parameters": {
-        "login_cookie": {
-          "type": "string",
-          "required": true,
-          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
-        },
         "community_id": {
           "type": "string",
           "required": true,
@@ -2281,6 +2303,11 @@
           "type": "string",
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
         }
       },
       "response_schema": {
@@ -2297,7 +2324,7 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/delete_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Delete a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookie: The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set community_name: The name of the community to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "raw_text": "Delete a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set community_name: The name of the community to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
       "parameters": [
         {
           "name": "login_cookies",
@@ -2329,16 +2356,11 @@
       "name": "join_community_v2",
       "url": "https://docs.twitterapi.io/api-reference/endpoint/join_community_v2",
       "scraped_at": "2026-03-16T02:37:54.446Z",
-      "title": "Join a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
-      "description": "Join a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "title": "Join a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "description": "Join a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
       "method": "POST",
       "path": "/twitter/join_community_v2",
       "body": {
-        "login_cookie": {
-          "type": "string",
-          "required": true,
-          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
-        },
         "community_id": {
           "type": "string",
           "required": true,
@@ -2348,14 +2370,14 @@
           "type": "string",
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
         }
       },
       "body_parameters": {
-        "login_cookie": {
-          "type": "string",
-          "required": true,
-          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
-        },
         "community_id": {
           "type": "string",
           "required": true,
@@ -2365,6 +2387,11 @@
           "type": "string",
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
         }
       },
       "response_schema": {
@@ -2389,22 +2416,17 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/join_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Join a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookie: The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Join a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
     },
     "leave_community_v2": {
       "name": "leave_community_v2",
       "url": "https://docs.twitterapi.io/api-reference/endpoint/leave_community_v2",
       "scraped_at": "2026-03-16T02:37:54.446Z",
-      "title": "Leave a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
-      "description": "Leave a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "title": "Leave a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
+      "description": "Leave a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call. ",
       "method": "POST",
       "path": "/twitter/leave_community_v2",
       "body": {
-        "login_cookie": {
-          "type": "string",
-          "required": true,
-          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
-        },
         "community_id": {
           "type": "string",
           "required": true,
@@ -2414,14 +2436,14 @@
           "type": "string",
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
         }
       },
       "body_parameters": {
-        "login_cookie": {
-          "type": "string",
-          "required": true,
-          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
-        },
         "community_id": {
           "type": "string",
           "required": true,
@@ -2431,6 +2453,11 @@
           "type": "string",
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        "login_cookies": {
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
         }
       },
       "response_schema": {
@@ -2455,7 +2482,7 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/leave_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Leave a community.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookie: The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set community_id: The id of the community to leave.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Leave a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to leave.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
     },
     "get_webhook_rules": {
       "name": "get_webhook_rules",
