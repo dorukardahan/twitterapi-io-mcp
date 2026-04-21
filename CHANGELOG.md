@@ -1,3 +1,10 @@
+## [1.5.8](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.7...v1.5.8) (2026-04-21)
+
+
+### Bug Fixes
+
+* sync OpenAPI auth fields and multipart metadata ([255fcf9](https://github.com/dorukardahan/twitterapi-io-mcp/commit/255fcf9ec433724f7e3ab7da3fc0529819f2cf4d))
+
 ## Unreleased
 
 ### Bug Fixes
