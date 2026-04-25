@@ -1,3 +1,10 @@
+## [1.5.9](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.8...v1.5.9) (2026-04-25)
+
+
+### Bug Fixes
+
+* sync live OpenAPI write params ([4a9f8b4](https://github.com/dorukardahan/twitterapi-io-mcp/commit/4a9f8b4ef02c69e964634d780dae52a77a656a27))
+
 ## [1.5.8](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.7...v1.5.8) (2026-04-21)
 
 
