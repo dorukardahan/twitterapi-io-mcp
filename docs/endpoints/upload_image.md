@@ -23,7 +23,7 @@ curl --request POST \
 ## Body Parameters
 
 - `auth_session` (string, required): The session of the login. It's returned by /twitter/login_by_2fa
-- `image_url` (string, optional): The url of the image to upload
+- `image_url` (string, required): The url of the image to upload
 - `proxy` (string, required): The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port
 
 _Scraped at: 2026-04-10T04:07:53.670830Z_

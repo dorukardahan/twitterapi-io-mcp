@@ -9,7 +9,8 @@
 
 ### Bug Fixes
 
-* align community v2 auth fields with live OpenAPI (`login_cookies`), mark upload_media_v2 as multipart/form-data, and refresh lockfile via `npm audit fix --package-lock-only`
+* sync `create_tweet_v2`, `send_dm_to_user`, and `upload_image` request params with the live OpenAPI
+* add `npm audit --audit-level=high` back to `prepublishOnly` and pin transitive `npm` to 11.13.0 via `overrides`
 
 ## [1.5.7](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.6...v1.5.7) (2026-04-19)
 

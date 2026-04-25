@@ -1577,7 +1577,17 @@
         "media_ids": {
           "type": "array",
           "required": false,
-          "description": "The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed)"
+          "description": "List of media IDs (strings) to attach. Optional. Obtain each from /twitter/upload_media_v2."
+        },
+        "quote_tweet_id": {
+          "type": "string",
+          "required": false,
+          "description": "ID of a tweet to quote. Optional. Alternative to attachment_url."
+        },
+        "schedule_for": {
+          "type": "string",
+          "required": false,
+          "description": "Schedule the tweet to be sent at a future time. Optional. Format: ISO-8601 with milliseconds, e.g. 2026-01-20T10:00:00.000Z"
         },
         "proxy": {
           "type": "string",
@@ -1619,7 +1629,17 @@
         "media_ids": {
           "type": "array",
           "required": false,
-          "description": "The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed)"
+          "description": "List of media IDs (strings) to attach. Optional. Obtain each from /twitter/upload_media_v2."
+        },
+        "quote_tweet_id": {
+          "type": "string",
+          "required": false,
+          "description": "ID of a tweet to quote. Optional. Alternative to attachment_url."
+        },
+        "schedule_for": {
+          "type": "string",
+          "required": false,
+          "description": "Schedule the tweet to be sent at a future time. Optional. Format: ISO-8601 with milliseconds, e.g. 2026-01-20T10:00:00.000Z"
         },
         "proxy": {
           "type": "string",
@@ -1645,7 +1665,89 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/create_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Create a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_text: The text of the tweet.Must be set reply_to_tweet_id: The id of the tweet to reply to.Optional attachment_url: The url of quote tweet.Optional.eg.https://x.com/sama/status/1947640330318156074 community_id: The id of the community to post to.Optional is_note_tweet: If this option is set to True, tweets longer than 280 characters can be posted (Twitter Premium only). media_ids: The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed) proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Create a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_text: The text of the tweet.Must be set reply_to_tweet_id: The id of the tweet to reply to.Optional attachment_url: The url of quote tweet.Optional.eg.https://x.com/sama/status/1947640330318156074 community_id: The id of the community to post to.Optional is_note_tweet: If this option is set to True, tweets longer than 280 characters can be posted (Twitter Premium only). media_ids: The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed) proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "tweet_text",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The text of the tweet.Must be set"
+        },
+        {
+          "name": "reply_to_tweet_id",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "The id of the tweet to reply to.Optional"
+        },
+        {
+          "name": "attachment_url",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "The url of quote tweet.Optional.eg.https://x.com/sama/status/1947640330318156074"
+        },
+        {
+          "name": "community_id",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "The id of the community to post to.Optional"
+        },
+        {
+          "name": "is_note_tweet",
+          "in": "body",
+          "type": "boolean",
+          "format": null,
+          "required": false,
+          "description": "If this option is set to True, tweets longer than 280 characters can be posted (Twitter Premium only)."
+        },
+        {
+          "name": "media_ids",
+          "in": "body",
+          "type": "array",
+          "format": null,
+          "required": false,
+          "description": "List of media IDs (strings) to attach. Optional. Obtain each from /twitter/upload_media_v2."
+        },
+        {
+          "name": "quote_tweet_id",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "ID of a tweet to quote. Optional. Alternative to attachment_url."
+        },
+        {
+          "name": "schedule_for",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "Schedule the tweet to be sent at a future time. Optional. Format: ISO-8601 with milliseconds, e.g. 2026-01-20T10:00:00.000Z"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "upload_media_v2": {
       "name": "upload_media_v2",
@@ -2118,10 +2220,10 @@
           "required": true,
           "description": "The text of the direct message.Must be set"
         },
-        "media_ids": {
-          "type": "array",
+        "media_id": {
+          "type": "string",
           "required": false,
-          "description": "The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed)"
+          "description": "ID of a single media asset to attach. Optional. Obtain from /twitter/upload_media_v2."
         },
         "proxy": {
           "type": "string",
@@ -2150,10 +2252,10 @@
           "required": true,
           "description": "The text of the direct message.Must be set"
         },
-        "media_ids": {
-          "type": "array",
+        "media_id": {
+          "type": "string",
           "required": false,
-          "description": "The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed)"
+          "description": "ID of a single media asset to attach. Optional. Obtain from /twitter/upload_media_v2."
         },
         "proxy": {
           "type": "string",
@@ -2184,7 +2286,57 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/send_dm_to_user' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Send a direct message to a user.You must set the login_cookie..You can get the login_cookie from /twitter/user_login_v2.You can only send DMs to those who have enabled DMs. Sometimes it may fail, so be prepared to retry.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set user_id: The id of the user to send the direct message to.Must be set text: The text of the direct message.Must be set media_ids: The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed) proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504 reply_to_message_id: The id of the message to reply to.Optional"
+      "raw_text": "Send a direct message to a user.You must set the login_cookie..You can get the login_cookie from /twitter/user_login_v2.You can only send DMs to those who have enabled DMs. Sometimes it may fail, so be prepared to retry.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set user_id: The id of the user to send the direct message to.Must be set text: The text of the direct message.Must be set media_ids: The ids of the media to post.Optional.You can get the media_ids from /twitter/upload_image_v2 (to be developed) proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504 reply_to_message_id: The id of the message to reply to.Optional",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The id of the user to send the direct message to.Must be set"
+        },
+        {
+          "name": "text",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The text of the direct message.Must be set"
+        },
+        {
+          "name": "media_id",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "ID of a single media asset to attach. Optional. Obtain from /twitter/upload_media_v2."
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        {
+          "name": "reply_to_message_id",
+          "in": "body",
+          "type": "string",
+          "format": null,
+          "required": false,
+          "description": "The id of the message to reply to.Optional"
+        }
+      ]
     },
     "create_community_v2": {
       "name": "create_community_v2",
@@ -4120,7 +4272,7 @@
           "name": "auth_session",
           "in": "body",
           "type": "string",
-          "format": "string",
+          "format": null,
           "required": true,
           "description": "The session of the login. It's returned by /twitter/login_by_2fa"
         },
@@ -4128,15 +4280,15 @@
           "name": "image_url",
           "in": "body",
           "type": "string",
-          "format": "string",
-          "required": false,
+          "format": null,
+          "required": true,
           "description": "The url of the image to upload"
         },
         {
           "name": "proxy",
           "in": "body",
           "type": "string",
-          "format": "string",
+          "format": null,
           "required": true,
           "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port"
         }
@@ -4147,7 +4299,41 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/upload_image' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "upload image to twitter.Need to login first. Trial operation price: $0.001 per call. auth_session: The session of the login. It's returned by /twitter/login_by_2fa image_url: The url of the image to upload proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port"
+      "raw_text": "upload image to twitter.Need to login first. Trial operation price: $0.001 per call. auth_session: The session of the login. It's returned by /twitter/login_by_2fa image_url: The url of the image to upload proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port",
+      "body": {
+        "auth_session": {
+          "type": "string",
+          "required": true,
+          "description": "The session of the login. It's returned by /twitter/login_by_2fa"
+        },
+        "image_url": {
+          "type": "string",
+          "required": true,
+          "description": "The url of the image to upload"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port"
+        }
+      },
+      "body_parameters": {
+        "auth_session": {
+          "type": "string",
+          "required": true,
+          "description": "The session of the login. It's returned by /twitter/login_by_2fa"
+        },
+        "image_url": {
+          "type": "string",
+          "required": true,
+          "description": "The url of the image to upload"
+        },
+        "proxy": {
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port"
+        }
+      }
     },
     "create_tweet": {
       "name": "create_tweet",
