@@ -1,3 +1,10 @@
+## [1.5.10](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.9...v1.5.10) (2026-04-27)
+
+
+### Bug Fixes
+
+* sync body parameter placement with live OpenAPI ([8f45a44](https://github.com/dorukardahan/twitterapi-io-mcp/commit/8f45a44905e094b21e51f01b64f9e1ce1a538e07))
+
 ## [1.5.9](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.8...v1.5.9) (2026-04-25)
 
 
