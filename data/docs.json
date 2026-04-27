@@ -1823,24 +1823,28 @@
       "contentType": "multipart/form-data",
       "parameters": [
         {
+          "in": "body",
           "name": "file",
           "type": "binary",
           "required": true,
           "description": "The media file to upload (image/video). Use multipart/form-data."
         },
         {
+          "in": "body",
           "name": "login_cookies",
           "type": "string",
           "required": true,
           "description": "The login cookies from /twitter/user_login_v2"
         },
         {
+          "in": "body",
           "name": "proxy",
           "type": "string",
           "required": true,
           "description": "Residential proxy URL. Example: http://username:password@ip:port"
         },
         {
+          "in": "body",
           "name": "is_long_video",
           "type": "boolean",
           "required": false,
@@ -2479,24 +2483,28 @@
       "raw_text": "Delete a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set community_name: The name of the community to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
       "parameters": [
         {
+          "in": "body",
           "name": "login_cookies",
           "type": "string",
           "required": true,
           "description": "Base64 encoded login cookies from /twitter/user_login_v2"
         },
         {
+          "in": "body",
           "name": "community_id",
           "type": "string",
           "required": true,
           "description": "The community ID to delete"
         },
         {
+          "in": "body",
           "name": "community_name",
           "type": "string",
           "required": true,
           "description": "The community name"
         },
         {
+          "in": "body",
           "name": "proxy",
           "type": "string",
           "required": true,
@@ -2936,26 +2944,31 @@
       "raw_text": "Update a tweet filter rule. You must set all parameters. rule_id: ID of the rule to update.Must be set tag: Custom tag to identify the rule.Must be set.Max length is 255 value: Rule to filter tweets.eg \"from:elonmusk OR from:kaitoeasyapi\".Must be set.Max length is 255 interval_seconds: Interval to check tweets.Must be set.Min value is 0.1.Max value is 86400 () is_effect: Whether the rule is effective.Must be set.1 means effective, 0 means not effective.Default value is 0",
       "parameters": [
         {
+          "in": "body",
           "name": "rule_id",
           "type": "string",
           "required": true
         },
         {
+          "in": "body",
           "name": "tag",
           "type": "string",
           "required": true
         },
         {
+          "in": "body",
           "name": "value",
           "type": "string",
           "required": true
         },
         {
+          "in": "body",
           "name": "interval_seconds",
           "type": "number",
           "required": true
         },
         {
+          "in": "body",
           "name": "is_effect",
           "type": "integer",
           "required": false,
@@ -3006,6 +3019,7 @@
       "raw_text": "Delete a tweet filter rule. You must set all parameters. rule_id: ID of the rule to delete.Must be set",
       "parameters": [
         {
+          "in": "body",
           "name": "rule_id",
           "type": "string",
           "required": false
@@ -3419,18 +3433,21 @@
       "contentType": "multipart/form-data",
       "parameters": [
         {
+          "in": "body",
           "name": "file",
           "type": "binary",
           "required": true,
           "description": "The avatar image file to upload. Recommended size: 400x400 pixels. Maximum file size: 700KB. Supported formats: JPG, PNG"
         },
         {
+          "in": "body",
           "name": "login_cookies",
           "type": "string",
           "required": true,
           "description": "Base64 encoded login cookies from /twitter/user_login_v2"
         },
         {
+          "in": "body",
           "name": "proxy",
           "type": "string",
           "required": true,
@@ -3464,18 +3481,21 @@
       "contentType": "multipart/form-data",
       "parameters": [
         {
+          "in": "body",
           "name": "file",
           "type": "binary",
           "required": true,
           "description": "The banner image file to upload. Recommended size: 1500x500 pixels. Maximum file size: 2MB. Supported formats: JPG, PNG"
         },
         {
+          "in": "body",
           "name": "login_cookies",
           "type": "string",
           "required": true,
           "description": "Base64 encoded login cookies from /twitter/user_login_v2"
         },
         {
+          "in": "body",
           "name": "proxy",
           "type": "string",
           "required": true,
@@ -3572,36 +3592,42 @@
       "raw_text": "Update your Twitter profile information. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.003 per call. login_cookies: Base64 encoded login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Required proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port name: Display name (maximum 50 characters) description: Bio/description (maximum 160 characters) location: Location (maximum 30 characters) url: Website URL",
       "parameters": [
         {
+          "in": "body",
           "name": "login_cookies",
           "type": "string",
           "required": true,
           "description": "Base64 encoded login cookies from /twitter/user_login_v2"
         },
         {
+          "in": "body",
           "name": "proxy",
           "type": "string",
           "required": true,
           "description": "Residential proxy URL"
         },
         {
+          "in": "body",
           "name": "name",
           "type": "string",
           "required": false,
           "description": "Display name (maximum 50 characters)"
         },
         {
+          "in": "body",
           "name": "description",
           "type": "string",
           "required": false,
           "description": "Bio/description (maximum 160 characters)"
         },
         {
+          "in": "body",
           "name": "location",
           "type": "string",
           "required": false,
           "description": "Location (maximum 30 characters)"
         },
         {
+          "in": "body",
           "name": "url",
           "type": "string",
           "required": false,
