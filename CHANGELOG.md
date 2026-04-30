@@ -26,6 +26,7 @@
 * sync `create_tweet_v2`, `send_dm_to_user`, and `upload_image` request params with the live OpenAPI
 * sync body/query placement for `delete_rule`, `update_rule`, `delete_community_v2`, `update_avatar_v2`, `update_banner_v2`, `update_profile_v2`, and `upload_media_v2`
 * add `npm audit --audit-level=high` back to `prepublishOnly` and pin transitive `npm` to 11.13.0 via `overrides`
+* restore explicit `npm@11` in release and publish GitHub Actions jobs
 
 ## [1.5.7](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.6...v1.5.7) (2026-04-19)
 
