@@ -23,6 +23,7 @@
 
 ### Bug Fixes
 
+* sync 15 missing request-body parameter arrays in `data/docs.json` with the live OpenAPI (`user_login_v2`, V2 actions, list member actions, webhook rule add, stream monitor add/remove)
 * sync `create_tweet_v2`, `send_dm_to_user`, and `upload_image` request params with the live OpenAPI
 * sync body/query placement for `delete_rule`, `update_rule`, `delete_community_v2`, `update_avatar_v2`, `update_banner_v2`, `update_profile_v2`, and `upload_media_v2`
 * add `npm audit --audit-level=high` back to `prepublishOnly` and pin transitive `npm` to 11.13.0 via `overrides`

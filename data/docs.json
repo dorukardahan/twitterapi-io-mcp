@@ -1533,7 +1533,44 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/user_login_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets. user_name: User name.Must be set email: Email.Must be set password: The password of the user totp_secret: The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key. proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets. user_name: User name.Must be set email: Email.Must be set password: The password of the user totp_secret: The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key. proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "user_name",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "User name.Must be set"
+        },
+        {
+          "name": "email",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "Email.Must be set"
+        },
+        {
+          "name": "password",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The password of the user"
+        },
+        {
+          "name": "totp_secret",
+          "in": "body",
+          "type": "string",
+          "required": false,
+          "description": "The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key."
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "create_tweet_v2": {
       "name": "create_tweet_v2",
@@ -1908,7 +1945,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/like_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Like a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to like.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Like a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to like.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to like.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "unlike_tweet_v2": {
       "name": "unlike_tweet_v2",
@@ -1966,7 +2026,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/unlike_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Unlike a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to unlike.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Unlike a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to unlike.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to unlike.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "delete_tweet_v2": {
       "name": "delete_tweet_v2",
@@ -2024,7 +2107,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/delete_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Delete a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Delete a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to delete.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to delete.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "retweet_tweet_v2": {
       "name": "retweet_tweet_v2",
@@ -2082,7 +2188,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/retweet_tweet_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Retweet a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to retweet.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Retweet a tweet.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set tweet_id: The id of the tweet to retweet.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the tweet to retweet.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "follow_user_v2": {
       "name": "follow_user_v2",
@@ -2140,7 +2269,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/follow_user_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Follow a user.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set user_id: The id of the user to follow.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Follow a user.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set user_id: The id of the user to follow.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the user to follow.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "unfollow_user_v2": {
       "name": "unfollow_user_v2",
@@ -2198,7 +2350,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/unfollow_user_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Unfollow a user.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set user_id: The id of the user to unfollow.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Unfollow a user.You must set the login_cookie.You can get the login_cookie from /twitter/user_login_v2.Trial operation price: $0.002 per call.  login_cookies: The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set user_id: The id of the user to unfollow.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the user to unfollow.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "send_dm_v2": {
       "name": "send_dm_v2",
@@ -2412,7 +2587,37 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/create_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Create a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookies of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set name: The name of the community.Must be set description: The description of the community.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Create a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookies of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set name: The name of the community.Must be set description: The description of the community.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookies of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set"
+        },
+        {
+          "name": "name",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The name of the community.Must be set"
+        },
+        {
+          "name": "description",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The description of the community.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        }
+      ]
     },
     "delete_community_v2": {
       "name": "delete_community_v2",
@@ -2576,7 +2781,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/join_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Join a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Join a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to join.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "community_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the community to join.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        }
+      ]
     },
     "leave_community_v2": {
       "name": "leave_community_v2",
@@ -2642,7 +2870,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/leave_community_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Leave a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to leave.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+      "raw_text": "Leave a community.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Trial operation price: $0.003 per call.  login_cookies: The login cookie of the user.You can get the login_cookies from /twitter/user_login_v2.Must be set community_id: The id of the community to leave.Must be set proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "parameters": [
+        {
+          "name": "community_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the community to leave.Must be set"
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+        },
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The login cookie of the user.You can get the login_cookie from /twitter/user_login_v2.Must be set"
+        }
+      ]
     },
     "get_webhook_rules": {
       "name": "get_webhook_rules",
@@ -2718,7 +2969,16 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/oapi/x_user_stream/add_user_to_monitor_tweet' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Add a user to monitor real-time tweets.Monitor tweets from specified accounts, including directly sent tweets, quoted tweets, reply tweets, and retweeted tweets. Please ref:https://twitterapi.io/twitter-stream x_user_name: The twitter(x) handle name to monitor.Must be set."
+      "raw_text": "Add a user to monitor real-time tweets.Monitor tweets from specified accounts, including directly sent tweets, quoted tweets, reply tweets, and retweeted tweets. Please ref:https://twitterapi.io/twitter-stream x_user_name: The twitter(x) handle name to monitor.Must be set.",
+      "parameters": [
+        {
+          "name": "x_user_name",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The twitter(x) handle name to monitor.Must be set."
+        }
+      ]
     },
     "remove_user_to_monitor_tweet": {
       "name": "remove_user_to_monitor_tweet",
@@ -2760,7 +3020,16 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/oapi/x_user_stream/remove_user_to_monitor_tweet' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Remove a user from monitor real-time tweets.Please ref:https://twitterapi.io/twitter-stream id_for_user: Get it from get_user_to_monitor_tweet api"
+      "raw_text": "Remove a user from monitor real-time tweets.Please ref:https://twitterapi.io/twitter-stream id_for_user: Get it from get_user_to_monitor_tweet api",
+      "parameters": [
+        {
+          "name": "id_for_user",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "Get it from get_user_to_monitor_tweet api"
+        }
+      ]
     },
     "get_user_to_monitor_tweet": {
       "name": "get_user_to_monitor_tweet",
@@ -2859,7 +3128,30 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/oapi/tweet_filter/add_rule' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Add a tweet filter rule. Default rule is not activated.You must call update_rule to activate the rule. tag: Custom tag to identify the rule.Must be set.Max length is 255 value: Rule to filter tweets.eg \"from:elonmusk OR from:kaitoeasyapi\".Must be set.Max length is 255 interval_seconds: Interval to check tweets.Must be set.Min value is 100.Max value is 86400 ()"
+      "raw_text": "Add a tweet filter rule. Default rule is not activated.You must call update_rule to activate the rule. tag: Custom tag to identify the rule.Must be set.Max length is 255 value: Rule to filter tweets.eg \"from:elonmusk OR from:kaitoeasyapi\".Must be set.Max length is 255 interval_seconds: Interval to check tweets.Must be set.Min value is 100.Max value is 86400 ()",
+      "parameters": [
+        {
+          "name": "tag",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "Custom tag to identify the rule.Must be set.Max length is 255"
+        },
+        {
+          "name": "value",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "Rule to filter tweets.eg \"from:elonmusk OR from:kaitoeasyapi\".Must be set.Max length is 255"
+        },
+        {
+          "name": "interval_seconds",
+          "in": "body",
+          "type": "number",
+          "required": true,
+          "description": "Interval to check tweets.Must be set.Min value is 100.Max value is 86400 ()"
+        }
+      ]
     },
     "update_webhook_rule": {
       "name": "update_webhook_rule",
@@ -3707,7 +3999,43 @@
       "description": "Add a member to a list. Need to login first. Trial operation price: $0.001 per call.",
       "method": "POST",
       "path": "/twitter/list/add_member",
-      "parameters": [],
+      "parameters": [
+        {
+          "name": "auth_session",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The session from /twitter/login_by_2fa"
+        },
+        {
+          "name": "list_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the list"
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "required": false,
+          "description": "The id of the user to add. user_id and user_name must be set at least one."
+        },
+        {
+          "name": "user_name",
+          "in": "body",
+          "type": "string",
+          "required": false,
+          "description": "The name of the user to add. user_id and user_name must be set at least one."
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL"
+        }
+      ],
       "body_parameters": {
         "auth_session": {
           "type": "string",
@@ -3790,7 +4118,43 @@
       "description": "Remove a member from a list. Need to login first. Trial operation price: $0.001 per call.",
       "method": "POST",
       "path": "/twitter/list/remove_member",
-      "parameters": [],
+      "parameters": [
+        {
+          "name": "auth_session",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The session from /twitter/login_by_2fa"
+        },
+        {
+          "name": "list_id",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "The id of the list"
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "required": false,
+          "description": "The id of the user to remove. user_id and user_name must be set at least one."
+        },
+        {
+          "name": "user_name",
+          "in": "body",
+          "type": "string",
+          "required": false,
+          "description": "The name of the user to remove. user_id and user_name must be set at least one."
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "description": "Residential proxy URL"
+        }
+      ],
       "body_parameters": {
         "auth_session": {
           "type": "string",
