@@ -1,3 +1,9 @@
+## Unreleased
+
+### Bug Fixes
+
+* add live OpenAPI endpoint `GET /twitter/user/followers_ids` to `data/docs.json` (68 total endpoints)
+
 ## [1.5.10](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.9...v1.5.10) (2026-04-27)
 
 

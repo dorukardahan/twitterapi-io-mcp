@@ -3,7 +3,7 @@
     "source": "https://docs.twitterapi.io/api-reference/openapi.json",
     "scraped_at": "2026-03-16T02:37:54.447Z",
     "scraper_version": "3.0",
-    "total_endpoints": 67,
+    "total_endpoints": 68,
     "total_pages": 32,
     "total_blogs": 24
   },
@@ -4874,6 +4874,82 @@
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/retweet_tweet' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
       "raw_text": "Retweet a tweet.Need to login first. Trial operation price: $0.001 per call. auth_session: The session of the login. It's returned by /twitter/login_by_2fa tweet_id: The id of the tweet to retweet proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port.You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504"
+    },
+    "get_user_followers_ids": {
+      "name": "get_user_followers_ids",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/get_user_followers_ids",
+      "scraped_at": "2026-03-16T02:37:54.447Z",
+      "title": "Get user follower IDs",
+      "description": "Get a user's follower IDs in bulk — **lightweight, IDs only, no profile metadata**. Designed for large-scale follower-graph collection where you join IDs against your own data warehouse.\n\nUp to 5,000 IDs per call. Pass either `userName` or `userId`. Use `cursor` from the previous response (`next_cursor`) to paginate.",
+      "method": "GET",
+      "path": "/twitter/user/followers_ids",
+      "parameters": [
+        {
+          "name": "userName",
+          "in": "query",
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "description": "Screen name of the user (e.g. `elonmusk`). Either `userName` or `userId` is required."
+        },
+        {
+          "name": "userId",
+          "in": "query",
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "description": "Numeric user ID. Either `userName` or `userId` is required."
+        },
+        {
+          "name": "count",
+          "in": "query",
+          "type": "integer",
+          "format": null,
+          "required": false,
+          "description": "Number of follower IDs to return per page. Min 50, max 5000. Default 5000 (bulk pull, recommended)."
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "description": "Pagination cursor — pass the `next_cursor` value from the previous response. First page: omit or pass empty string."
+        }
+      ],
+      "query_parameters": {
+        "userName": "userName string",
+        "userId": "userId string",
+        "count": "count integer",
+        "cursor": "cursor string"
+      },
+      "response_schema": {
+        "follower_ids": {
+          "type": "array",
+          "description": "Array of follower IDs"
+        },
+        "has_next_page": {
+          "type": "boolean",
+          "description": "Indicates if there are more results available"
+        },
+        "next_cursor": {
+          "type": "string",
+          "description": "Cursor for fetching the next page of results"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the request.success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request.error message"
+        }
+      },
+      "curl_example": "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/user/followers_ids?userName=USERNAME&userId=USERID&count=5000&cursor=CURSOR' \\\n  --header 'X-API-Key: <api-key>'",
+      "code_snippets": [
+        "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/user/followers_ids?userName=USERNAME&userId=USERID&count=5000&cursor=CURSOR' \\\n  --header 'X-API-Key: <api-key>'"
+      ],
+      "raw_text": "Get a user's follower IDs in bulk — lightweight, IDs only, no profile metadata. userName: Screen name of the user. Either userName or userId is required. userId: Numeric user ID. Either userName or userId is required. count: Number of follower IDs to return per page. Min 50, max 5000. Default 5000. cursor: Pagination cursor from next_cursor."
     }
   },
   "pages": {
