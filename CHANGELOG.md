@@ -1,3 +1,14 @@
+## [1.5.11](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.10...v1.5.11) (2026-06-28)
+
+
+### Bug Fixes
+
+* add user follower IDs endpoint ([85cb36b](https://github.com/dorukardahan/twitterapi-io-mcp/commit/85cb36bd61f31fd6816aefa70f83ba49ae841ed5))
+* refresh locked transitive deps for audit ([aec28eb](https://github.com/dorukardahan/twitterapi-io-mcp/commit/aec28eb34645dbc1294522a344bf78dfde167452))
+* refresh locked transitive deps for audit ([13ccc7a](https://github.com/dorukardahan/twitterapi-io-mcp/commit/13ccc7a9505be886eb0d0c6f1692cb28759533aa))
+* restore npm@11 in release workflow ([3696f53](https://github.com/dorukardahan/twitterapi-io-mcp/commit/3696f533cb187ec1215ac78ee093824924b07d43))
+* sync missing body params with live OpenAPI ([6cf8f73](https://github.com/dorukardahan/twitterapi-io-mcp/commit/6cf8f7385b83858e8d177dbf554d827fc8186dcd))
+
 ## Unreleased
 
 ### Bug Fixes
