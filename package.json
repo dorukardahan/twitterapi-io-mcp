@@ -14,7 +14,7 @@
     "build": "echo 'No build step required - pure ES Module'",
     "scrape": "node scrape-all.cjs",
     "generate:docs": "node generate-context7-docs.cjs",
-    "prepublishOnly": "npm audit --audit-level=high && npm test"
+    "prepublishOnly": "npm audit --omit=dev --audit-level=high && npm test"
   },
   "keywords": [
     "mcp",
@@ -73,6 +73,6 @@
     "semantic-release": "^25.0.3"
   },
   "overrides": {
-    "npm": "11.13.0"
+    "npm": "11.17.0"
   }
 }
