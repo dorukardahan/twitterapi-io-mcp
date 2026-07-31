@@ -1,3 +1,10 @@
+## [1.5.12](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.11...v1.5.12) (2026-07-31)
+
+
+### Bug Fixes
+
+* refresh locked transitive deps for audit ([227c527](https://github.com/dorukardahan/twitterapi-io-mcp/commit/227c5275f7996e42a2d21be6a6da1a692e52388a))
+
 ## [1.5.11](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.10...v1.5.11) (2026-06-28)
 
 
