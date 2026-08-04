@@ -1,3 +1,10 @@
+## [1.5.13](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.12...v1.5.13) (2026-08-04)
+
+
+### Bug Fixes
+
+* **deps:** update lockfile to resolve npm audit vulnerabilities (hono, ip-address, fast-uri) ([b264657](https://github.com/dorukardahan/twitterapi-io-mcp/commit/b264657337f8c7162ce54bd51ae2b057afff2277))
+
 ## [1.5.12](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.11...v1.5.12) (2026-07-31)
 
 
