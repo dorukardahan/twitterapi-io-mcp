@@ -6,12 +6,12 @@
     "url": "https://github.com/dorukardahan/twitterapi-io-mcp",
     "source": "github"
   },
-  "version": "1.5.13",
+  "version": "1.5.14",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "twitterapi-io-mcp",
-      "version": "1.5.13",
+      "version": "1.5.14",
       "transport": {
         "type": "stdio"
       }

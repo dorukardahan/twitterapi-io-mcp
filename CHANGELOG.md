@@ -1,3 +1,10 @@
+## [1.5.14](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.13...v1.5.14) (2026-09-04)
+
+
+### Bug Fixes
+
+* **ci:** publish both npm packages via OIDC trusted publishing ([d731cc3](https://github.com/dorukardahan/twitterapi-io-mcp/commit/d731cc331ee180e007ef7adcffc10382b0bb8260))
+
 ## [1.5.13](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.12...v1.5.13) (2026-08-04)
 
 
