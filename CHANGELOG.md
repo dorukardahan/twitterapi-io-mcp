@@ -1,3 +1,10 @@
+## [1.5.16](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.15...v1.5.16) (2026-09-04)
+
+
+### Bug Fixes
+
+* **ci:** decouple security audit from publish lifecycle ([27cae3e](https://github.com/dorukardahan/twitterapi-io-mcp/commit/27cae3e5cdcbf3174a79ef037ab9dad9a209aae2))
+
 ## [1.5.15](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.14...v1.5.15) (2026-09-04)
 
 
