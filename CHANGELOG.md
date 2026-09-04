@@ -1,3 +1,10 @@
+## [1.5.15](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.14...v1.5.15) (2026-09-04)
+
+
+### Bug Fixes
+
+* **deps:** refresh vulnerable transitive dependencies ([2428c56](https://github.com/dorukardahan/twitterapi-io-mcp/commit/2428c56d586ed458e50c2118230230580aeba62a))
+
 ## [1.5.14](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.13...v1.5.14) (2026-09-04)
 
 
