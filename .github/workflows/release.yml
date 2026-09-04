@@ -107,7 +107,7 @@ jobs:
       id-token: write
     env:
       REGISTRY_URL: https://registry.modelcontextprotocol.io
-      REGISTRY_AUDIENCE: mcp-registry
+      REGISTRY_AUDIENCE: https://registry.modelcontextprotocol.io
       SERVER_JSON_PATH: server.json
     steps:
       - name: Checkout (latest, includes semantic-release commit)
