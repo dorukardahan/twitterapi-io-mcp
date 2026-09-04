@@ -1,3 +1,10 @@
+## [1.5.17](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.16...v1.5.17) (2026-09-04)
+
+
+### Bug Fixes
+
+* **ci:** use MCP Registry OIDC audience ([3639fa1](https://github.com/dorukardahan/twitterapi-io-mcp/commit/3639fa1cee86cdbe7ecce62e9abec775733fb363))
+
 ## [1.5.16](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.15...v1.5.16) (2026-09-04)
 
 
