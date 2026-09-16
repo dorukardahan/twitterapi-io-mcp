@@ -1,3 +1,10 @@
+## [1.5.18](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.17...v1.5.18) (2026-09-16)
+
+
+### Bug Fixes
+
+* restore audit to prepublish checks ([c56ff9e](https://github.com/dorukardahan/twitterapi-io-mcp/commit/c56ff9e8e03bab19dba3289838d7287c1d05a4af))
+
 ## Unreleased
 
 ### Bug Fixes
