@@ -9,7 +9,8 @@
 
 ### Bug Fixes
 
-* restore `npm audit --audit-level=high` to the `prepublishOnly` gate
+* audit development dependencies in the `prepublishOnly` gate so local and CI results match
+* refresh locked transitive dependencies to clear high and critical audit findings
 
 ## [1.5.17](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.16...v1.5.17) (2026-09-04)
 
