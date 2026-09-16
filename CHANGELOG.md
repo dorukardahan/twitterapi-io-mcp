@@ -1,3 +1,10 @@
+## [1.5.19](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.18...v1.5.19) (2026-09-16)
+
+
+### Bug Fixes
+
+* refresh dependencies for publish audit ([ea8def8](https://github.com/dorukardahan/twitterapi-io-mcp/commit/ea8def8f5fcd0b3d00ca288d4c3da1ec943aab81))
+
 ## [1.5.18](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.17...v1.5.18) (2026-09-16)
 
 
