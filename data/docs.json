@@ -1457,8 +1457,8 @@
       "name": "user_login_v2",
       "url": "https://docs.twitterapi.io/api-reference/endpoint/user_login_v2",
       "scraped_at": "2026-03-16T02:37:54.445Z",
-      "title": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets.",
-      "description": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets.",
+      "title": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.005 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets.",
+      "description": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.005 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets.",
       "method": "POST",
       "path": "/twitter/user_login_v2",
       "body": {
@@ -1480,7 +1480,7 @@
         "totp_secret": {
           "type": "string",
           "required": false,
-          "description": "The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key."
+          "description": "TOTP/2FA secret (base32 seed, not a 6-digit code). Optional, but strongly recommended — accounts without 2FA may yield a login_cookie that gets flagged and can't post. To obtain: on X, enable 2FA, choose \"can't scan the QR code\", and X shows a 10+ character string — that's the TOTP secret."
         },
         "proxy": {
           "type": "string",
@@ -1507,7 +1507,7 @@
         "totp_secret": {
           "type": "string",
           "required": false,
-          "description": "The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key."
+          "description": "TOTP/2FA secret (base32 seed, not a 6-digit code). Optional, but strongly recommended — accounts without 2FA may yield a login_cookie that gets flagged and can't post. To obtain: on X, enable 2FA, choose \"can't scan the QR code\", and X shows a 10+ character string — that's the TOTP secret."
         },
         "proxy": {
           "type": "string",
@@ -1533,7 +1533,7 @@
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/user_login_v2' \\\n  --header 'X-API-Key: <api-key>' \\\n  --header 'Content-Type: application/json'"
       ],
-      "raw_text": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.003 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets. user_name: User name.Must be set email: Email.Must be set password: The password of the user totp_secret: The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key. proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
+      "raw_text": "Log in directly using your email, username, password, and 2FA secret key. And obtain the Login_cookie,  to post tweets, etc. Please note that the Login_cookie obtained through login_v2 can only be used for APIs with the \"v2\" suffix, such as create_tweet_v2. Trial operation price: $0.005 per call. We highly recommend enabling 2FA for your login – otherwise, the login_cookie you obtain may be faulty, preventing you from posting tweets. user_name: User name.Must be set email: Email.Must be set password: The password of the user totp_secret: TOTP/2FA secret (base32 seed, not a 6-digit code). Optional, but strongly recommended — accounts without 2FA may yield a login_cookie that gets flagged and can't post. To obtain: on X, enable 2FA, choose \"can't scan the QR code\", and X shows a 10+ character string — that's the TOTP secret. proxy: The proxy to use.Please use high-quality residential proxies and avoid free proxies.Required.Example: http://username:password@ip:port . You can get proxy from: https://www.webshare.io/?referral_code=4e0q1n00a504",
       "parameters": [
         {
           "name": "user_name",
@@ -1561,7 +1561,7 @@
           "in": "body",
           "type": "string",
           "required": false,
-          "description": "The totp secret of the user.If you don't have it, you can get it from the user's profile page.This field is required because it will make your login more reliable and less likely to be banned.Steps to obtain the TOTP secret key: On Twitter/X, enable 2FA authentication, select the option to \"can't scan the QR code,\" and Twitter/X will provide you with a 10+ character string—this is the TOTP/2FA secret key."
+          "description": "TOTP/2FA secret (base32 seed, not a 6-digit code). Optional, but strongly recommended — accounts without 2FA may yield a login_cookie that gets flagged and can't post. To obtain: on X, enable 2FA, choose \"can't scan the QR code\", and X shows a 10+ character string — that's the TOTP secret."
         },
         {
           "name": "proxy",

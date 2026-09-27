@@ -14,6 +14,10 @@
 
 ## Unreleased
 
+### Documentation
+
+* align Login V2 pricing ($0.005/call) and optional base32 TOTP seed guidance with the live OpenAPI
+
 ### Bug Fixes
 
 * audit development dependencies in the `prepublishOnly` gate so local and CI results match
