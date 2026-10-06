@@ -1,3 +1,9 @@
+## Unreleased
+
+### Bug Fixes
+
+* refresh locked transitive dependencies to clear `npm audit --audit-level=high` findings (`fast-uri`, `ip-address`, `proxy-addr`)
+
 ## [1.5.19](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.18...v1.5.19) (2026-09-16)
 
 
