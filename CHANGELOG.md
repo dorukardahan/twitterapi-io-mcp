@@ -1,3 +1,10 @@
+## [1.5.20](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.19...v1.5.20) (2026-10-06)
+
+
+### Bug Fixes
+
+* **deps:** refresh audited transitive dependencies ([66e2d26](https://github.com/dorukardahan/twitterapi-io-mcp/commit/66e2d269f67ab2ea09adab2e8e64420864915dcb))
+
 ## Unreleased
 
 ### Bug Fixes
