@@ -1,3 +1,10 @@
+## [1.5.21](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.20...v1.5.21) (2026-10-06)
+
+
+### Bug Fixes
+
+* **ci:** restore release publishing ([fea5fd6](https://github.com/dorukardahan/twitterapi-io-mcp/commit/fea5fd62dc0243a63846c3dd8d05dc170806630a))
+
 ## [1.5.20](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.19...v1.5.20) (2026-10-06)
 
 
