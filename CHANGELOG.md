@@ -1,3 +1,10 @@
+## [1.5.22](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.21...v1.5.22) (2026-10-06)
+
+
+### Bug Fixes
+
+* **ci:** retry registry publication after npm publish ([65fba44](https://github.com/dorukardahan/twitterapi-io-mcp/commit/65fba442cd2f492857ad9a8156ec00d8202e3b47))
+
 ## [1.5.21](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.20...v1.5.21) (2026-10-06)
 
 
