@@ -16,6 +16,7 @@
 
 ### Bug Fixes
 
+* **ci:** retry MCP Registry publication while a new npm version propagates
 * **ci:** scope the publish audit to runtime dependencies and update GitHub actions to Node 24-based releases
 * **deps:** refresh the locked npm 11 release tooling
 * refresh locked transitive dependencies to clear `npm audit --audit-level=high` findings (`fast-uri`, `ip-address`, `proxy-addr`)
