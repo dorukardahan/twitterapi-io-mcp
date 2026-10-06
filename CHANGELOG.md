@@ -9,6 +9,8 @@
 
 ### Bug Fixes
 
+* **ci:** scope the publish audit to runtime dependencies and update GitHub actions to Node 24-based releases
+* **deps:** refresh the locked npm 11 release tooling
 * refresh locked transitive dependencies to clear `npm audit --audit-level=high` findings (`fast-uri`, `ip-address`, `proxy-addr`)
 
 ## [1.5.19](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.18...v1.5.19) (2026-09-16)
