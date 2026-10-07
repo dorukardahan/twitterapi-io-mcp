@@ -1,3 +1,10 @@
+## [1.5.23](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.22...v1.5.23) (2026-10-07)
+
+
+### Bug Fixes
+
+* **deps:** update MCP SDK past OAuth advisory ([d331f98](https://github.com/dorukardahan/twitterapi-io-mcp/commit/d331f9822155f7725dbe43c778345a9ea387a507))
+
 ## Unreleased
 
 ### Bug Fixes
