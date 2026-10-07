@@ -1,3 +1,9 @@
+## Unreleased
+
+### Bug Fixes
+
+* **deps:** update the locked MCP TypeScript SDK to 1.32.1 to clear GHSA-6qxp-vccf-f47h
+
 ## [1.5.22](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.21...v1.5.22) (2026-10-06)
 
 
