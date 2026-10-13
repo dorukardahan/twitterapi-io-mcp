@@ -1,3 +1,10 @@
+## [1.5.24](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.23...v1.5.24) (2026-10-13)
+
+
+### Bug Fixes
+
+* refresh release tooling to patch Handlebars injection ([f96cadb](https://github.com/dorukardahan/twitterapi-io-mcp/commit/f96cadb29c7be5a1ccec7038556d0f0a5af48ab1))
+
 ## [1.5.23](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.22...v1.5.23) (2026-10-07)
 
 
