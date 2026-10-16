@@ -1,3 +1,10 @@
+## [1.5.25](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.24...v1.5.25) (2026-10-16)
+
+
+### Bug Fixes
+
+* sync create tweet v2 parameters with OpenAPI ([13ac70f](https://github.com/dorukardahan/twitterapi-io-mcp/commit/13ac70ff27344dfc0c88decbb0a6d6decd60e3f9))
+
 ## [1.5.24](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.23...v1.5.24) (2026-10-13)
 
 
