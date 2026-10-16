@@ -16,6 +16,8 @@
 
 ### Bug Fixes
 
+* remove `quote_tweet_id` and `schedule_for` from the bundled V2 create-tweet parameters and generated endpoint page to match the live OpenAPI request schema; preserve the legacy endpoint parameter.
+
 * **deps:** refresh compatible release-tooling dependencies, including Handlebars 4.7.10 to resolve critical template-injection advisories; the full development audit still reports upstream braces and npm 11 bundled-dependency findings.
 
 * **deps:** update the locked MCP TypeScript SDK to 1.32.1 to clear GHSA-6qxp-vccf-f47h

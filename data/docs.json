@@ -1616,16 +1616,6 @@
           "required": false,
           "description": "List of media IDs (strings) to attach. Optional. Obtain each from /twitter/upload_media_v2."
         },
-        "quote_tweet_id": {
-          "type": "string",
-          "required": false,
-          "description": "ID of a tweet to quote. Optional. Alternative to attachment_url."
-        },
-        "schedule_for": {
-          "type": "string",
-          "required": false,
-          "description": "Schedule the tweet to be sent at a future time. Optional. Format: ISO-8601 with milliseconds, e.g. 2026-01-20T10:00:00.000Z"
-        },
         "proxy": {
           "type": "string",
           "required": true,
@@ -1667,16 +1657,6 @@
           "type": "array",
           "required": false,
           "description": "List of media IDs (strings) to attach. Optional. Obtain each from /twitter/upload_media_v2."
-        },
-        "quote_tweet_id": {
-          "type": "string",
-          "required": false,
-          "description": "ID of a tweet to quote. Optional. Alternative to attachment_url."
-        },
-        "schedule_for": {
-          "type": "string",
-          "required": false,
-          "description": "Schedule the tweet to be sent at a future time. Optional. Format: ISO-8601 with milliseconds, e.g. 2026-01-20T10:00:00.000Z"
         },
         "proxy": {
           "type": "string",
@@ -1759,22 +1739,6 @@
           "format": null,
           "required": false,
           "description": "List of media IDs (strings) to attach. Optional. Obtain each from /twitter/upload_media_v2."
-        },
-        {
-          "name": "quote_tweet_id",
-          "in": "body",
-          "type": "string",
-          "format": null,
-          "required": false,
-          "description": "ID of a tweet to quote. Optional. Alternative to attachment_url."
-        },
-        {
-          "name": "schedule_for",
-          "in": "body",
-          "type": "string",
-          "format": null,
-          "required": false,
-          "description": "Schedule the tweet to be sent at a future time. Optional. Format: ISO-8601 with milliseconds, e.g. 2026-01-20T10:00:00.000Z"
         },
         {
           "name": "proxy",
