@@ -1,3 +1,10 @@
+## [1.5.26](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.25...v1.5.26) (2026-10-17)
+
+
+### Bug Fixes
+
+* sync action pricing and cookie prose with OpenAPI ([e11a840](https://github.com/dorukardahan/twitterapi-io-mcp/commit/e11a840f0f0405fc2bfde81ddf3a50806feb291c))
+
 ## [1.5.25](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.24...v1.5.25) (2026-10-16)
 
 
