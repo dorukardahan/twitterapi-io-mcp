@@ -21,6 +21,10 @@
 
 ## Unreleased
 
+### Documentation
+
+- Align bundled endpoint descriptions and existing endpoint pages with live OpenAPI request-cookie wording and per-call pricing, including 200-credit tweet, DM, profile, and community actions and 10,000-credit Login V2.
+
 ### Bug Fixes
 
 * remove `quote_tweet_id` and `schedule_for` from the bundled V2 create-tweet parameters and generated endpoint page to match the live OpenAPI request schema; preserve the legacy endpoint parameter.

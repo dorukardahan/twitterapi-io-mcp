@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/follow_user_v2
 
 ## Description
 
-Follow a user. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call.
+Follow a user.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 200 credits ($0.002 per call).
 
 ## Example (curl)
 

@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/unbookmark_tweet_v2
 
 ## Description
 
-Remove a tweet from bookmarks. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call.
+Remove a tweet from bookmarks. You must set the login_cookies. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.002 per call.
 
 ## Example (curl)
 

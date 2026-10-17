@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/bookmarks_v2
 
 ## Description
 
-Get the bookmarks list of the logged-in user. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Returns tweets in the same format as other tweet endpoints. Use cursor for pagination.
+Get the bookmarks list of the logged-in user. You must set the login_cookies. You can get the login_cookie from /twitter/user_login_v2. Returns tweets in the same format as other tweet endpoints. Use cursor for pagination.
 
 ## Example (curl)
 

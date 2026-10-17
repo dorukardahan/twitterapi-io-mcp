@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/update_banner_v2
 
 ## Description
 
-Update your Twitter banner/header image. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.003 per call.
+Update your Twitter banner/header image. You must set the login_cookies. You can get the login_cookie from /twitter/user_login_v2. Price: 200 credits ($0.002 per call).
 
 ## Example (curl)
 

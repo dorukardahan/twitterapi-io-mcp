@@ -9,7 +9,7 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/join_community_v2
 
 ## Description
 
-Join a community. You must set the login_cookie. You can get the login_cookie from /twitter/user_login_v2. Trial operation price: $0.003 per call.
+Join a community.You must set the login_cookies.You can get the login_cookie from /twitter/user_login_v2.Price: 200 credits ($0.002 per call).
 
 ## Example (curl)
 
