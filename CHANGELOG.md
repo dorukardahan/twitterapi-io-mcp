@@ -35,6 +35,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+- Refresh the Registry JWT on HTTP 401 during publish retries so npm processing delays cannot exhaust the original token lifetime.
+
 ### Documentation
 
 - Align the Login V2 response schema with live OpenAPI: `login_cookies` and `message` replace stale `login_cookie` and `msg`.

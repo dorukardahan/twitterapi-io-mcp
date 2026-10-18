@@ -115,8 +115,7 @@ jobs:
         with:
           ref: main
 
-      - name: Exchange GitHub OIDC token for registry JWT
-        id: exchange
+      - name: Publish server.json to registry
         shell: bash
         run: |
           set -euo pipefail
@@ -126,41 +125,47 @@ jobs:
           if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] || [ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]; then
             echo "OIDC env missing" >&2; exit 1
           fi
-          OIDC_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${REGISTRY_AUDIENCE}"
-          OIDC_BODY_FILE="$(mktemp)"
-          OIDC_STATUS="$(curl -sS -o "$OIDC_BODY_FILE" -w "%{http_code}" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$OIDC_URL")"
-          if [ "$OIDC_STATUS" != "200" ]; then
-            echo "OIDC token request failed: HTTP ${OIDC_STATUS}" >&2; cat "$OIDC_BODY_FILE" >&2; exit 1
-          fi
-          OIDC_TOKEN="$(node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(d.value||'');" "$OIDC_BODY_FILE")"
-          if [ -z "$OIDC_TOKEN" ]; then echo "No OIDC token" >&2; exit 1; fi
-          REGISTRY_BODY_FILE="$(mktemp)"
-          REGISTRY_STATUS="$(curl -sS -o "$REGISTRY_BODY_FILE" -w "%{http_code}" -H "Content-Type: application/json" -d "{\"oidc_token\":\"$OIDC_TOKEN\"}" "$REGISTRY_URL/v0.1/auth/github-oidc")"
-          if [ "$REGISTRY_STATUS" != "200" ]; then
-            echo "Registry exchange failed: HTTP ${REGISTRY_STATUS}" >&2; cat "$REGISTRY_BODY_FILE" >&2; exit 1
-          fi
-          REGISTRY_TOKEN="$(node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(d.registry_token||'');" "$REGISTRY_BODY_FILE")"
-          if [ -z "$REGISTRY_TOKEN" ]; then echo "No registry token" >&2; exit 1; fi
-          echo "::add-mask::$REGISTRY_TOKEN"
-          echo "registry_token=$REGISTRY_TOKEN" >> "$GITHUB_OUTPUT"
 
-      - name: Publish server.json to registry
-        shell: bash
-        run: |
-          set -euo pipefail
+          refresh_registry_token() {
+            OIDC_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${REGISTRY_AUDIENCE}"
+            OIDC_BODY_FILE="$(mktemp)"
+            OIDC_STATUS="$(curl -sS -o "$OIDC_BODY_FILE" -w "%{http_code}" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$OIDC_URL")"
+            if [ "$OIDC_STATUS" != "200" ]; then
+              echo "OIDC token request failed: HTTP ${OIDC_STATUS}" >&2; cat "$OIDC_BODY_FILE" >&2; exit 1
+            fi
+            OIDC_TOKEN="$(node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(d.value||'');" "$OIDC_BODY_FILE")"
+            if [ -z "$OIDC_TOKEN" ]; then echo "No OIDC token" >&2; exit 1; fi
+            REGISTRY_BODY_FILE="$(mktemp)"
+            REGISTRY_STATUS="$(curl -sS -o "$REGISTRY_BODY_FILE" -w "%{http_code}" -H "Content-Type: application/json" -d "{\"oidc_token\":\"$OIDC_TOKEN\"}" "$REGISTRY_URL/v0.1/auth/github-oidc")"
+            if [ "$REGISTRY_STATUS" != "200" ]; then
+              echo "Registry exchange failed: HTTP ${REGISTRY_STATUS}" >&2; cat "$REGISTRY_BODY_FILE" >&2; exit 1
+            fi
+            REGISTRY_TOKEN="$(node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(d.registry_token||'');" "$REGISTRY_BODY_FILE")"
+            if [ -z "$REGISTRY_TOKEN" ]; then echo "No registry token" >&2; exit 1; fi
+            echo "::add-mask::$REGISTRY_TOKEN"
+          }
+
+          refresh_registry_token
           RESPONSE_FILE="$(mktemp)"
           MAX_ATTEMPTS=40
           RETRY_DELAY_SECONDS=15
 
           for ATTEMPT in $(seq 1 "$MAX_ATTEMPTS"); do
             STATUS_CODE="$(curl -sS -o "$RESPONSE_FILE" -w "%{http_code}" \
-              -H "Authorization: Bearer ${{ steps.exchange.outputs.registry_token }}" \
+              -H "Authorization: Bearer $REGISTRY_TOKEN" \
               -H "Content-Type: application/json" \
               --data-binary "@${SERVER_JSON_PATH}" \
               "$REGISTRY_URL/v0.1/publish")"
 
             if [ "$STATUS_CODE" = "200" ] || [ "$STATUS_CODE" = "409" ]; then
               break
+            fi
+
+            # Registry JWTs can expire while waiting for npm package visibility.
+            if [ "$STATUS_CODE" = "401" ] && [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
+              echo "Registry token expired or rejected; refreshing (${ATTEMPT}/${MAX_ATTEMPTS})"
+              refresh_registry_token
+              continue
             fi
 
             if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ] && { \
