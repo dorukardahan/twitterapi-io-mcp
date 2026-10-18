@@ -1,3 +1,10 @@
+## [1.5.27](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.26...v1.5.27) (2026-10-18)
+
+
+### Bug Fixes
+
+* sync login v2 response fields with OpenAPI ([aaf9e94](https://github.com/dorukardahan/twitterapi-io-mcp/commit/aaf9e9498f0b5edf692cd3f37e65943b8aa78825))
+
 ## [1.5.26](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.25...v1.5.26) (2026-10-17)
 
 
