@@ -30,6 +30,8 @@
 
 ### Documentation
 
+- Align the Login V2 response schema with live OpenAPI: `login_cookies` and `message` replace stale `login_cookie` and `msg`.
+
 - Align bundled endpoint descriptions and existing endpoint pages with live OpenAPI request-cookie wording and per-call pricing, including 200-credit tweet, DM, profile, and community actions and 10,000-credit Login V2.
 
 ### Bug Fixes

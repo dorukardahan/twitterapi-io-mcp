@@ -1516,7 +1516,7 @@
         }
       },
       "response_schema": {
-        "login_cookie": {
+        "login_cookies": {
           "type": "string",
           "description": "The login cookie of the user.Use this cookie to post tweets, etc.You can only call v2 APIs with this cookie.If your account is in good standing and you're using residential proxies, the cookies will generally remain valid indefinitely."
         },
@@ -1524,7 +1524,7 @@
           "type": "string",
           "description": "Status of the request.success or error"
         },
-        "msg": {
+        "message": {
           "type": "string",
           "description": "Message of the request.error message"
         }
