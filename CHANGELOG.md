@@ -1,3 +1,10 @@
+## [1.5.28](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.27...v1.5.28) (2026-10-18)
+
+
+### Bug Fixes
+
+* **ci:** refresh expired registry tokens during publish retries ([24b0c62](https://github.com/dorukardahan/twitterapi-io-mcp/commit/24b0c62eb68ed464256b467837abd706446b862d))
+
 ## [1.5.27](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.26...v1.5.27) (2026-10-18)
 
 
