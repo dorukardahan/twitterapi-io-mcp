@@ -1,3 +1,10 @@
+## Unreleased
+
+### Security
+
+- Update the release-tooling npm override from 11.21.0 to 11.21.1, refreshing bundled dependencies and resolving the npm-bundled audit findings.
+- Full development-dependency audit still reports GHSA-vfj7-8cjw-p6xm in braces 3.0.3 through semantic-release; no patched braces release is available. Production dependencies remain audit-clean.
+
 ## [1.5.28](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.27...v1.5.28) (2026-10-18)
 
 
