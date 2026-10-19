@@ -1,3 +1,10 @@
+## [1.5.29](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.28...v1.5.29) (2026-10-19)
+
+
+### Bug Fixes
+
+* patch bundled npm release-tooling dependencies ([927847b](https://github.com/dorukardahan/twitterapi-io-mcp/commit/927847b9313aa5e65f780d60720d7ea641e826b3))
+
 ## Unreleased
 
 ### Security
