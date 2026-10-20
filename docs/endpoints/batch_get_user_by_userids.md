@@ -9,12 +9,12 @@ Source: https://docs.twitterapi.io/api-reference/endpoint/batch_get_user_by_user
 
 ## Description
 
-Batch get user info by user ids. Pricing:
+Batch get user info by user ids. Pricing (per request, based on the number of users returned):
 
-- Single user request: 18 credits per user
-- Bulk request (100+ users): 10 credits per user
+- 1-99 users: 18 credits per user
+- 100 or more users: 1 credit per user
 
-Note: For cost optimization, we recommend batching requests when fetching multiple user profiles.
+Note: For cost optimization, we recommend batching 100 or more user IDs per request.
 
 ## Example (curl)
 

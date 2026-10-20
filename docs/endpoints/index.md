@@ -5,12 +5,12 @@
 | `add_list_member` | `/twitter/list/add_member` | [Add a member to a list. Requires login. Cost: $0.001 per call.](./add_list_member.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/add_list_member) |
 | `add_user_to_monitor_tweet` | `/oapi/x_user_stream/add_user_to_monitor_tweet` | [Add a user to monitor real-time tweets.Monitor tweets from specified accounts, including directly sent tweets, quoted tweets, reply tweets, and retweeted tweets. Please ref:https://twitterapi.io/twitter-stream](./add_user_to_monitor_tweet.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/add_user_to_monitor_tweet) |
 | `add_webhook_rule` | `/oapi/tweet_filter/add_rule` | [Add a tweet filter rule. Default rule is not activated.You must call update_rule to activate the rule.](./add_webhook_rule.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/add_webhook_rule) |
-| `batch_get_user_by_userids` | `/twitter/user/batch_info_by_ids` | [Batch get user info by user ids. Pricing:
+| `batch_get_user_by_userids` | `/twitter/user/batch_info_by_ids` | [Batch get user info by user ids. Pricing (per request, based on the number of users returned):
 
-- Single user request: 18 credits per user
-- Bulk request (100+ users): 10 credits per user
+- 1-99 users: 18 credits per user
+- 100 or more users: 1 credit per user
 
-Note: For cost optimization, we recommend batching requests when fetching multiple user profiles.](./batch_get_user_by_userids.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/batch_get_user_by_userids) |
+Note: For cost optimization, we recommend batching 100 or more user IDs per request.](./batch_get_user_by_userids.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/batch_get_user_by_userids) |
 | `bookmark_tweet_v2` | `/twitter/bookmark_tweet_v2` | [Bookmark Tweet V2](./bookmark_tweet_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/bookmark_tweet_v2) |
 | `bookmarks_v2` | `/twitter/bookmarks_v2` | [Bookmarks V2](./bookmarks_v2.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/bookmarks_v2) |
 | `check_follow_relationship` | `/twitter/user/check_follow_relationship` | [Check if the user is following/followed by the target user. Trial operation price: 100 credits per call.](./check_follow_relationship.md) | [source](https://docs.twitterapi.io/api-reference/endpoint/check_follow_relationship) |

@@ -7,6 +7,13 @@
 
 ## Unreleased
 
+### Documentation
+
+- Sync batch user pricing with the live OpenAPI: 18 credits per user for 1-99 returned users, 1 credit for 100+ (previously 10). Refresh the snapshot and endpoint documentation.
+- Correct the follower pricing summary from 15 credits to the OpenAPI tiers of 1-3 credits, with a 60-credit minimum; update both scrapers to preserve the correction.
+- Daily sync (2026-10-20): all 68 active endpoints and 198 request parameters match; companion skill 3.8.23 updates the full and Hermes references. Full development audit still reports the unpatched braces advisory GHSA-vfj7-8cjw-p6xm (10 affected dependency entries); production audit is clean.
+
+
 ### Security
 
 - Update the release-tooling npm override from 11.21.0 to 11.21.1, refreshing bundled dependencies and resolving the npm-bundled audit findings.
