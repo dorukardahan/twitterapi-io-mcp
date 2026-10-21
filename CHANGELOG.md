@@ -1,3 +1,10 @@
+## [1.5.30](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.29...v1.5.30) (2026-10-21)
+
+
+### Bug Fixes
+
+* patch Hono static-path middleware bypass ([2a4b237](https://github.com/dorukardahan/twitterapi-io-mcp/commit/2a4b2376453a24884a3dff29939804dfcebcbf5f))
+
 ## [1.5.29](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.28...v1.5.29) (2026-10-19)
 
 
