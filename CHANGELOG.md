@@ -16,6 +16,8 @@
 
 ### Security
 
+- Daily sync (2026-10-21): update locked Hono from 4.13.8 to 4.13.13, resolving GHSA-5r4p-p66f-jhc7 (static-path middleware bypass). The development-only braces advisory GHSA-vfj7-8cjw-p6xm remains unpatched upstream (latest 3.0.3).
+
 - Update the release-tooling npm override from 11.21.0 to 11.21.1, refreshing bundled dependencies and resolving the npm-bundled audit findings.
 - Full development-dependency audit still reports GHSA-vfj7-8cjw-p6xm in braces 3.0.3 through semantic-release; no patched braces release is available. Production dependencies remain audit-clean.
 
