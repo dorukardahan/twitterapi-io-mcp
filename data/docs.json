@@ -1673,7 +1673,7 @@
           "type": "string",
           "description": "Status of the request.success or error"
         },
-        "msg": {
+        "message": {
           "type": "string",
           "description": "Message of the request.error message"
         }

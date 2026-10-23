@@ -14,6 +14,13 @@
 
 ## Unreleased
 
+### Daily sync (2026-10-23)
+
+- Update runtime `ip-address` from 10.7.3 to 10.7.4 to resolve GHSA-rxp7-6hxx-x8q5. The npm 11.21.1 bundled copy (10.7.2) remains affected in development tooling.
+- Full development audit still reports GHSA-vfj7-8cjw-p6xm through braces 3.0.3; no patched braces release is available.
+
+- Correct the create-tweet V2 response schema from `msg` to `message`, matching live OpenAPI. Companion skill version 3.8.25 corrects the corresponding response example.
+
 ### Documentation
 
 - Sync batch user pricing with the live OpenAPI: 18 credits per user for 1-99 returned users, 1 credit for 100+ (previously 10). Refresh the snapshot and endpoint documentation.
