@@ -1,3 +1,10 @@
+## [1.5.31](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.30...v1.5.31) (2026-10-23)
+
+
+### Bug Fixes
+
+* patch runtime IP parsing and sync tweet response field ([c988434](https://github.com/dorukardahan/twitterapi-io-mcp/commit/c98843424e6e13d13228ccc4926584a52cb9ee74))
+
 ## [1.5.30](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.29...v1.5.30) (2026-10-21)
 
 
