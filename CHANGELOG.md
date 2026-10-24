@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.31...v1.6.0) (2026-10-24)
+
+
+### Features
+
+* sync seven V2 actions and patch vulnerable dependencies ([67aed74](https://github.com/dorukardahan/twitterapi-io-mcp/commit/67aed74ec106545bb943d6d1671cae02f5ca8f6b))
+
 ## Daily sync (2026-10-24)
 
 - Add seven V2 actions from the live OpenAPI, bringing bundled coverage to 75 endpoints.
