@@ -4,7 +4,7 @@ This folder contains a **Markdown representation** of the bundled documentation 
 
 - Source: https://docs.twitterapi.io/api-reference/openapi.json
 - Snapshot date: 2026-03-16T02:37:54.447Z
-- Endpoints: 54
+- Endpoints: 75
 - Pages: 32
 - Blog posts: 24
 

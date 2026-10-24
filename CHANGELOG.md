@@ -1,3 +1,10 @@
+## Daily sync (2026-10-24)
+
+- Add seven V2 actions from the live OpenAPI, bringing bundled coverage to 75 endpoints.
+- Refresh locked runtime dependencies for body-parser, zod, and fast-uri security advisories; update unbundled development undici.
+- Classify new mutation endpoints as actions and refresh the endpoint category table.
+- npm 11.21.1 remains the latest npm 11 release; its bundled undici (high) and ip-address (moderate) still require upstream fixes.
+
 ## [1.5.31](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.30...v1.5.31) (2026-10-23)
 
 

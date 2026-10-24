@@ -3,7 +3,7 @@
     "source": "https://docs.twitterapi.io/api-reference/openapi.json",
     "scraped_at": "2026-03-16T02:37:54.447Z",
     "scraper_version": "3.0",
-    "total_endpoints": 68,
+    "total_endpoints": 75,
     "total_pages": 32,
     "total_blogs": 24
   },
@@ -4914,6 +4914,629 @@
         "curl --request GET \\\n  --url 'https://api.twitterapi.io/twitter/user/followers_ids?userName=USERNAME&userId=USERID&count=5000&cursor=CURSOR' \\\n  --header 'X-API-Key: <api-key>'"
       ],
       "raw_text": "Get a user's follower IDs in bulk — lightweight, IDs only, no profile metadata. userName: Screen name of the user. Either userName or userId is required. userId: Numeric user ID. Either userName or userId is required. count: Number of follower IDs to return per page. Min 50, max 5000. Default 5000. cursor: Pagination cursor from next_cursor."
+    },
+    "block_user_v2": {
+      "name": "block_user_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/block_user_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Block User",
+      "description": "Block a user. X also removes the follow relationship in both directions. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/block_user_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to block. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to block. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "description": "The numeric id of the user to block. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/block_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/block_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Block a user. X also removes the follow relationship in both directions. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set user_id: The numeric id of the user to block. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "mute_user_v2": {
+      "name": "mute_user_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/mute_user_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Mute User",
+      "description": "Mute a user. Their posts no longer appear in your timeline. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/mute_user_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to mute. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to mute. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "description": "The numeric id of the user to mute. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/mute_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/mute_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Mute a user. Their posts no longer appear in your timeline. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set user_id: The numeric id of the user to mute. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "pin_tweet_v2": {
+      "name": "pin_tweet_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/pin_tweet_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Pin Tweet",
+      "description": "Pin one of your own tweets to your profile. You can only pin tweets posted by the logged-in account. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/pin_tweet_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "tweet_id": {
+          "type": "string",
+          "description": "The id of your own tweet to pin. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "tweet_id": {
+          "type": "string",
+          "description": "The id of your own tweet to pin. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "description": "The id of your own tweet to pin. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/pin_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/pin_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Pin one of your own tweets to your profile. You can only pin tweets posted by the logged-in account. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of your own tweet to pin. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "unblock_user_v2": {
+      "name": "unblock_user_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/unblock_user_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Unblock User",
+      "description": "Unblock a user. The follow relationship removed by the block is not restored. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/unblock_user_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to unblock. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to unblock. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "description": "The numeric id of the user to unblock. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/unblock_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/unblock_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Unblock a user. The follow relationship removed by the block is not restored. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set user_id: The numeric id of the user to unblock. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "unmute_user_v2": {
+      "name": "unmute_user_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/unmute_user_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Unmute User",
+      "description": "Unmute a user. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/unmute_user_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to unmute. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The numeric id of the user to unmute. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "in": "body",
+          "type": "string",
+          "description": "The numeric id of the user to unmute. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/unmute_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/unmute_user_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"user_id\": \"NUMERIC_USER_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Unmute a user. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set user_id: The numeric id of the user to unmute. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "unpin_tweet_v2": {
+      "name": "unpin_tweet_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/unpin_tweet_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Unpin Tweet",
+      "description": "Unpin a tweet from your profile. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/unpin_tweet_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "tweet_id": {
+          "type": "string",
+          "description": "The id of the pinned tweet to unpin. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "tweet_id": {
+          "type": "string",
+          "description": "The id of the pinned tweet to unpin. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "description": "The id of the pinned tweet to unpin. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/unpin_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/unpin_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Unpin a tweet from your profile. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the pinned tweet to unpin. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "unretweet_tweet_v2": {
+      "name": "unretweet_tweet_v2",
+      "url": "https://docs.twitterapi.io/api-reference/endpoint/unretweet_tweet_v2",
+      "scraped_at": "2026-10-24T04:03:36.908Z",
+      "title": "Unretweet Tweet",
+      "description": "Undo a retweet. If the account has not retweeted the tweet, X treats this as a no-op and the call still returns success. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code).",
+      "method": "POST",
+      "path": "/twitter/unretweet_tweet_v2",
+      "body": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "tweet_id": {
+          "type": "string",
+          "description": "The id of the tweet to undo the retweet for. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "body_parameters": {
+        "login_cookies": {
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        "tweet_id": {
+          "type": "string",
+          "description": "The id of the tweet to undo the retweet for. Must be set",
+          "required": true
+        },
+        "proxy": {
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "login_cookies",
+          "in": "body",
+          "type": "string",
+          "description": "The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set",
+          "required": true
+        },
+        {
+          "name": "tweet_id",
+          "in": "body",
+          "type": "string",
+          "description": "The id of the tweet to undo the retweet for. Must be set",
+          "required": true
+        },
+        {
+          "name": "proxy",
+          "in": "body",
+          "type": "string",
+          "description": "The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port",
+          "required": true
+        }
+      ],
+      "response_schema": {
+        "status": {
+          "type": "string",
+          "description": "Status of the request. success or error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message of the request. error message"
+        },
+        "x_status": {
+          "type": "integer",
+          "description": "Only on failure, when available: the HTTP status returned by X"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Only on failure, when available: X's error code"
+        }
+      },
+      "curl_example": "curl -s -X POST \"https://api.twitterapi.io/twitter/unretweet_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'",
+      "code_snippets": [
+        "curl -s -X POST \"https://api.twitterapi.io/twitter/unretweet_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'"
+      ],
+      "raw_text": "Undo a retweet. If the account has not retweeted the tweet, X treats this as a no-op and the call still returns success. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 200 credits ($0.002 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the tweet to undo the retweet for. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
     }
   },
   "pages": {

@@ -1921,7 +1921,7 @@ ${endpoint.raw_text || "No additional content available."}`;
           const actionPrefixes = [
             "create_", "delete_", "update_", "add_", "remove_", "upload_", "send_",
             "like_", "unlike_", "retweet_", "follow_", "unfollow_", "join_", "leave_",
-            "login_",
+            "login_", "unretweet_", "pin_", "unpin_", "mute_", "unmute_", "block_", "unblock_",
           ];
 
           if (actionPrefixes.some((p) => n.startsWith(p)) || /(^|_)login(_|$)/.test(n)) {

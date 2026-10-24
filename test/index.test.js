@@ -680,6 +680,23 @@ describe('MCP Protocol Integration', () => {
         'Expected add_user_to_monitor_tweet to be categorized as stream'
       );
 
+      const actionDocs = JSON.parse(fs.readFileSync(DOCS_PATH, 'utf-8'));
+      const actionEndpoints = await client.callTool({
+        name: 'list_twitterapi_endpoints',
+        arguments: { category: 'action' },
+      });
+      for (const name of ['unretweet_tweet_v2', 'pin_tweet_v2', 'unpin_tweet_v2',
+        'mute_user_v2', 'unmute_user_v2', 'block_user_v2', 'unblock_user_v2']) {
+        const endpoint = actionEndpoints.structuredContent.endpoints.find((e) => e.name === name);
+        assert.ok(endpoint, name + ' must be listed as an action');
+        assert.equal(endpoint.method, 'POST');
+        assert.equal(endpoint.path, '/twitter/' + name);
+        const detail = actionDocs.endpoints[name];
+        assert.ok(detail.body.login_cookies.required);
+        assert.ok(detail.body.proxy.required);
+        assert.ok(detail.curl_example.includes(endpoint.path));
+      }
+
       const dmEndpoints = await client.callTool({
         name: 'list_twitterapi_endpoints',
         arguments: { category: 'dm' }
