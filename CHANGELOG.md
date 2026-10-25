@@ -1,3 +1,8 @@
+## Daily sync (2026-10-25)
+
+- Align 23 action/media endpoint prices with the live OpenAPI: 60 credits ($0.0006 per call), previously 200 or 300 credits.
+- Correct the media-upload success response field from `msg` to `message`.
+
 # [1.6.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.5.31...v1.6.0) (2026-10-24)
 
 
