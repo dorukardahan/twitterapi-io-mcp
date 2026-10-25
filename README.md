@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
-[![Smithery](https://smithery.ai/badge/@dorukardahan/twitterapi-io-mcp)](https://smithery.ai/server/@dorukardahan/twitterapi-io-mcp)
+[![LightNow capabilities](https://lightnow.ai/badge/io.github.dorukardahan/twitterapi-io-mcp)](https://lightnow.ai/servers/io.github.dorukardahan/twitterapi-io-mcp)
 [![GitHub stars](https://img.shields.io/github/stars/dorukardahan/twitterapi-io-mcp?style=social)](https://github.com/dorukardahan/twitterapi-io-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
