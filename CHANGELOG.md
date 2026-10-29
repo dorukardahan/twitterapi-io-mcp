@@ -1,3 +1,9 @@
+## Daily sync (2026-10-29)
+
+- Patch runtime @hono/node-server from 2.0.12 to 2.1.5 for GHSA-rmxm-3fg6-px4f.
+- Verify all 75 active endpoints and 219 request parameters against the live OpenAPI; no coverage or required/location changes.
+- npm 11.21.1 release tooling still bundles vulnerable undici 6.29.0 (high) and ip-address 10.7.2 (moderate); npm audit fix cannot replace bundled dependencies. Runtime audit is clean.
+
 ## [1.6.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.6.0...v1.6.1) (2026-10-25)
 
 
