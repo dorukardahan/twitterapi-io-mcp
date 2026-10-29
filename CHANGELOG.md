@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.6.1...v1.6.2) (2026-10-29)
+
+
+### Bug Fixes
+
+* patch Hono node adapter security vulnerability ([db61974](https://github.com/dorukardahan/twitterapi-io-mcp/commit/db619743f091757760dc1f1c0ea7ca8ccbded0ea))
+
 ## Daily sync (2026-10-29)
 
 - Patch runtime @hono/node-server from 2.0.12 to 2.1.5 for GHSA-rmxm-3fg6-px4f.
