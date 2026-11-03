@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.6.2...v1.7.0) (2026-11-03)
+
+
+### Features
+
+* add user subscriptions endpoint documentation ([d11efe4](https://github.com/dorukardahan/twitterapi-io-mcp/commit/d11efe4f37336d36adb49ba113ff3642964be3a1))
+
 ## Daily sync (2026-11-03)
 
 - Add GET /twitter/user/subscriptions from the live OpenAPI, including required numeric userId, optional cursor, response schema, and curl example.
