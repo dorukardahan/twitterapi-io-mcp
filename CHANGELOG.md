@@ -1,3 +1,8 @@
+## Daily sync (2026-11-03)
+
+- Add GET /twitter/user/subscriptions from the live OpenAPI, including required numeric userId, optional cursor, response schema, and curl example.
+- Sync bundled endpoint and README counts to 76 active endpoints (36 GET, 40 write, including 8 webhook/stream endpoints).
+
 ## [1.6.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.6.1...v1.6.2) (2026-10-29)
 
 

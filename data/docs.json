@@ -3,7 +3,7 @@
     "source": "https://docs.twitterapi.io/api-reference/openapi.json",
     "scraped_at": "2026-03-16T02:37:54.447Z",
     "scraper_version": "3.0",
-    "total_endpoints": 75,
+    "total_endpoints": 76,
     "total_pages": 32,
     "total_blogs": 24
   },
@@ -5537,6 +5537,68 @@
         "curl -s -X POST \"https://api.twitterapi.io/twitter/unretweet_tweet_v2\" \\\n  -H \"X-API-Key: $TWITTERAPI_IO_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"login_cookies\": \"COOKIE\", \"tweet_id\": \"TWEET_ID\", \"proxy\": \"PROXY\"}'"
       ],
       "raw_text": "Undo a retweet. If the account has not retweeted the tweet, X treats this as a no-op and the call still returns success. You must set the login_cookies. You can get the login_cookies from /twitter/user_login_v2. Price: 60 credits ($0.0006 per call). If the call fails, the response has status \"error\", a message with the reason returned by X, and when available x_status (the HTTP status from X) and code (X's error code). login_cookies: The login cookies of the user. You can get the login_cookie from /twitter/user_login_v2. Must be set tweet_id: The id of the tweet to undo the retweet for. Must be set proxy: The proxy to use. Please use high-quality residential proxies and avoid free proxies. Required. Example: http://username:password@ip:port"
+    },
+    "get_user_subscriptions": {
+      "name": "get_user_subscriptions",
+      "url": "https://docs.twitterapi.io/api-reference/openapi.json",
+      "scraped_at": "2026-11-03T04:02:40.767439+00:00",
+      "title": "Get User Subscriptions",
+      "description": "Get the creators a user subscribes to (the accounts they pay to support with X Creator Subscriptions, shown on the \"Subscriptions\" tab of their profile). This is not the list of people who subscribe to the user.\n\n- Pass the numeric user ID (`userId`). To get the ID from a username, call [Get User Info](/api-reference/endpoint/get_user_by_username) first.\n- Up to 20 creators per page. Use `next_cursor` for the next page; `has_next_page` is `false` on the last page.\n- Most accounts don't subscribe to anyone, so an empty `users` list with `status: \"success\"` is normal.\n- If the user doesn't exist or is suspended, the response is `status: \"error\"` with `msg: \"user not found\"`.\n- Price: 15 credits per creator returned, with a minimum of 15 credits per request.\n- Empty results (the user subscribes to nobody) and \"user not found\" responses are charged the 15-credit minimum.\n- If our upstream is temporarily unavailable, the request returns HTTP 502 and is not charged; retry later.\n- For protected accounts, results reflect what the account shows publicly.",
+      "method": "GET",
+      "path": "/twitter/user/subscriptions",
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "query",
+          "type": "string",
+          "required": true,
+          "description": "Numeric user ID, e.g. 11768582. Usernames are not accepted."
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "description": "Cursor from the previous response's next_cursor. Omit or leave empty for the first page."
+        }
+      ],
+      "query_parameters": {
+        "userId": "userId string required",
+        "cursor": "cursor string"
+      },
+      "response_schema": {
+        "users": {
+          "type": "array",
+          "description": "Creators the user subscribes to (up to 20 per page)",
+          "itemRef": "UserInfo"
+        },
+        "has_next_page": {
+          "type": "boolean",
+          "description": "true if another page exists; false on the last page"
+        },
+        "next_cursor": {
+          "type": "string",
+          "nullable": true,
+          "description": "Cursor for the next page (null on the last page)"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "success",
+            "error"
+          ],
+          "description": "success, or error when the user doesn't exist"
+        },
+        "msg": {
+          "type": "string",
+          "description": "Error message, e.g. \"user not found\""
+        }
+      },
+      "curl_example": "curl --request GET \\\n  --url \"https://api.twitterapi.io/twitter/user/subscriptions?userId=USER_ID\" \\\n  --header \"X-API-Key: $TWITTERAPI_IO_KEY\"",
+      "code_snippets": [
+        "curl --request GET \\\n  --url \"https://api.twitterapi.io/twitter/user/subscriptions?userId=USER_ID\" \\\n  --header \"X-API-Key: $TWITTERAPI_IO_KEY\""
+      ],
+      "raw_text": "Get User Subscriptions Get the creators a user subscribes to (the accounts they pay to support with X Creator Subscriptions, shown on the \"Subscriptions\" tab of their profile). This is not the list of people who subscribe to the user.\n\n- Pass the numeric user ID (`userId`). To get the ID from a username, call [Get User Info](/api-reference/endpoint/get_user_by_username) first.\n- Up to 20 creators per page. Use `next_cursor` for the next page; `has_next_page` is `false` on the last page.\n- Most accounts don't subscribe to anyone, so an empty `users` list with `status: \"success\"` is normal.\n- If the user doesn't exist or is suspended, the response is `status: \"error\"` with `msg: \"user not found\"`.\n- Price: 15 credits per creator returned, with a minimum of 15 credits per request.\n- Empty results (the user subscribes to nobody) and \"user not found\" responses are charged the 15-credit minimum.\n- If our upstream is temporarily unavailable, the request returns HTTP 502 and is not charged; retry later.\n- For protected accounts, results reflect what the account shows publicly. userId: Numeric user ID, e.g. 11768582. Usernames are not accepted. cursor: Cursor from the previous response's next_cursor. Omit or leave empty for the first page."
     }
   },
   "pages": {

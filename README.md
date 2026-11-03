@@ -1,6 +1,6 @@
 # twitterapi-io-mcp
 
-> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 75 active endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
+> Offline TwitterAPI.io documentation for Claude and AI assistants via MCP. 76 active endpoints (with full method/params/body), 32 guides, 24 blog posts. No API key needed.
 
 [![npm version](https://img.shields.io/npm/v/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/twitterapi-io-mcp.svg)](https://www.npmjs.com/package/twitterapi-io-mcp)
@@ -17,7 +17,7 @@ claude mcp add twitterapi-io -- npx -y twitterapi-io-mcp
 
 An MCP server that gives Claude, Cursor, VS Code Copilot, and other AI assistants **instant, offline access** to [TwitterAPI.io](https://twitterapi.io) documentation.
 
-- **75 active API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
+- **76 active API endpoints** with full HTTP method, body/query parameters, cURL examples, and response schemas
 - **32 guide pages** covering pricing, authentication, rate limits, webhooks, streaming
 - **24 blog posts** with tutorials and use cases
 - **All v2 write endpoints** documented with `login_cookies`, `proxy`, and body params
@@ -178,11 +178,11 @@ Here are real prompts that work well with this MCP server:
 - *"How do I upload media and create a tweet?"* — triggers sequential `get_twitterapi_endpoint` calls
 
 <details>
-<summary><strong>All 75 endpoints by category</strong></summary>
+<summary><strong>All 76 endpoints by category</strong></summary>
 
 | Category | Count | Endpoints |
 |----------|-------|-----------|
-| **User** | 13 | `get_user_by_username`, `get_user_about`, `search_user`, `batch_get_user_by_userids`, `get_user_last_tweets`, `get_user_timeline`, `get_user_mention`, `get_user_followers`, `get_user_verified_followers`, `get_user_followings`, `check_follow_relationship`, `get_my_info`, `get_user_followers_ids` |
+| **User** | 14 | `get_user_by_username`, `get_user_about`, `search_user`, `batch_get_user_by_userids`, `get_user_last_tweets`, `get_user_timeline`, `get_user_mention`, `get_user_followers`, `get_user_verified_followers`, `get_user_followings`, `check_follow_relationship`, `get_my_info`, `get_user_followers_ids`, `get_user_subscriptions` |
 | **Other** | 2 | `get_space_detail`, `bookmarks_v2` |
 | **Trend** | 1 | `get_trends` |
 | **Tweet** | 10 | `get_tweet_by_ids`, `get_article`, `get_tweet_reply`, `get_tweet_replies_v2`, `get_tweet_thread_context`, `get_tweet_quote`, `get_tweet_retweeter`, `tweet_advanced_search`, `bookmark_tweet_v2`, `unbookmark_tweet_v2` |
@@ -236,7 +236,7 @@ Restart your MCP client after adding the server config. Most clients (Claude Des
 │   Claude /   │ ◄──────────────────► │ twitterapi-io-mcp│
 │  Cursor /    │                      │                  │
 │  VS Code     │                      │  Bundled docs    │
-└─────────────┘                      │  (75 endpoints)  │
+└─────────────┘                      │  (76 endpoints)  │
                                      └──────────────────┘
                                        No network needed
 ```
@@ -271,7 +271,7 @@ npm run scrape  # Update docs snapshot from twitterapi.io
 
 ## Not using MCP?
 
-If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 75 active endpoints:
+If your AI tool doesn't support MCP (like OpenClaw), use the **skill version** instead — a single markdown file with all 76 active endpoints:
 
 👉 **[twitterapi-io-skill](https://github.com/dorukardahan/twitterapi-io-skill)** — works with OpenClaw, Claude, GPT, Gemini, and any LLM.
 
