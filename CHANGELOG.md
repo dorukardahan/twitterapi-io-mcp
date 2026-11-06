@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.7.0...v1.7.1) (2026-11-06)
+
+
+### Bug Fixes
+
+* patch bundled release-tooling vulnerabilities ([ee65648](https://github.com/dorukardahan/twitterapi-io-mcp/commit/ee65648f7af2524e4df96c9cf0132995fb7e16c9))
+
 ## Daily sync (2026-11-06)
 
 - Update the release-tooling npm override from 11.21.1 to 11.21.2, patching bundled undici 6.29.0 to 6.29.1 and ip-address 10.7.2 to 10.7.5.
