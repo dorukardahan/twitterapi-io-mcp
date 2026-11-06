@@ -1,3 +1,9 @@
+## Daily sync (2026-11-06)
+
+- Update the release-tooling npm override from 11.21.1 to 11.21.2, patching bundled undici 6.29.0 to 6.29.1 and ip-address 10.7.2 to 10.7.5.
+- Full dependency audit has no high/critical findings; moderate glob/minimatch findings remain in npm bundled dependencies. Runtime audit is clean.
+- Verify all 76 active endpoints, required parameters, query/body placement, category counts, and skill curl coverage against live OpenAPI.
+
 # [1.7.0](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.6.2...v1.7.0) (2026-11-03)
 
 
