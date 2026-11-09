@@ -85,8 +85,34 @@ jobs:
       - name: Check exact manifests and scan actual npm tarballs
         id: package_gate
         run: |
+          python3 scripts/security/test_guards.py
+          node --test scripts/security/recovery.test.mjs
           python3 scripts/security/release.py prepare --package twitterapi-io-mcp --output "$RUNNER_TEMP/main-package"
           python3 scripts/security/release.py prepare --package twitterapi-docs-mcp --output "$RUNNER_TEMP/wrapper-package"
+
+      - name: Require owner review after a previous release block
+        id: recovery
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const main = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'main-package/manifest.json')));
+            const wrapper = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'wrapper-package/manifest.json')));
+            const { pathToFileURL } = require('url');
+            const { approvalCommand, ownerApproved } = await import(pathToFileURL(path.resolve('scripts/security/recovery.mjs')));
+            const approval = approvalCommand(main, wrapper);
+            await core.summary.addHeading('Checked artifact recovery approval').addCodeBlock(approval).write();
+            const issues = await github.paginate(github.rest.issues.listForRepo, {...context.repo, state: 'open', per_page: 100});
+            const blocked = issues.filter(i => !i.pull_request && i.title === 'Release blocked: package safety check');
+            for (const issue of blocked) {
+              const comments = await github.paginate(github.rest.issues.listComments, {...context.repo, issue_number: issue.number, per_page: 100});
+              if (!ownerApproved(comments, context.repo.owner, approval)) {
+                core.setFailed(`Owner approval of this commit and both artifact digests is required in issue #${issue.number}.`);
+                return;
+              }
+            }
+            core.setOutput('issues', JSON.stringify(blocked.map(i => i.number)));
 
       - name: Publish checked npm artifacts
         run: |
@@ -108,7 +134,21 @@ jobs:
             const title = 'Release blocked: package safety check';
             const url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = `@${context.repo.owner} Automatic npm release stopped. Review the allowlist/secret gate or infrastructure failure before retrying. No credential values are included. Run: ${url}`;
-            await github.rest.issues.create({...context.repo, title, body});
+            const issues = await github.paginate(github.rest.issues.listForRepo, {...context.repo, state: 'open', per_page: 100});
+            const existing = issues.find(i => !i.pull_request && i.title === title);
+            if (existing) await github.rest.issues.createComment({...context.repo, issue_number: existing.number, body});
+            else await github.rest.issues.create({...context.repo, title, body});
+
+      - name: Close explicitly approved recovery after successful upload
+        if: success() && steps.recovery.outputs.issues != '[]'
+        uses: actions/github-script@v7
+        env:
+          RECOVERED_ISSUES: ${{ steps.recovery.outputs.issues }}
+        with:
+          script: |
+            for (const number of JSON.parse(process.env.RECOVERED_ISSUES || '[]')) {
+              await github.rest.issues.update({...context.repo, issue_number: number, state: 'closed'});
+            }
 
   publish-registry:
     needs: [release, publish-npm]

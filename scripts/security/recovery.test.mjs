@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { approvalCommand, ownerApproved } from './recovery.mjs';
+const main = { commit: 'a'.repeat(40), sha256: 'b'.repeat(64) };
+const wrapper = { commit: main.commit, sha256: 'c'.repeat(64) };
+const command = approvalCommand(main, wrapper);
+test('exact owner approval accepted', () => assert.equal(ownerApproved([{user:{login:'owner'},body:command}], 'owner', command), true));
+test('other account rejected', () => assert.equal(ownerApproved([{user:{login:'outsider'},body:command}], 'owner', command), false));
+test('old artifact approval rejected', () => assert.equal(ownerApproved([{user:{login:'owner'},body:command.replace(main.sha256,'d'.repeat(64))}], 'owner', command), false));
+test('unapproved recovery rejected', () => assert.equal(ownerApproved([], 'owner', command), false));
+test('mismatched commits rejected', () => assert.throws(() => approvalCommand(main,{...wrapper,commit:'d'.repeat(40)})));
+test('invalid artifact digest rejected', () => assert.throws(() => approvalCommand({...main,sha256:'invalid'},wrapper)));

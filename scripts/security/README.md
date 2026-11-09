@@ -30,3 +30,11 @@ Use a secret-store reference. Stop on suspected leaks; do not test or rotate the
 Hooks are bypassable and pattern detectors cannot identify every arbitrary
 password. These controls do not claim universal secret detection or enforce
 branch protection. No branch protection is needed for daily main pushes.
+
+## Automatic release recovery
+An open `Release blocked: package safety check` issue is a recovery latch.
+After both checks pass, the workflow summary gives an `approve-release` command
+bound to the source commit and both tarball SHA-256 digests. The repository owner
+must post that exact comment on each open blocking issue before a retry can upload.
+Normal automatic releases have no such issue and require no per-version approval.
+Do not close blocking issues to bypass review; successful approved upload closes them.
