@@ -6,3 +6,5 @@ cache/
 MCP-*.md
 .mcpregistry*
 .serena/
+
+__pycache__/

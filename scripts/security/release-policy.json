@@ -1,0 +1,30 @@
+{
+  "twitterapi-io-mcp": {
+    "repository": "dorukardahan/twitterapi-io-mcp",
+    "registry": "npm",
+    "automatic": true,
+    "path": ".",
+    "prepublish": true,
+    "files": [
+      "CHANGELOG.md",
+      "LICENSE",
+      "README.md",
+      "data/docs.json",
+      "index.js",
+      "package.json"
+    ]
+  },
+  "twitterapi-docs-mcp": {
+    "repository": "dorukardahan/twitterapi-io-mcp",
+    "registry": "npm",
+    "automatic": true,
+    "path": "packages/twitterapi-docs-mcp",
+    "prepublish": false,
+    "files": [
+      "LICENSE",
+      "README.md",
+      "index.js",
+      "package.json"
+    ]
+  }
+}
