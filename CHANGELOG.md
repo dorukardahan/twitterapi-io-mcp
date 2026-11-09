@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.7.1...v1.7.2) (2026-11-09)
+
+
+### Bug Fixes
+
+* document pending video processing in media uploads ([91afbf7](https://github.com/dorukardahan/twitterapi-io-mcp/commit/91afbf7eaf48c41956674f2831e3c8211860d21c))
+
 ## Daily sync (2026-11-09)
 
 - Sync the media upload response and description with live OpenAPI: videos may return `processing_state` (`pending` or `in_progress`) and require a 30–60 second wait before attaching the media ID to a tweet.
