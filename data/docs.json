@@ -1754,8 +1754,8 @@
       "name": "upload_media_v2",
       "url": "https://docs.twitterapi.io/api-reference/endpoint/upload_media_v2",
       "scraped_at": "2026-03-16T02:37:54.445Z",
-      "title": "Upload media to twitter.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 60 credits ($0.0006 per call). ",
-      "description": "Upload media to twitter.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 60 credits ($0.0006 per call). ",
+      "title": "Upload media to twitter.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 60 credits ($0.0006 per call). Long videos: if X is still processing the video after about 90 seconds, the response has status 'success', the media_id and processing_state ('pending' or 'in_progress'); wait about 30-60 seconds before attaching that media_id to a tweet. ",
+      "description": "Upload media to twitter.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 60 credits ($0.0006 per call). Long videos: if X is still processing the video after about 90 seconds, the response has status 'success', the media_id and processing_state ('pending' or 'in_progress'); wait about 30-60 seconds before attaching that media_id to a tweet. ",
       "method": "POST",
       "path": "/twitter/upload_media_v2",
       "response_schema": {
@@ -1770,13 +1770,17 @@
         "message": {
           "type": "string",
           "description": "Message of the request.error message"
+        },
+        "processing_state": {
+          "type": "string",
+          "description": "Only for videos that X is still processing when the upload returns: pending or in_progress. Wait 30-60 seconds before using the media_id in a tweet."
         }
       },
       "curl_example": "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/upload_media_v2' \\\n  --header 'X-API-Key: <api-key>'",
       "code_snippets": [
         "curl --request POST \\\n  --url 'https://api.twitterapi.io/twitter/upload_media_v2' \\\n  --header 'X-API-Key: <api-key>'"
       ],
-      "raw_text": "Upload media to twitter.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 60 credits ($0.0006 per call). ",
+      "raw_text": "Upload media to twitter.You must set the login_cookies.You can get the login_cookies from /twitter/user_login_v2.Price: 60 credits ($0.0006 per call). Long videos: if X is still processing the video after about 90 seconds, the response has status 'success', the media_id and processing_state ('pending' or 'in_progress'); wait about 30-60 seconds before attaching that media_id to a tweet. ",
       "body": {
         "file": {
           "type": "file",

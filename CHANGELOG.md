@@ -1,3 +1,8 @@
+## Daily sync (2026-11-09)
+
+- Sync the media upload response and description with live OpenAPI: videos may return `processing_state` (`pending` or `in_progress`) and require a 30–60 second wait before attaching the media ID to a tweet.
+- Refresh the generated media reference, including the current 60-credit price.
+
 ## [1.7.1](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.7.0...v1.7.1) (2026-11-06)
 
 
