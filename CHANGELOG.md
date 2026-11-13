@@ -1,3 +1,8 @@
+## Daily sync (2026-11-13)
+
+- Patch runtime Hono from 4.13.13 to 4.13.18 and @hono/node-server from 2.1.5 to 2.1.8; npm audit reports zero vulnerabilities.
+- Verify 76 active endpoints, required parameters, query/body placement, category counts, and 76 skill curl examples against live OpenAPI.
+
 ## [1.7.2](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.7.1...v1.7.2) (2026-11-09)
 
 
