@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/dorukardahan/twitterapi-io-mcp/compare/v1.7.2...v1.7.3) (2026-11-13)
+
+
+### Bug Fixes
+
+* patch Hono runtime security vulnerabilities ([5eee5e2](https://github.com/dorukardahan/twitterapi-io-mcp/commit/5eee5e2aa48f482ab0620eb66376264f17439cf7))
+
 ## Daily sync (2026-11-13)
 
 - Patch runtime Hono from 4.13.13 to 4.13.18 and @hono/node-server from 2.1.5 to 2.1.8; npm audit reports zero vulnerabilities.
